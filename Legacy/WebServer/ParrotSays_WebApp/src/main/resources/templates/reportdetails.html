@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- 
+301016383 - Julio Vinicius A. de Carvalho
+November 17, 2019
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<meta charset="UTF-8">
+<title>Parrot Says</title>
+
+<script th:inline="javascript" th:src="@{http://maps.googleapis.com/maps/api/js?key=AIzaSyAUMfy5t49e288JgHAguruAMDcpzC_iRbc&amp;sensor=false}"> </script>
+<script> 
+	function initialize() {
+		var mapProp = { center:new google.maps.LatLng([[${report.Latitude}]],[[${report.Longitude}]]), zoom:19, mapTypeId:google.maps.MapTypeId.ROADMAP }; 
+		var map=new google.maps.Map(document.getElementById("googleMap"),mapProp); 
+	} 
+	google.maps.event.addDomListener(window, 'load', initialize); </script>
+</head>
+
+<body>
+	<div th:insert="header :: header">...</div>
+	
+	<div class="container d-flex">
+	  <div class="card shadow p-3">
+	  	<div class="card-header">
+	  		<h2>Report Details</h2>
+	  	</div>
+	  	 
+        	<div class="card-body">
+	            <table>  
+	                <tr>  
+	                    <td><b><label for="ReportId">Report Id </label></b></td>  
+	                    <td th:text="${report.reportId}"></td>
+	                </tr> 
+	                <tr>  
+	                    <td><b><label for="Description">Description </label></b></td>  
+	                    <td th:text="${report.Description}"></td>
+	                </tr>  
+	                
+	                <tr>  
+	                    <td><b><label for="DateTimeReport">DateTimeReport </label></b></td>  
+	                    <td th:text="${#dates.format(report.DateTimeReport, 'MMM dd, yyyy - HH:mm')}"></td>  
+	                </tr>
+	                <tr>
+	                	<td colspan="2">
+	                		<br><b>Map Location </b>
+	                	</td>
+	                </tr>
+	                <tr>
+		                <td colspan="2">
+		                	<div id="googleMap" style="width:500px;height:380px;"></div>
+		                	
+		                </td>
+	                </tr>
+	                <tr>
+	                	<td colspan="2">
+	                		<br><b><label for="Picture">Picture </label></b>
+	                	</td>
+	                </tr>
+	                <tr>
+	                	<td colspan="2">
+	                		<img th:src="*{'data:image/png;base64,'+report.Picture}" style="width:500px;" alt="" />
+	                	</td>
+	                </tr>
+	               
+	            </table>  
+            </div>
+            
+			<!-- Creates a form to add or edit a blood stock -->
+			<div class="card-footer">
+	            <strong>Add/Edit a Solution</strong>
+	            <form action="saveSolution" th:object="${report}" method="post">  
+	            
+				  	<table class="table">
+				  		
+						<tbody>
+							<tr>
+								<td colspan="2">
+									<input type="hidden" name="ReportId" th:field="*{ReportId}"></input>
+									Solution
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+			                    	 <textarea name="Solution" th:field="*{Solution}" class="form-control" rows="10" cols="50" ></textarea> 
+			                    	<br>
+			                    </td>
+                    		</tr>  
+                    		<tr>
+                    			<td>Status</td>
+                    			<td> 
+		                    		<select class="form-control" id="sel1" name="StatusCode" th:field="*{StatusCode}">
+								    	<option value="0">Opened</option>
+								    	<option value="1">Confirmation Requested</option>
+								    	<option value="2">Confirmed</option>
+								    	<option value="3">Solution Requested</option>
+								    	<option value="4">Solved</option>
+								  	</select>
+		                    	</td>
+		                    </tr>
+		                   
+						</tbody>
+					</table>
+					<div align="right">
+						<input class="btn btn-danger" type="reset" value="Cancel"/>
+						<input class="btn btn-success" type="submit" value="Save"></input>
+		  			</div>
+				</form> 
+			</div>
+	      </div> 
+	</div>
+</body>
+</html>

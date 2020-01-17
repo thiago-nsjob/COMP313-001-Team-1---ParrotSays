@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Views.MapsActivity"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="40">
+
+        <LinearLayout
+            android:id="@+id/llOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/Widget.AppCompat.TextView.SpinnerItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="If You See Something, Say Something:"
+                android:textAlignment="viewStart" />
+
+            <EditText
+                android:id="@+id/etMulti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/btnTakePicture"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/colorAccent"
+                android:onClick="process"
+                android:text="Take a Picture"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/colorBackButton"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rlMap"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="40">
+
+        <ImageButton
+            android:id="@+id/btnType"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@id/map"
+            android:layout_alignBottom="@id/map"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/colorBackButton"
+            android:elevation="1dp"
+            android:onClick="changeMapType"
+            android:src="@drawable/ic_mapchange" />
+
+        <ImageButton
+            android:id="@+id/btnType2"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:layout_alignRight="@id/map"
+            android:layout_alignBottom="@id/map"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/colorBackButton"
+            android:elevation="1dp"
+            android:onClick="changeMapSize"
+            android:src="@drawable/ic_zoom_out_map_black_24dp" />
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></fragment>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:onClick="submitReport"
+        android:text="Submit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
