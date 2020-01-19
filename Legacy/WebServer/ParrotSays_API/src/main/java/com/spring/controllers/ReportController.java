@@ -11,6 +11,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javassist.NotFoundException;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class ReportController {
 	ReportRepository repo;
 	
 	// Get all reports
+	@Secured({ "ROLE_ADMIN" })
 	@GetMapping("/reports")
 	public List<Report> getAllReports()
 	{
@@ -62,6 +64,7 @@ public class ReportController {
     }
 
     // Update a Report
+    @Secured({ "ROLE_ADMIN" })
     @PutMapping("/reports/{id}")
     public Report updateReport(@PathVariable(value = "id") Integer reportId,
                            @Valid @RequestBody Report reportEdited) throws NotFoundException {
@@ -78,6 +81,7 @@ public class ReportController {
     }
 
     // Delete a Report
+    @Secured({ "ROLE_ADMIN" })
     @DeleteMapping("/reports/{id}")
     public ResponseEntity<?> deleteReport(@PathVariable(value = "id") Integer reportId) throws NotFoundException {
 //        Report report = repo.findById(reportId)
