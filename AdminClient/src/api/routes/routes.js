@@ -1,5 +1,5 @@
 var express = require("express");
 var router = express.Router();
 
-module.exports = router.use("/test", require("./controllers/TestController"))
+module.exports = router.use("/test", require('../controllers/TestController'))    
 ;

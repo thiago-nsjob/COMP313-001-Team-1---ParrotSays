@@ -2,17 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
-const testController = require('./api/controllers/TestController');
+const routes = require('./api/routes/routes');
+const port = process.env.PORT || 3000;
 
-
-app.use(express.static(path.join(__dirname, 'build')));
-
-//api base route
-app.route('/api',testController);
+app.use(express.static(path.join(__dirname, '../build')));
 
 //app base route
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(process.env.PORT || 3000);
+//api base route
+app.use('/api',routes);
+
+app.listen(port);
+console.log(`server is up at ${port}`)

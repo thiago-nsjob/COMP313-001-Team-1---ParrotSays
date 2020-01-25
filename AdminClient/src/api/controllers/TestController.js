@@ -1,15 +1,18 @@
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+//import services here
+
 
 // Home page route.
 router.get('/', function (req, res) {
-  res.send('Wiki home page');
+  res.send('test api base');
 })
 
 // About page route.
 router.get('/test', function (req, res) {
-  res.send('About this wiki');
+  res.send('test api test');
 })
 
 module.exports = router;
