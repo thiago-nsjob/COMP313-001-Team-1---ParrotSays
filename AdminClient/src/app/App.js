@@ -1,7 +1,7 @@
 import React from "react";
-
+import Home from "./views/home/home"
 const App = () => {
-  return <div className="App">main page</div>;
+  return <Home/>;
 };
 
 export default App;
