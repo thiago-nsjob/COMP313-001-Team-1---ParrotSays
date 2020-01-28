@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 
+301016383 - Julio Vinicius A. de Carvalho
+November 17, 2019
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<meta charset="ISO-8859-1">
+<title>Parrot Says</title>
+</head>
+<body>
+	<div th:insert="header :: header">...</div>
+	<br>
+	<br>
+	<div class="container">
+	  <div class="jumbotron">
+	  <img th:src="@{/images/ic_launcher_foreground.png}" alt="logo" class="card"></img>
+	  <p>
+	  	<h2>Welcome to <b>Parrot Says</b></h2>      
+	    <p>Please, select your option at the menu.</p>
+	  </div>
+	       
+	</div>
+</body>
+</html>

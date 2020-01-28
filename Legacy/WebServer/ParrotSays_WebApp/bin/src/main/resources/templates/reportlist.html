@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- 
+301016383 - Julio Vinicius A. de Carvalho
+November 17, 2019
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta charset="ISO-8859-1">
+<title>Parrot Says</title>
+</head>
+<body>
+	<div th:insert="header :: header">...</div>
+	
+	<div class="container">
+	  <div class="card">
+	  	<div class="card-header"><h2>List of Reports</h2></div>
+	  	 <div class="card-body">
+	  	<table class="table table-striped">
+	  		<thead class="text-white" style="background:#D81B60">
+			<tr>
+				<th>Report Id</th>
+				<th>Description</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th>Report Date/Time</th>
+				<th>Status Code</th>
+				<th>Actions</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="report : ${reportList}">
+				<td th:text="${report.reportId}"></td>
+				<td th:text="${report.Description}"></td>
+				<td th:text="${report.Latitude}"></td>
+				<td th:text="${report.Longitude}"></td>
+				<td th:text="${#dates.format(report.DateTimeReport, 'MMM dd, yyyy - HH:mm')}"></td>
+				<td th:text="${report.StatusCode}"></td>
+				<td>
+					<a th:href="@{/edit(reportId=${report.reportId})}" href="#"><i class="fa fa-edit text-body"></i></a> | 
+					<a th:href="@{/delete/{reportId}(reportId=${report.reportId})}" href="#" onclick="return confirm('Are you sure you want to remove this report?');"><i class="fa fa-trash text-body"></i></a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+			  </div>  
+	  </div>
+	</div>
+</body>
+</html>
