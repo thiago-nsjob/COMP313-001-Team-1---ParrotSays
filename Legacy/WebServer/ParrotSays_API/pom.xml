@@ -13,10 +13,10 @@ November 17, 2019
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.spring</groupId>
-	<artifactId>Julio_COMP303_Assignment3</artifactId>
+	<artifactId>ParrotSaysAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Julio_COMP303_Assignment3</name>
-	<description>Spring Boot RESTful API </description>
+	<name>ParrotSaysAPI</name>
+	<description>Parrot Says RESTful API </description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -36,6 +36,10 @@ November 17, 2019
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
         <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
