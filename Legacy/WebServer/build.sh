@@ -5,7 +5,7 @@ sudo echo ""
 
 sudo echo "Building docker image eduardoamparo/parrot-says-api..."
 cd ParrotSays_API/
-mvn package
+mvn clean package
 sudo docker build -t eduardoamparo/parrot-says-api .
 cd ..
 sudo echo "Done. -- Building docker image eduardoamparo/parrot-says-api..."
@@ -16,4 +16,4 @@ sudo echo "Pushing docker image eduardoamparo/parrot-says-api..."
 sudo docker push eduardoamparo/parrot-says-api
 
 sudo echo "Loging to Remote server and restart application."
-ssh parrotsays "cd parrotsays && ./up.sh"
+ssh parrotsays "cd parrotsays && ./down.sh && ./up.sh"
