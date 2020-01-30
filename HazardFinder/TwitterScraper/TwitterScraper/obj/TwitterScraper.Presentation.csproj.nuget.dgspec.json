@@ -1,0 +1,92 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Presentation.csproj": {}
+  },
+  "projects": {
+    "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Presentation.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Presentation.csproj",
+        "projectName": "TwitterScraper.Presentation",
+        "projectPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Presentation.csproj",
+        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
+        "outputPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.3.102.15, )"
+            },
+            "AWSXRayRecorder.Handlers.AwsSdk": {
+              "target": "Package",
+              "version": "[2.7.2, )"
+            },
+            "Amazon.Lambda.CloudWatchEvents": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Amazon.Lambda.Core": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Amazon.Lambda.S3Events": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Amazon.Lambda.Serialization.Json": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

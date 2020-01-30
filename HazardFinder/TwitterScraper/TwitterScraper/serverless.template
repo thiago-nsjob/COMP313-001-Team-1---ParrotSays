@@ -1,0 +1,23 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "Template that creates a S3 bucket and a Lambda function that will be invoked when new objects are upload to the bucket.",
+  
+
+  "Resources" : {
+    "TwitterScraper" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "TwitterScraper::Scraper.TwitterScraper::TwitterHandler",
+        "Runtime": "dotnetcore2.1",
+        "CodeUri": "",
+        "Description": "Pulls post from twitter and sends data to SQS",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::113508044065:role/AWSLambda-TwitterScaper",
+        "Policies": [ "AWSLambdaFullAccess" ],
+        "Tracing" : "Active"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\bin\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.deps.json
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\bin\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.runtimeconfig.json
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\bin\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.runtimeconfig.dev.json
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\bin\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.dll
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\bin\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.pdb
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\obj\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.csprojAssemblyReference.cache
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\obj\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.AssemblyInfoInputs.cache
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\obj\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.AssemblyInfo.cs
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\obj\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.dll
+E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\obj\Release\netcoreapp2.1\rhel.7.2-x64\TwitterScraper.pdb
