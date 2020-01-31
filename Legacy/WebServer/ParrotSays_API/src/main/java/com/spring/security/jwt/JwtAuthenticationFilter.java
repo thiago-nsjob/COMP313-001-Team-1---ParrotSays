@@ -65,7 +65,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException error) throws IOException, ServletException {
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException error) 
+    		throws IOException, ServletException {
 
         String json = ServletUtil.getJson("error", "Credentials do not match.");
         ServletUtil.write(response, HttpStatus.UNAUTHORIZED, json);
