@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterScraper.Bootstrap", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterScraper.Tests", "..\TwitterScraper.Tests\TwitterScraper.Tests.csproj", "{79DB157D-CE80-4DA1-AD56-0110E90039EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterScraper.Infra", "..\TwitterScraper.Infra\TwitterScraper.Infra.csproj", "{19558C45-26C3-4A4A-BDAB-DFD572EE6246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterScraper.Infra", "..\TwitterScraper.Infra\TwitterScraper.Infra.csproj", "{19558C45-26C3-4A4A-BDAB-DFD572EE6246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterScraper.Service", "..\TwitterScrape.Service\TwitterScraper.Service.csproj", "{E1EFEC1C-E412-4A90-9396-BAF32E1F5339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterScraper.Service", "..\TwitterScrape.Service\TwitterScraper.Service.csproj", "{E1EFEC1C-E412-4A90-9396-BAF32E1F5339}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

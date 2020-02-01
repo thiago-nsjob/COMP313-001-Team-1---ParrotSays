@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0" />
@@ -12,6 +12,8 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TwitterScrape.Service\TwitterScraper.Service.csproj" />
+    <ProjectReference Include="..\TwitterScraper.Infra\TwitterScraper.Infra.csproj" />
     <ProjectReference Include="..\TwitterScraper\TwitterScraper.Bootstrap.csproj" />
   </ItemGroup>
 </Project>

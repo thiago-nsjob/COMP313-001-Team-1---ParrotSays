@@ -3,12 +3,26 @@
   "Transform" : "AWS::Serverless-2016-10-31",
   "Description" : "Template that creates a S3 bucket and a Lambda function that will be invoked when new objects are upload to the bucket.",
   
+  "Globals":{
+    "Function" : {
+        "Environment" : {
+        "Variables" : {
+            "AWS_TWITTER_SQS_SERVICE": "https://sqs.ca-central-1.amazonaws.com",
+            "AWS_TWITTER_SQS_QUEUENAME": "IncomeTwitterPosts",
+            "AWS_TWITTER_API_KEY": "dakmNn0r3dhbMaUc4lvo46ErA",
+            "AWS_TWITTER_API_SECRET_KEY": "RUPlnEIgGrgZ0NnK4diylDorm23zYBfERaIBNkNmvu9l7ZLzb8",
+            "AWS_TWITTER_API_TOKEN": "1222242177314631681-MAtzVci7wbHqyw1G4vz5YEfAGRfIby",
+            "AWS_TWITTER_API_SECRET": "qDP1TUtFE0D0gGfc1gmXu9e7rILxZOhKjHWMhFSBbPw6H"
+            }
+        }
+    }
+  },
 
   "Resources" : {
     "TwitterScraper" : {
       "Type" : "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "TwitterScraper::Scraper.TwitterScraper::TwitterHandler",
+        "Handler": "TwitterScraper.Bootstrap::TwitterScraper.Bootstrap.Scraper::Handler",
         "Runtime": "dotnetcore2.1",
         "CodeUri": "",
         "Description": "Pulls post from twitter and sends data to SQS",
@@ -18,6 +32,8 @@
         "Policies": [ "AWSLambdaFullAccess" ],
         "Tracing" : "Active"
       }
+      
+      
     }
   }
 }
