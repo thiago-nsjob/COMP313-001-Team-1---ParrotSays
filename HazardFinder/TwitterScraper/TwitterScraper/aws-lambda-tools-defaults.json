@@ -13,6 +13,6 @@
     "s3-prefix"     : "TwitterScraper/",
     "template"      : "serverless.template",
     "template-parameters" : "",
-    "s3-bucket"           : "aws-cert-staticwebsitetest",
+    "s3-bucket"           : "aws-hazardfinder-code",
     "stack-name"          : "TwitterScraper"
 }

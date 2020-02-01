@@ -7,6 +7,7 @@
     "Function" : {
         "Environment" : {
         "Variables" : {
+            "AWS_TWITTER_ACCOUNT_ID": "113508044065",
             "AWS_TWITTER_SQS_SERVICE": "https://sqs.ca-central-1.amazonaws.com",
             "AWS_TWITTER_SQS_QUEUENAME": "IncomeTwitterPosts",
             "AWS_TWITTER_API_KEY": "dakmNn0r3dhbMaUc4lvo46ErA",

@@ -29,7 +29,6 @@ namespace TwitterScraper.Infra.Twitter
             {
                 Console.WriteLine("Fail to initialize TwitterClient class.");
                 Console.WriteLine(ex.Message);
-
                 throw ex;
             }
         }

@@ -16,7 +16,7 @@
     <Import Project="C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\build\netcoreapp2.1\Microsoft.NETCore.App.props" Condition="Exists('C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\build\netcoreapp2.1\Microsoft.NETCore.App.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgTweetinviAPI Condition=" '$(PkgTweetinviAPI)' == '' ">C:\Users\thiag\.nuget\packages\tweetinviapi\4.0.3</PkgTweetinviAPI>
+    <PkgTweetinviAPI Condition=" '$(PkgTweetinviAPI)' == '' ">C:\Users\thiag\.nuget\packages\tweetinviapi\4.0.0</PkgTweetinviAPI>
     <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">C:\Users\thiag\.nuget\packages\awssdk.core\3.3.104.21</PkgAWSSDK_Core>
     <PkgAWSSDK_SQS Condition=" '$(PkgAWSSDK_SQS)' == '' ">C:\Users\thiag\.nuget\packages\awssdk.sqs\3.3.102.60</PkgAWSSDK_SQS>
     <PkgAWSSDK_XRay Condition=" '$(PkgAWSSDK_XRay)' == '' ">C:\Users\thiag\.nuget\packages\awssdk.xray\3.3.101.116</PkgAWSSDK_XRay>

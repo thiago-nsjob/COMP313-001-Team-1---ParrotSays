@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>TwitterScraper.Bootstrap</id>
+    <version>1.0.0</version>
+    <authors>TwitterScraper.Bootstrap</authors>
+    <owners>TwitterScraper.Bootstrap</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp2.1">
+        <dependency id="TwitterScraper.Service" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="TwitterScraper.Infra" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="AWSSDK.XRay" version="3.3.101.116" exclude="Build,Analyzers" />
+        <dependency id="AWSXRayRecorder" version="2.7.2" exclude="Build,Analyzers" />
+        <dependency id="AWSXRayRecorder.Core" version="2.6.2" exclude="Build,Analyzers" />
+        <dependency id="Amazon.Lambda.Core" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Amazon.Lambda.Serialization.Json" version="1.7.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="TweetinviAPI" version="4.0.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\bin\Release\netcoreapp2.1\TwitterScraper.Bootstrap.runtimeconfig.json" target="lib\netcoreapp2.1\TwitterScraper.Bootstrap.runtimeconfig.json" />
+    <file src="E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper\bin\Release\netcoreapp2.1\TwitterScraper.Bootstrap.dll" target="lib\netcoreapp2.1\TwitterScraper.Bootstrap.dll" />
+  </files>
+</package>

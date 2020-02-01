@@ -52,15 +52,17 @@ namespace Scraper.Tests
                 Text = "Sometext"
             } };
 
-            ISQSService service = new SQSClient("https://sqs.ca-central-1.amazonaws.com", "IncomeTwitterPosts");
+            ISQSService service = new SQSClient("https://sqs.ca-central-1.amazonaws.com", "IncomeTwitterPosts", "113508044065");
 
             Assert.True(await service.SendBatchMessage(lst));
 
         }
+
         [Fact]
         public async Task Handle()
         {
-
+            var scraper = new TwitterScraper.Bootstrap.Scraper();
+            await scraper.Handler(null);
         }
     }
 }

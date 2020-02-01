@@ -45,7 +45,8 @@ namespace TwitterScraper.Bootstrap
 
             serviceCollection.AddSingleton<ISQSService, SQSClient>(s => new SQSClient(
                     _configuration["AWS_TWITTER_SQS_SERVICE"].ToString(),
-                    _configuration["AWS_TWITTER_SQS_QUEUENAME"].ToString()
+                    _configuration["AWS_TWITTER_SQS_QUEUENAME"].ToString(),
+                    _configuration["AWS_TWITTER_ACCOUNT_ID"].ToString()
                 )
             );
             serviceCollection.AddTransient<ITwitterScraper, TwitterScraperService>();

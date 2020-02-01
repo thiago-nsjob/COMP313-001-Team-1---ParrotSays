@@ -1,12 +1,11 @@
 {
   "runtimeTarget": {
-    "name": ".NETCoreApp,Version=v2.1/rhel.7.2-x64",
+    "name": ".NETCoreApp,Version=v2.1",
     "signature": ""
   },
   "compilationOptions": {},
   "targets": {
-    ".NETCoreApp,Version=v2.1": {},
-    ".NETCoreApp,Version=v2.1/rhel.7.2-x64": {
+    ".NETCoreApp,Version=v2.1": {
       "TwitterScraper/1.0.0": {
         "dependencies": {
           "AWSSDK.S3": "3.3.102.15",

@@ -19,7 +19,7 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Pkgxunit_analyzers Condition=" '$(Pkgxunit_analyzers)' == '' ">C:\Users\thiag\.nuget\packages\xunit.analyzers\0.7.0</Pkgxunit_analyzers>
-    <PkgTweetinviAPI Condition=" '$(PkgTweetinviAPI)' == '' ">C:\Users\thiag\.nuget\packages\tweetinviapi\4.0.3</PkgTweetinviAPI>
+    <PkgTweetinviAPI Condition=" '$(PkgTweetinviAPI)' == '' ">C:\Users\thiag\.nuget\packages\tweetinviapi\4.0.0</PkgTweetinviAPI>
     <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">C:\Users\thiag\.nuget\packages\awssdk.core\3.3.104.21</PkgAWSSDK_Core>
     <PkgAWSSDK_SQS Condition=" '$(PkgAWSSDK_SQS)' == '' ">C:\Users\thiag\.nuget\packages\awssdk.sqs\3.3.102.60</PkgAWSSDK_SQS>
     <PkgAWSSDK_XRay Condition=" '$(PkgAWSSDK_XRay)' == '' ">C:\Users\thiag\.nuget\packages\awssdk.xray\3.3.101.116</PkgAWSSDK_XRay>
