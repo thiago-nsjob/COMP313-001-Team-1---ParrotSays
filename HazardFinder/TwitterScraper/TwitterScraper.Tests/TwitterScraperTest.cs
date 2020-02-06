@@ -23,7 +23,17 @@ namespace Scraper.Tests
 {
     public class TwitterScraperTest
     {
-
+        /*
+         To be tested:
+             
+             - Test TwitterClient constructor
+             - Test SQSClient constructor
+             - Test TwitterClient functions
+             - Test SQSClient functions
+             - Test Handler functions
+             - Test Handler constructor
+             
+             */
 
         [Fact]
         public async Task TwitterClient_Constructor()
