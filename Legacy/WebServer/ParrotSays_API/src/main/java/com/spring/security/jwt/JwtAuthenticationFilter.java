@@ -36,10 +36,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                                 HttpServletResponse response) {
 
         try {
-            JwtLoginInput login = new ObjectMapper().readValue(request.getInputStream(), JwtLoginInput.class);
+            User login = new ObjectMapper().readValue(request.getInputStream(), User.class);
             String username = login.getUsername();
             String password = login.getPassword();
-
+            
+            System.out.println(login);
+            
             if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
                 throw new BadCredentialsException("Invalid username/password.");
             }

@@ -124,7 +124,7 @@ public class UserProfileController {
     		}
     		else
     		{
-    			ServletUtil.write(response, HttpStatus.BAD_REQUEST, ServletUtil.getJson("Error", "Impossible to add this role."));
+    			ServletUtil.write(response, HttpStatus.BAD_REQUEST, ServletUtil.getJson("Error", "It is impossible to add this role."));
     		}
     	}
     	catch(Exception exc)
