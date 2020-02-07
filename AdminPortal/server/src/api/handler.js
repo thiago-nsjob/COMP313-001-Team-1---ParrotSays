@@ -2,7 +2,7 @@ const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-var AWSXRay = require('aws-xray-sdk');
+const AWSXRay = require('aws-xray-sdk');
 
 require("dotenv").config({ path: '/config/env/' + process.env.NODE_ENV + '.env' });
 
