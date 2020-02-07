@@ -198,7 +198,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             public void onClick(DialogInterface dialog, int which) {
                                 imageView.setImageResource(0);
                                 editMult.setText("");
-                                newReport = new Report();
                             }
                         });
                 alertDialog.show();
