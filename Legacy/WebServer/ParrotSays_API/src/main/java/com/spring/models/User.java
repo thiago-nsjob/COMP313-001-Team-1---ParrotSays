@@ -32,7 +32,7 @@ public class User implements UserDetails {
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private List<Roles> roles;
+    private List<Roles> roles = new ArrayList<Roles>();
 
     public List<Roles> getRoles() {
 		return roles;
@@ -40,6 +40,19 @@ public class User implements UserDetails {
     
 	public void setRoles(List<Roles> roles) {
 		this.roles = roles;
+	}
+	
+	public boolean setSingleRole(Roles role)
+	{
+		if(!roles.contains(role))
+		{
+			roles.add(role);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	public Long getId() {

@@ -3,7 +3,6 @@ package com.jvinix.iy4s.Views;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,12 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.jvinix.iy4s.Models.Customer;
 import com.jvinix.iy4s.Models.Report;
 import com.jvinix.iy4s.R;
-import com.jvinix.iy4s.Utils.Converter;
 import com.jvinix.iy4s.ViewModels.ReportViewModel;
 
 import org.springframework.http.HttpEntity;
@@ -33,13 +29,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-public class MyReportsActivity extends AppCompatActivity {
+public class ReportsActivity extends AppCompatActivity {
 
     private String ServerUrl;
     private String Token;
     private ReportViewModel rvm;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,23 +51,39 @@ public class MyReportsActivity extends AppCompatActivity {
 
         rvm = ViewModelProviders.of(this).get(ReportViewModel.class);
 
-        List<Report> reportList = new ArrayList<Report>();
+        listView = findViewById(R.id.lvReports);
 
         try {
+            // If statusCode is 1, the user has logged in as Security Guard,
+            // otherwise, he/she if a regular user
             if (statuscode == 1)
             {
-                //reportList = new RestTaskGetAllByStatusCode().execute(statuscode).get();
-                reportList = rvm.getAllReports();
+                // Shows a list of reports to be investigated.
+                setTitle(getResources().getString(R.string.reports_to_investigate));
+                new RestTaskGetAllByStatusCode().execute();
             }
             else {
-                reportList = rvm.getAllReports();
-                //reportList = new RestTaskGetAll().execute().get();;
+                // Shows all reports submitted by the user.
+                listView.setAdapter(createAdapter(rvm.getAllReports()));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        final List<Report> finalList = reportList;
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                // To be implemented.
+
+            }});
+    }
+
+
+    private ArrayAdapter createAdapter(List<Report> list)
+    {
+        final List<Report> finalList = list;
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, finalList) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -85,43 +97,7 @@ public class MyReportsActivity extends AppCompatActivity {
                 return view;
             }
         };
-
-        ListView listView = (ListView) findViewById(R.id.lvReports);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //Intent i =  new Intent(this, Detaisl)
-                //reportList.get(position).getReportId();
-
-            }});
-    }
-
-    class RestTaskGetAll extends AsyncTask<Void, Void, List<Report>> {
-
-        @Override
-        protected List<Report> doInBackground(Void... voids) {
-            try {
-                RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-                HttpHeaders headers = new HttpHeaders();
-                headers.set("Authorization", "Bearer "+Token);
-
-                HttpEntity<String> entity = new HttpEntity<String>("parameters",headers);
-
-                ResponseEntity<Report[]> re = restTemplate.exchange(ServerUrl+"/api/reports/", HttpMethod.GET, entity, Report[].class);
-                return Arrays.asList(re.getBody());
-
-            }
-            catch(Exception ex)
-            {
-                Log.e("ERROR: ", ex.getMessage());
-                return null;
-            }
-        }
+        return adapter;
     }
 
     class RestTaskGetAllByStatusCode extends AsyncTask<Integer, Void, List<Report>> {
@@ -134,10 +110,10 @@ public class MyReportsActivity extends AppCompatActivity {
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.set("Authorization", "Bearer "+Token);
-
+                System.out.println(Token);
                 HttpEntity<String> entity = new HttpEntity<String>("tokens",headers);
 
-                ResponseEntity<Report[]> re = restTemplate.exchange(ServerUrl+"/api/reports/bystatus/"+params[0].toString(), HttpMethod.GET, entity, Report[].class);
+                ResponseEntity<Report[]> re = restTemplate.exchange(ServerUrl+"/api/reports/getbystatus/1", HttpMethod.GET, entity, Report[].class);
                 return Arrays.asList(re.getBody());
 
             }
@@ -146,6 +122,14 @@ public class MyReportsActivity extends AppCompatActivity {
                 Log.e("ERROR: ", ex.getMessage());
                 return null;
             }
+        }
+
+        @Override
+        protected void onPostExecute(List<Report> reports) {
+            super.onPostExecute(reports);
+
+            if (reports != null)
+                listView.setAdapter(createAdapter(reports));
         }
     }
 }

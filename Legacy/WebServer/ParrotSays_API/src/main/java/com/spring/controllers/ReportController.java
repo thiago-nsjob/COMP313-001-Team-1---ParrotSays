@@ -20,7 +20,7 @@ import com.spring.models.*;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/reports")
 public class ReportController {
 	
 	@Autowired
@@ -28,44 +28,45 @@ public class ReportController {
 	
 	// Get all reports
 	@Secured({ "ROLE_ADMIN" })
-	@GetMapping("/reports")
+	@GetMapping("/getall")
 	public List<Report> getAllReports()
 	{
 		return repo.findAll();
 	}
 	
-	// Get all reports
-	@GetMapping("/reports/bystatus/{id}")
-	public List<Report> getReportsByStatus (@PathVariable(value = "id") Integer reportId)
+	@Secured({ "ROLE_SECGUARD", "ROLE_ADMIN" })
+	// Get all reports by status
+	@GetMapping("/getbystatus/{id}")
+	public List<Report> getReportsByStatus (@PathVariable(value = "id") Integer statusCode)
 	{
-		List<Report> reportList = new ArrayList<Report>();
-		for(Report rep : reportList)
-		{
-			if(rep.getStatusCode() == 1)
-			{
-				reportList.add(rep);
-			}
-		}
-		return reportList;
+		return repo.findByStatusCode(statusCode);
+//		for(Report rep : reportList)
+//		{
+//			if(rep.getStatusCode() == 1)
+//			{
+//				reportList.add(rep);
+//			}
+//		}
+//		return reportList;
 	}
 	
 	// Create a new report
-    @PostMapping("/reports")
+    @PostMapping("/addreport")
     public Report addReport(@Valid @RequestBody Report report) {
-    	System.out.println("ReportController: " + report);
         return repo.save(report);
     }
     
+    @Secured({ "ROLE_SECGUARD", "ROLE_ADMIN" })
     // Get a Single report
-    @GetMapping("/reports/{id}")
+    @GetMapping("/getreport/{id}")
     public Report getReportById(@PathVariable(value = "id") Integer reportId) throws NotFoundException  {
         return repo.findById(reportId)
         		.orElseThrow(() -> new NotFoundException("ReportId "+ reportId+ " Not found."));
     }
 
     // Update a Report
-    @Secured({ "ROLE_ADMIN" })
-    @PutMapping("/reports/{id}")
+    @Secured({ "ROLE_SECGUARD", "ROLE_ADMIN" })
+    @PutMapping("/updatereport/{id}")
     public Report updateReport(@PathVariable(value = "id") Integer reportId,
                            @Valid @RequestBody Report reportEdited) throws NotFoundException {
 
@@ -82,7 +83,7 @@ public class ReportController {
 
     // Delete a Report
     @Secured({ "ROLE_ADMIN" })
-    @DeleteMapping("/reports/{id}")
+    @DeleteMapping("/delreport/{id}")
     public ResponseEntity<?> deleteReport(@PathVariable(value = "id") Integer reportId) throws NotFoundException {
 //        Report report = repo.findById(reportId)
 //        		.orElseThrow(() -> new NotFoundException("ReportId "+ reportId+ " Not found."));
