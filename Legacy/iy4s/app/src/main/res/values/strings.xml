@@ -1,4 +1,33 @@
 <resources>
     <string name="app_name">Parrot Says</string>
     <string name="title_activity_maps">Parrot Says</string>
+    <string name="please_wait_nthis_may_take_a_moment">Please wait! \nThis may take a moment.</string>
+    <string name="alert">Alert</string>
+    <string name="alert_description">Please enter a description and try again.</string>
+    <string name="message">Message</string>
+    <string name="msg_success">What you said was submitted successfully!</string>
+    <string name="error">Error</string>
+    <string name="error_server_address">Please check the server address config and try again.</string>
+    <string name="login_error">Sign In error. Please, try again.</string>
+    <string name="server_error">ERROR: A server error occurred.</string>
+    <string name="welcome">Welcome</string>
+    <string name="reports_to_investigate">Reports to Investigate</string>
+    <string name="parrot_says_version">Parrot Says App v2.0</string>
+    <string name="team_project">Team Project in Alphabetic Order</string>
+    <string name="server_configuration">Server Configuration:</string>
+    <string name="save">Save</string>
+    <string name="if_you_see_something_say_something">If You See Something, Say Something:</string>
+    <string name="submit">Submit</string>
+    <string name="take_a_picture">Take a Picture</string>
+    <string name="todo">TODO</string>
+    <string-array name="teamMembers">
+        <item>Andrea de La Isla</item>
+        <item>Eduardo Santana</item>
+        <item>Julio Vinicius A. de Carvalho</item>
+        <item>Kelvin Trinh</item>
+        <item>Leonardo Oliveira</item>
+        <item>Sophia Bhullar</item>
+        <item>Thiago Silva</item>
+        <item>Ydelma Rangel</item>
+    </string-array>
 </resources>
