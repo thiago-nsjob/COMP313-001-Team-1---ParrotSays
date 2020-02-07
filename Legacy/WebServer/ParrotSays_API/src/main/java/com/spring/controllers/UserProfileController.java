@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.spring.models.Report;
+import com.spring.models.ReportRepository;
 import com.spring.models.Roles;
 import com.spring.models.RolesRepository;
 import com.spring.models.User;
