@@ -1,0 +1,36 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "Template that creates a S3 bucket and a Lambda function that will be invoked when new objects are upload to the bucket.",
+  
+  "Globals":{
+    "Function" : {
+        "Environment" : {
+        "Variables" : {
+            "AWS_TWITTER_ACCOUNT_ID": "113508044065",
+            "AWS_TWITTER_SQS_SERVICE": "https://sqs.ca-central-1.amazonaws.com",
+            "AWS_TWITTER_SQS_QUEUENAME": "IncomeTwitterPosts"
+            }
+        }
+    }
+  },
+
+  "Resources" : {
+    "TwitterAnalyzer" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "TwitterAnalyzer.Bootstrap::TwitterAnalyzer.Bootstrap.Analyzer::Handler",
+        "Runtime": "dotnetcore2.1",
+        "CodeUri": "",
+        "Description": "Poll messages from the SQS, analyze to identify hazard content and send results to the API",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::113508044065:role/AWSLambda-TwitterAnalyzer",
+        "Policies": [ "AWSLambdaFullAccess" ],
+        "Tracing" : "Active"
+      }
+      
+      
+    }
+  }
+}
