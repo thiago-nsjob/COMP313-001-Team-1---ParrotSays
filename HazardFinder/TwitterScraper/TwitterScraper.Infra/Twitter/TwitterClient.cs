@@ -70,19 +70,5 @@ namespace TwitterScraper.Infra.Twitter
         }
 
 
-        public async Task Test()
-        {
-            var searchParameter = new SearchTweetsParameters("centennialcollege")
-            {
-                Lang = LanguageFilter.English,
-                SearchType = SearchResultType.Mixed,
-                MaximumNumberOfResults = 100,
-                Filters = TweetSearchFilters.Hashtags
-            };
-
-            var tweets = Search.SearchTweets(searchParameter);
-
-        }
-
     }
 }

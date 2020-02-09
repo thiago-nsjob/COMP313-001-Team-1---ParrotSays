@@ -23,14 +23,35 @@ namespace Scraper.Tests
 {
     public class TwitterScraperTest
     {
+        /*
+         To be tested:
+             
+             - Test TwitterClient constructor
+             - Test SQSClient constructor
+             - Test TwitterClient functions
+             - Test SQSClient functions
+             - Test Handler functions
+             - Test Handler constructor
+             
+             */
 
+        [Fact]
+        public async Task TwitterClient_Constructor()
+        {
+            TwitterClient client =
+                   new TwitterClient("dakmNn0r3dhbMaUc4lvo46ErA",
+               "RUPlnEIgGrgZ0NnK4diylDorm23zYBfERaIBNkNmvu9l7ZLzb8",
+               "1222242177314631681-MAtzVci7wbHqyw1G4vz5YEfAGRfIby",
+               "qDP1TUtFE0D0gGfc1gmXu9e7rILxZOhKjHWMhFSBbPw6H");
 
+            Assert.NotNull(client);
+        }
 
         [Fact]
         public async Task TwitterClient()
         {
-            TwitterScraper.Infra.Twitter.TwitterClient client =
-                new TwitterScraper.Infra.Twitter.TwitterClient("dakmNn0r3dhbMaUc4lvo46ErA",
+            TwitterClient client =
+                new TwitterClient("dakmNn0r3dhbMaUc4lvo46ErA",
             "RUPlnEIgGrgZ0NnK4diylDorm23zYBfERaIBNkNmvu9l7ZLzb8",
             "1222242177314631681-MAtzVci7wbHqyw1G4vz5YEfAGRfIby",
             "qDP1TUtFE0D0gGfc1gmXu9e7rILxZOhKjHWMhFSBbPw6H");
@@ -63,6 +84,7 @@ namespace Scraper.Tests
         {
             var scraper = new TwitterScraper.Bootstrap.Scraper();
             await scraper.Handler(null);
+            
         }
     }
 }

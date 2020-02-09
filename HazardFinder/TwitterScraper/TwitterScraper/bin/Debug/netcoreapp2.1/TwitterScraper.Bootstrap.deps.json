@@ -42,14 +42,11 @@
           }
         }
       },
-      "Autofac/4.6.2": {
-        "dependencies": {
-          "System.ComponentModel": "4.0.1"
-        },
+      "Autofac/4.9.4": {
         "runtime": {
-          "lib/netstandard1.1/Autofac.dll": {
-            "assemblyVersion": "4.6.2.0",
-            "fileVersion": "4.6.2.0"
+          "lib/netstandard2.0/Autofac.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
           }
         }
       },
@@ -98,7 +95,7 @@
           "AWSSDK.XRay": "3.3.101.116",
           "Microsoft.AspNetCore.Http": "2.0.0",
           "Microsoft.Extensions.Configuration": "2.1.1",
-          "System.Net.Http": "4.3.3"
+          "System.Net.Http": "4.3.4"
         },
         "runtime": {
           "lib/netstandard2.0/AWSXRayRecorder.Core.dll": {
@@ -410,19 +407,36 @@
           }
         }
       },
-      "NitoAsyncEx.Context.StrongName/1.1.0": {
+      "Nito.AsyncEx.Context/5.0.0": {
+        "dependencies": {
+          "Nito.AsyncEx.Tasks": "5.0.0"
+        },
         "runtime": {
-          "lib/netstandard1.4/Nito.AsyncEx.Context.dll": {
-            "assemblyVersion": "1.1.0.0",
-            "fileVersion": "1.1.0.0"
-          },
-          "lib/netstandard1.4/Nito.AsyncEx.Tasks.dll": {
-            "assemblyVersion": "1.1.0.0",
-            "fileVersion": "1.1.0.0"
-          },
-          "lib/netstandard1.4/Nito.Disposables.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+          "lib/netstandard2.0/Nito.AsyncEx.Context.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.0.0"
+          }
+        }
+      },
+      "Nito.AsyncEx.Tasks/5.0.0": {
+        "dependencies": {
+          "Nito.Disposables": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Nito.AsyncEx.Tasks.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.0.0"
+          }
+        }
+      },
+      "Nito.Disposables/2.0.0": {
+        "dependencies": {
+          "System.Collections.Immutable": "1.4.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Nito.Disposables.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       },
@@ -512,11 +526,7 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
-      "System.ComponentModel/4.0.1": {
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        }
-      },
+      "System.Collections.Immutable/1.4.0": {},
       "System.Data.SqlClient/4.4.0": {
         "dependencies": {
           "Microsoft.Win32.Registry": "4.4.0",
@@ -616,7 +626,7 @@
         }
       },
       "System.Memory/4.5.1": {},
-      "System.Net.Http/4.3.3": {
+      "System.Net.Http/4.3.4": {
         "dependencies": {
           "System.Collections": "4.3.0",
           "System.Diagnostics.Debug": "4.3.0",
@@ -663,12 +673,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Reflection.TypeExtensions/4.3.0": {
-        "dependencies": {
-          "System.Reflection": "4.3.0",
-          "System.Runtime": "4.3.0"
-        }
-      },
+      "System.Reflection.TypeExtensions/4.5.1": {},
       "System.Resources.ResourceManager/4.3.0": {
         "dependencies": {
           "System.Globalization": "4.3.0",
@@ -875,50 +880,51 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "TweetinviAPI/4.0.0": {
+      "TweetinviAPI/4.0.3": {
         "dependencies": {
-          "Autofac": "4.6.2",
+          "Autofac": "4.9.4",
           "Newtonsoft.Json": "12.0.3",
-          "NitoAsyncEx.Context.StrongName": "1.1.0",
-          "System.Net.Http": "4.3.3",
-          "System.Reflection.TypeExtensions": "4.3.0"
+          "Nito.AsyncEx.Context": "5.0.0",
+          "System.Collections": "4.3.0",
+          "System.Net.Http": "4.3.4",
+          "System.Reflection.TypeExtensions": "4.5.1"
         },
         "runtime": {
-          "lib/netstandard1.4/Tweetinvi.Controllers.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
+          "lib/netstandard2.0/Tweetinvi.Controllers.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           },
-          "lib/netstandard1.4/Tweetinvi.Core.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
+          "lib/netstandard2.0/Tweetinvi.Core.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           },
-          "lib/netstandard1.4/Tweetinvi.Credentials.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
+          "lib/netstandard2.0/Tweetinvi.Credentials.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           },
-          "lib/netstandard1.4/Tweetinvi.Factories.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
+          "lib/netstandard2.0/Tweetinvi.Factories.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           },
-          "lib/netstandard1.4/Tweetinvi.Logic.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
+          "lib/netstandard2.0/Tweetinvi.Logic.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           },
-          "lib/netstandard1.4/Tweetinvi.Security.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
+          "lib/netstandard2.0/Tweetinvi.Security.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           },
-          "lib/netstandard1.4/Tweetinvi.Streams.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
+          "lib/netstandard2.0/Tweetinvi.Streams.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           },
-          "lib/netstandard1.4/Tweetinvi.WebLogic.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
+          "lib/netstandard2.0/Tweetinvi.WebLogic.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           },
-          "lib/netstandard1.4/Tweetinvi.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
+          "lib/netstandard2.0/Tweetinvi.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           }
         }
       },
@@ -931,7 +937,7 @@
           "Microsoft.Extensions.Configuration.FileExtensions": "2.1.1",
           "Microsoft.Extensions.Configuration.Json": "2.1.1",
           "Newtonsoft.Json": "12.0.3",
-          "TweetinviAPI": "4.0.0"
+          "TweetinviAPI": "4.0.3"
         },
         "runtime": {
           "TwitterScraper.Infra.dll": {}
@@ -967,12 +973,12 @@
       "path": "amazon.lambda.serialization.json/1.7.0",
       "hashPath": "amazon.lambda.serialization.json.1.7.0.nupkg.sha512"
     },
-    "Autofac/4.6.2": {
+    "Autofac/4.9.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wKI7F6+n45gqfq0T8FuB3hFzaCkuegiFo5in6uB1y2Ai9ZYcjue8yqk3yzyNEwBDS7AyvlTUGSoNovwpUuKqTw==",
-      "path": "autofac/4.6.2",
-      "hashPath": "autofac.4.6.2.nupkg.sha512"
+      "sha512": "sha512-dYiDG4yoV7GDCoOc66d1sqMmg2gwDyomHKgATuMfhFzYxVpWEltToHVHXI3I9vOEvIXE55S4OZPY0ldiZmZtpA==",
+      "path": "autofac/4.9.4",
+      "hashPath": "autofac.4.9.4.nupkg.sha512"
     },
     "AWSSDK.Core/3.3.104.21": {
       "type": "package",
@@ -1198,12 +1204,26 @@
       "path": "newtonsoft.json/12.0.3",
       "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
     },
-    "NitoAsyncEx.Context.StrongName/1.1.0": {
+    "Nito.AsyncEx.Context/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-GSqIKq7tN2f7DmA6e6W5AH4P8mrEe/+Z8s0yJtkEkxLeRQqiscPp7jmYshrg1/Zl6cUidv6H8gYRrZgw6pc61A==",
-      "path": "nitoasyncex.context.strongname/1.1.0",
-      "hashPath": "nitoasyncex.context.strongname.1.1.0.nupkg.sha512"
+      "sha512": "sha512-Qnth1Ye+QSLg8P3fSFYzk7ue6oUUHQcKpLitgAig8xRFqTK5W1KTlfxF/Z8Eo0BuqZ17a5fAGtXrdKJsLqivZw==",
+      "path": "nito.asyncex.context/5.0.0",
+      "hashPath": "nito.asyncex.context.5.0.0.nupkg.sha512"
+    },
+    "Nito.AsyncEx.Tasks/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZtvotignafOLteP4oEjVcF3k2L8h73QUCaFpVKWbU+EOlW/I+JGkpMoXIl0rlwPcDmR84RxzggLRUNMaWlOosA==",
+      "path": "nito.asyncex.tasks/5.0.0",
+      "hashPath": "nito.asyncex.tasks.5.0.0.nupkg.sha512"
+    },
+    "Nito.Disposables/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ExJl/jTjegSLHGcwnmaYaI5xIlrefAsVdeLft7VLtXI2+W5irihiu36LizWvlaUpzY1/llo+YSh09uSHMu2VFw==",
+      "path": "nito.disposables/2.0.0",
+      "hashPath": "nito.disposables.2.0.0.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
       "type": "package",
@@ -1359,12 +1379,12 @@
       "path": "system.collections.concurrent/4.3.0",
       "hashPath": "system.collections.concurrent.4.3.0.nupkg.sha512"
     },
-    "System.ComponentModel/4.0.1": {
+    "System.Collections.Immutable/1.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-oBZFnm7seFiVfugsIyOvQCWobNZs7FzqDV/B7tx20Ep/l3UUFCPDkdTnCNaJZTU27zjeODmy2C/cP60u3D4c9w==",
-      "path": "system.componentmodel/4.0.1",
-      "hashPath": "system.componentmodel.4.0.1.nupkg.sha512"
+      "sha512": "sha512-71hw5RUJRu5+q/geUY69gpXD8Upd12cH+F3MwpXV2zle7Bqqkrmc1JblOTuvUcgmdnUtQvBlV5e1d6RH+H2lvA==",
+      "path": "system.collections.immutable/1.4.0",
+      "hashPath": "system.collections.immutable.1.4.0.nupkg.sha512"
     },
     "System.Data.SqlClient/4.4.0": {
       "type": "package",
@@ -1450,12 +1470,12 @@
       "path": "system.memory/4.5.1",
       "hashPath": "system.memory.4.5.1.nupkg.sha512"
     },
-    "System.Net.Http/4.3.3": {
+    "System.Net.Http/4.3.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7rCqIbkC/P2+A00NoDH5gnvFhADmX7Dc4INvsOajbU1MVhktE9vZNrjPtF82N6Uo7obK+yzlrPUv/M+snnN/9w==",
-      "path": "system.net.http/4.3.3",
-      "hashPath": "system.net.http.4.3.3.nupkg.sha512"
+      "sha512": "sha512-aOa2d51SEbmM+H+Csw7yJOuNZoHkrP2XnAurye5HWYgGVVU54YZDvsLUYRv6h18X3sPnjNCANmN7ZhIPiqMcjA==",
+      "path": "system.net.http/4.3.4",
+      "hashPath": "system.net.http.4.3.4.nupkg.sha512"
     },
     "System.Net.Primitives/4.3.0": {
       "type": "package",
@@ -1478,12 +1498,12 @@
       "path": "system.reflection.primitives/4.3.0",
       "hashPath": "system.reflection.primitives.4.3.0.nupkg.sha512"
     },
-    "System.Reflection.TypeExtensions/4.3.0": {
+    "System.Reflection.TypeExtensions/4.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7u6ulLcZbyxB5Gq0nMkQttcdBTx57ibzw+4IOXEfR+sXYQoHvjW5LTLyNr8O22UIMrqYbchJQJnos4eooYzYJA==",
-      "path": "system.reflection.typeextensions/4.3.0",
-      "hashPath": "system.reflection.typeextensions.4.3.0.nupkg.sha512"
+      "sha512": "sha512-fO8GMEkgoKioJ7cglZbhcnBgkCWWn9poS3G2jevS+fuwW9xJXMx7/1kr7dkwOJfo0pWqxLFWVcxlOr+WeK5ipA==",
+      "path": "system.reflection.typeextensions/4.5.1",
+      "hashPath": "system.reflection.typeextensions.4.5.1.nupkg.sha512"
     },
     "System.Resources.ResourceManager/4.3.0": {
       "type": "package",
@@ -1632,12 +1652,12 @@
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
-    "TweetinviAPI/4.0.0": {
+    "TweetinviAPI/4.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-O41FwPCyPSD6wPVKfyzjMuY+RiizAL976rVANLQKhfDAQ2ni2yNzTT141Sl5AJclOGTaOMg7SiOqAD6ql12uFw==",
-      "path": "tweetinviapi/4.0.0",
-      "hashPath": "tweetinviapi.4.0.0.nupkg.sha512"
+      "sha512": "sha512-c6kf5RM5AcVPJLwHj0dFUg0VfIDzCAuCbpvBhxbyB325U/7QNwqM1KA0CSXrBj5pmUqm4lBPrBeLbowSNvjXwA==",
+      "path": "tweetinviapi/4.0.3",
+      "hashPath": "tweetinviapi.4.0.3.nupkg.sha512"
     },
     "TwitterScraper.Infra/1.0.0": {
       "type": "project",
