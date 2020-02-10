@@ -8,6 +8,6 @@ namespace TwitterAnalyzer.Service
 {
     public interface ITwitterAnalyzer
     {
-        Task ProcessPosts(SQSEvent evnt);
+        Task<bool> ProcessPost(SQSEvent evnt);
     }
 }

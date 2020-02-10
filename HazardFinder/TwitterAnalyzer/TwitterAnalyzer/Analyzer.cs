@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TwitterAnalyzer.Infra.Api;
 using TwitterAnalyzer.Infra.Comprehend;
+using TwitterAnalyzer.Infra.ParrotSays;
 using TwitterAnalyzer.Service;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -43,7 +44,18 @@ namespace TwitterAnalyzer.Bootstrap
                     _configuration["AWS_COMPREHEND_ENDPOINT"]
                     ));
 
-            serviceCollection.AddTransient<ITwitterAnalyzer, TwitterAnalyzerService>();
+            serviceCollection.AddSingleton<IParrotSaysService, ParrotSaysClient>(s =>
+                new ParrotSaysClient(
+                    _configuration["AWS_PARROTSAYS_ML_API"]
+                    ));
+
+            serviceCollection.AddTransient<ITwitterAnalyzer, TwitterAnalyzerService>(s =>
+                new TwitterAnalyzerService(
+                    s.GetService<IComprehendService>(),
+                    s.GetService<IParrotSaysService>(),
+                    Convert.ToSingle(_configuration["AWS_COMPREHEND_CLASSIFIER_LEVEL"]),
+                    Convert.ToSingle(_configuration["AWS_COMPREHEND_SENTIMENT_LEVEL"])
+                    ));
             return serviceCollection;
         }
 
@@ -51,7 +63,7 @@ namespace TwitterAnalyzer.Bootstrap
         {
             Console.WriteLine("Analyzer started");
 
-            await _services.GetService<ITwitterAnalyzer>().ProcessPosts(evnt);
+            await _services.GetService<ITwitterAnalyzer>().ProcessPost(evnt);
 
             Console.WriteLine("Analyzer finished");
 

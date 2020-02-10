@@ -22,24 +22,40 @@ namespace TwitterAnalyzer.Infra.Comprehend
 
         public async Task<List<DocumentClass>> Classify(string text)
         {
-            var response = await _client.ClassifyDocumentAsync(
-                new ClassifyDocumentRequest()
-                {
-                    EndpointArn = _endpoint,
-                    Text = text
-                });
-            return response.Classes;
+            try
+            {
+                var response = await _client.ClassifyDocumentAsync(
+                    new ClassifyDocumentRequest()
+                    {
+                        EndpointArn = _endpoint,
+                        Text = text
+                    });
+                return response.Classes;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
         }
 
         public async Task<DetectSentimentResponse> DetectSentiment(string text)
         {
-            var response = await _client.DetectSentimentAsync(
-                new DetectSentimentRequest()
-                {
-                    LanguageCode = LanguageCode.En,
-                    Text = text
-                });
-            return response;
+            try
+            {
+                var response = await _client.DetectSentimentAsync(
+                    new DetectSentimentRequest()
+                    {
+                        LanguageCode = LanguageCode.En,
+                        Text = text
+                    });
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
         }
     }
 }
