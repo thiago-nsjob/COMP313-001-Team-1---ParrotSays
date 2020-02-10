@@ -8,6 +8,8 @@ using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TwitterAnalyzer.Infra.Api;
+using TwitterAnalyzer.Infra.Comprehend;
 using TwitterAnalyzer.Service;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -36,6 +38,11 @@ namespace TwitterAnalyzer.Bootstrap
 
         private IServiceCollection ConfigureServices(IServiceCollection serviceCollection)
         {
+            serviceCollection.AddSingleton<IComprehendService, ComprehendClient>(s => 
+                new ComprehendClient(
+                    _configuration["AWS_COMPREHEND_ENDPOINT"]
+                    ));
+
             serviceCollection.AddTransient<ITwitterAnalyzer, TwitterAnalyzerService>();
             return serviceCollection;
         }

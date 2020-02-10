@@ -11,8 +11,8 @@ using Amazon.Lambda.TestUtilities;
 using Amazon;
 
 using TwitterAnalyzer;
-using TwitterAnalyzer.Boostrap;
 using Amazon.Lambda.SQSEvents;
+using TwitterAnalyzer.Bootstrap;
 
 namespace TwitterAnalyzer.Tests
 {
