@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  parrotsaysclient:
+    image: eduardoamparo/parrot-says-client
+    restart: always
+    environment:
+      TZ: America/Toronto
+    ports:
+     - 80:80
