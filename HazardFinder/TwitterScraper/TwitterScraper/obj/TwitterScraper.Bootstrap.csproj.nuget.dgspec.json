@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Bootstrap.csproj": {}
+    "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Bootstrap.csproj": {}
   },
   "projects": {
-    "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj": {
+    "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj",
+        "projectUniqueName": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj",
         "projectName": "TwitterScraper.Service",
-        "projectPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj",
-        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\obj\\",
+        "projectPath": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj",
+        "packagesPath": "C:\\Users\\kelvi\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\kelvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
@@ -32,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj": {
-                "projectPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj"
+              "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj": {
+                "projectPath": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj"
               }
             }
           }
@@ -64,27 +62,25 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj": {
+    "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj",
+        "projectUniqueName": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj",
         "projectName": "TwitterScraper.Infra",
-        "projectPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj",
-        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\obj\\",
+        "projectPath": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj",
+        "packagesPath": "C:\\Users\\kelvi\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\kelvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
@@ -156,27 +152,25 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Bootstrap.csproj": {
+    "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Bootstrap.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Bootstrap.csproj",
+        "projectUniqueName": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Bootstrap.csproj",
         "projectName": "TwitterScraper.Bootstrap",
-        "projectPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Bootstrap.csproj",
-        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\obj\\",
+        "projectPath": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\TwitterScraper.Bootstrap.csproj",
+        "packagesPath": "C:\\Users\\kelvi\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\kelvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
@@ -188,11 +182,11 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj": {
-                "projectPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj"
+              "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj": {
+                "projectPath": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScrape.Service\\TwitterScraper.Service.csproj"
               },
-              "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj": {
-                "projectPath": "E:\\Projetos\\centennial\\term4\\Software Project 2\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj"
+              "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj": {
+                "projectPath": "D:\\Project\\ParrotSays\\COMP313-001-Team-1---ParrotSays\\HazardFinder\\TwitterScraper\\TwitterScraper.Infra\\TwitterScraper.Infra.csproj"
               }
             }
           }
@@ -251,7 +245,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
