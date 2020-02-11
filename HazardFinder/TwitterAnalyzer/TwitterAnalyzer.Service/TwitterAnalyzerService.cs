@@ -16,17 +16,20 @@ namespace TwitterAnalyzer.Service
     {
         IComprehendService _comprehendClient;
         IParrotSaysService _parrotSaysClient;
+        List<string> _hazardClasses;
         float _classifierConfidenceLevel;
         float _sentimentConfidenceLevel;
 
         public TwitterAnalyzerService(
             IComprehendService comprehendClient,
-            IParrotSaysService parrotSaysClient, 
+            IParrotSaysService parrotSaysClient,
+            List<string> hazardClasses,
             float classifierConfidenceLevel,
             float sentimentConfidenceLevel)
         {
             _comprehendClient = comprehendClient;
             _parrotSaysClient = parrotSaysClient;
+            _hazardClasses = hazardClasses;
             _classifierConfidenceLevel = classifierConfidenceLevel;
             _sentimentConfidenceLevel = sentimentConfidenceLevel;
         }
@@ -55,7 +58,8 @@ namespace TwitterAnalyzer.Service
 
         private bool isHazard(List<DocumentClass> classes, DetectSentimentResponse sentiment)
         {
-            bool hazardProbability = classes.Exists(c => c.Score >= _classifierConfidenceLevel);
+            bool hazardProbability = classes.Where(c => _hazardClasses.Contains(c.Name))
+                                            .Any(c => c.Score >= _classifierConfidenceLevel);
 
             bool neutralOrNegativeSentiment =
                 !(sentiment.Sentiment.Equals(SentimentType.POSITIVE) &&
