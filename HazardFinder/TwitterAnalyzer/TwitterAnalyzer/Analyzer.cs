@@ -53,6 +53,7 @@ namespace TwitterAnalyzer.Bootstrap
                 new TwitterAnalyzerService(
                     s.GetService<IComprehendService>(),
                     s.GetService<IParrotSaysService>(),
+                    _configuration["AWS_COMPREHEND_HAZARD_CLASSES"]?.Split(",").ToList(),
                     Convert.ToSingle(_configuration["AWS_COMPREHEND_CLASSIFIER_LEVEL"]),
                     Convert.ToSingle(_configuration["AWS_COMPREHEND_SENTIMENT_LEVEL"])
                     ));
