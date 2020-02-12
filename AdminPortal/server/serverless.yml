@@ -1,6 +1,8 @@
 
 #example
 #https://blog.logrocket.com/going-serverless-with-your-node-js-apps/
+service:
+  name: myService
 
 provider:
   name: aws
@@ -26,6 +28,11 @@ functions:
             - http:
                 path: api/post/{productId}
                 method: get
+
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
+
+#  POST - https://zawpknnwf4.execute-api.ca-central-1.amazonaws.com/dev/api/post
+#  GET - https://zawpknnwf4.execute-api.ca-central-1.amazonaws.com/dev/api/post
+ # GET - https://zawpknnwf4.execute-api.ca-central-1.amazonaws.com/dev/api/post/{productId}#
