@@ -1,0 +1,26 @@
+version: '3'
+
+volumes:
+  datafiles:
+
+services:
+
+  mysqllocal:
+    image: mysql:8.0.0
+    command: --max_allowed_packet=268435456      # Set max_allowed_packet to 256M (or any other value)
+    restart: always
+    environment:
+      MYSQL_DATABASE: parrotsays
+      MYSQL_ROOT_PASSWORD: 11qq@@WW
+      MYSQL_ROOT_HOST: '%'
+      TZ: America/Toronto
+    ports:
+      - "3306:3306"
+
+  parrotsaysapi:
+    image: eduardoamparo/parrot-says-api
+    restart: always
+    ports:
+     - 8167:8167
+    depends_on:
+     - mysqllocal

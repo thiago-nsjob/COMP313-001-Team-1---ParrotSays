@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- 
+301016383 - Julio Vinicius A. de Carvalho
+November 17, 2019
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<meta charset="ISO-8859-1">
+<title>Create User</title>
+</head>
+<body>
+	<div th:insert="header :: header">...</div>
+	<div class="container d-flex">
+	  <div class="card">
+	  	<div class="card-header"><h2>Create User</h2></div>
+	  	 
+	    <form action="createuser" th:object="${customer}" method="post">  
+        	<div class="card-body">
+            <table>  
+                
+                <tr>  
+                    <td><label for="userName">User Name</label></td>  
+                    <td>
+                    	<input type="hidden" name="id" th:field="*{id}"></input>
+                    	<input type="text" name="userName" th:field="*{userName}" class="form-control"></input>
+                    </td>  
+                </tr>  
+                <tr>  
+                    <td><label for="password">Password</label></td>  
+                    <td><input type="password" name="password" th:field="*{password}" class="form-control"></input></td>  
+                </tr>
+                <tr>  
+                    <td><label for="token">Confirm Password</label></td>  
+                    <td><input type="password" name="token" th:field="*{token}" class="form-control"></input></td>  
+                </tr>  
+                
+                 
+            </table>  
+            </div>
+            <div class="card-footer" align="right"><a class="btn btn-danger" href="/">Cancel</a>
+                    	<input class="btn btn-success" type="submit" value="Create User"></input></div>
+        </form>  
+	  </div>
+	       
+	</div>
+</body>
+</html>

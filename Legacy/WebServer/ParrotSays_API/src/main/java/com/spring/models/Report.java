@@ -17,99 +17,98 @@ public class Report {
 
 	@Id
 	@GeneratedValue
-	private int ReportId;
+	private int reportId;
 	@NonNull
-    private String Description;
+    private String description;
 	
 	//@Column(columnDefinition = "TEXT")
 	@Lob
-    private byte[] Picture;
+    private byte[] picture;
     @NonNull
-    private double Latitude;
+    private double latitude;
     @NonNull
-    private double Longitude;
+    private double longitude;
     @NonNull
-    private Long DateTimeReport;
-    private String Solution;
-    private Long DateTimeSolution;
-    private int StatusCode;
-    private String UserId;
-    private String AdminId;
-    
+    private Long dateTimeReport;
+    private String solution;
+    private Long dateTimeSolution;
+    private int statusCode;
+    private String userId;
+    private String adminId;
 	public int getReportId() {
-		return ReportId;
+		return reportId;
 	}
 	public void setReportId(int reportId) {
-		ReportId = reportId;
+		this.reportId = reportId;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 	public byte[] getPicture() {
-		return Picture;
+		return picture;
 	}
 	public void setPicture(byte[] picture) {
-		Picture = picture;
+		this.picture = picture;
 	}
 	public double getLatitude() {
-		return Latitude;
+		return latitude;
 	}
 	public void setLatitude(double latitude) {
-		Latitude = latitude;
+		this.latitude = latitude;
 	}
 	public double getLongitude() {
-		return Longitude;
+		return longitude;
 	}
 	public void setLongitude(double longitude) {
-		Longitude = longitude;
+		this.longitude = longitude;
 	}
 	public Long getDateTimeReport() {
-		return DateTimeReport;
+		return dateTimeReport;
 	}
 	public void setDateTimeReport(Long dateTimeReport) {
-		DateTimeReport = dateTimeReport;
+		this.dateTimeReport = dateTimeReport;
 	}
 	public String getSolution() {
-		return Solution;
+		return solution;
 	}
 	public void setSolution(String solution) {
-		Solution = solution;
+		this.solution = solution;
 	}
 	public Long getDateTimeSolution() {
-		return DateTimeSolution;
+		return dateTimeSolution;
 	}
 	public void setDateTimeSolution(Long dateTimeSolution) {
-		DateTimeSolution = dateTimeSolution;
+		this.dateTimeSolution = dateTimeSolution;
 	}
 	public int getStatusCode() {
-		return StatusCode;
+		return statusCode;
 	}
 	public void setStatusCode(int statusCode) {
-		StatusCode = statusCode;
+		this.statusCode = statusCode;
 	}
 	public String getUserId() {
-		return UserId;
+		return userId;
 	}
 	public void setUserId(String userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 	public String getAdminId() {
-		return AdminId;
+		return adminId;
 	}
 	public void setAdminId(String adminId) {
-		AdminId = adminId;
+		this.adminId = adminId;
 	}
 	@Override
 	public String toString() {
-		return "Report [ReportId=" + ReportId + ", Description=" + Description + ", Picture=" + Arrays.toString(Picture)
-				+ ", Latitude=" + Latitude + ", Longitude=" + Longitude + ", DateTimeReport=" + DateTimeReport
-				+ ", Solution=" + Solution + ", DateTimeSolution=" + DateTimeSolution + ", StatusCode=" + StatusCode
-				+ ", UserId=" + UserId + ", AdminId=" + AdminId + "]";
+		return "Report [reportId=" + reportId + ", description=" + description + ", picture=" + Arrays.toString(picture)
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", dateTimeReport=" + dateTimeReport
+				+ ", solution=" + solution + ", dateTimeSolution=" + dateTimeSolution + ", statusCode=" + statusCode
+				+ ", userId=" + userId + ", adminId=" + adminId + "]";
 	}
     
-    
+	
     
 }

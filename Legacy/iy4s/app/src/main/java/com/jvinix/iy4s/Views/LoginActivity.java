@@ -14,15 +14,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.jvinix.iy4s.Models.Customer;
-import com.jvinix.iy4s.Models.Report;
+import com.jvinix.iy4s.Models.User;
+import com.jvinix.iy4s.Models.UserDTO;
 import com.jvinix.iy4s.R;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +29,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnRegister;
     private EditText etLogin;
     private EditText etPassword;
+
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
 
     private SharedPreferences myPreference;
 
@@ -42,31 +43,71 @@ public class LoginActivity extends AppCompatActivity {
         myPreference = getSharedPreferences("MyPrefs",MODE_PRIVATE);
         ServerUrl = myPreference.getString("IPAddress", "");
 
+        builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setCancelable(false); // if you want user to wait for some process to finish,
+        builder.setView(R.layout.myprogress_dialog);
+        dialog = builder.create();
+
         etLogin = findViewById(R.id.etLogin);
         etPassword = findViewById(R.id.etPassword);
         btnSingin = findViewById(R.id.btnSingin);
+        btnSingin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                User c = new User();
+                c.setUsername(etLogin.getText().toString());
+                c.setPassword(etPassword.getText().toString());
+                User[] userArray = {c};
+
+                dialog.show();
+                try
+                {
+                    new LoginRestTask().execute(userArray);
+                    //System.out.println(user);
+                }
+                catch(Exception exc)
+                {
+                    Log.e("LoginActivity", exc.getMessage());
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_error), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 
-    public void Login(View view) {
-        try
-        {
-            Customer c = new Customer();
-            c.setUserName(etLogin.getText().toString());
-            c.setPassword(etPassword.getText().toString());
 
+    private class LoginRestTask extends AsyncTask<User, Void, UserDTO> {
 
-            System.out.println(ServerUrl+"/token/");
-            Customer customer = new RestTask().execute(c).get();
-            System.out.println(customer);
-            if(!customer.getToken().equals(""))
+        @Override
+        protected UserDTO doInBackground(User... users) {
+            try {
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                return restTemplate.postForObject(ServerUrl+"/api/login", users[0], UserDTO.class);
+            }
+            catch(Exception ex)
+            {
+                Log.e("ERROR: ", ex.getMessage());
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(UserDTO userDTO) {
+            super.onPostExecute(userDTO);
+
+            dialog.dismiss();
+            if(userDTO != null)
             {
                 SharedPreferences.Editor prefEditor = myPreference.edit();
-                prefEditor.putString("Token", customer.getToken());
+                prefEditor.putString("Token", userDTO.getToken());
                 prefEditor.commit();
-                Toast.makeText(this, "Welcome, "+etLogin.getText().toString()+"!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.welcome)+", "+etLogin.getText().toString()+"!",
+                        Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(this, MyReportsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ReportsActivity.class);
                 intent.putExtra("statuscode", 1);
                 startActivity(intent);
             }
@@ -74,8 +115,8 @@ public class LoginActivity extends AppCompatActivity {
             {
                 AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
                 alertDialog.setCancelable(false);
-                alertDialog.setTitle("ERROR");
-                alertDialog.setMessage("Sign In Error. Please, try again.");
+                alertDialog.setTitle(getResources().getString(R.string.alert));
+                alertDialog.setMessage(getResources().getString(R.string.login_error));
 
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
@@ -85,41 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                         });
                 alertDialog.show();
             }
-        }
-        catch(Exception exc)
-        {
-            System.out.println("Error: "+exc.getMessage());
-//            Log.e("LoginActivity", exc.getMessage());
-            Toast.makeText(this, "ERROR: A server error occurred.", Toast.LENGTH_LONG).show();
-        }
-    }
 
-    private class RestTask extends AsyncTask<Customer, Void, Customer> {
-
-        @Override
-        protected Customer doInBackground(Customer... customers) {
-            try {
-                RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-                //HttpHeaders headers = new HttpHeaders();
-                //headers.set("Authorization", "Bearer " + Token);
-
-                //HttpEntity<Report> entity = new HttpEntity<Report>(newReport, headers);
-                //HttpEntity<Customer> entity = new HttpEntity<Customer>(customers[0]);
-
-                //Thread.sleep(5000);
-                //return restTemplate.postForObject(ServerUrl+"/api/reports/", entity, Report.class);
-                return restTemplate.postForEntity(ServerUrl+"/token/", customers[0], Customer.class).getBody();
-//                RestTemplate restTemplate = new RestTemplate();
-//                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-//                return restTemplate.postForObject(ServerUrl + "reports/", newReport, Report.class);
-            }
-            catch(Exception ex)
-            {
-                Log.e("ERROR: ", ex.getMessage());
-                return null;
-            }
         }
     }
 }
