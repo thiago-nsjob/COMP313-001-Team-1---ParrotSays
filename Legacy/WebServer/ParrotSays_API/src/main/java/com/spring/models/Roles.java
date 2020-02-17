@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 
 @Entity
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id" )
-public class Role implements GrantedAuthority {
+public class Roles implements GrantedAuthority {
  
 	private static final long serialVersionUID = 1L;
 

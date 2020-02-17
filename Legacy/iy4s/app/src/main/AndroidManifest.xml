@@ -19,9 +19,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Views.LoginActivity"></activity>
         <activity
-            android:name=".Views.MyReportsActivity"
+            android:name=".Views.LoginActivity"
+            android:parentActivityName=".Views.MapsActivity" />
+        <activity
+            android:name=".Views.ReportsActivity"
             android:parentActivityName=".Views.MapsActivity" />
         <activity
             android:name=".Views.AboutActivity"
