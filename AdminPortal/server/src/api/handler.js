@@ -12,9 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //requires the base route passing the root route
 app.use(AWSXRay.express.openSegment('ParrotSays.ML.API'));
-
 app.use(require('../routes/routes')("/api"));
-
 app.use(AWSXRay.express.closeSegment());
 
 module.exports.handle = serverless(app);
