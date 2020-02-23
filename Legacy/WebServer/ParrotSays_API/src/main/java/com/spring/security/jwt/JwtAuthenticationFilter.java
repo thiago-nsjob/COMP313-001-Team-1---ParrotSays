@@ -36,10 +36,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                                 HttpServletResponse response) {
 
         try {
-            JwtLoginInput login = new ObjectMapper().readValue(request.getInputStream(), JwtLoginInput.class);
+            User login = new ObjectMapper().readValue(request.getInputStream(), User.class);
             String username = login.getUsername();
             String password = login.getPassword();
-
+            
+            System.out.println(login);
+            
             if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
                 throw new BadCredentialsException("Invalid username/password.");
             }
@@ -65,7 +67,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException error) throws IOException, ServletException {
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException error) 
+    		throws IOException, ServletException {
 
         String json = ServletUtil.getJson("error", "Credentials do not match.");
         ServletUtil.write(response, HttpStatus.UNAUTHORIZED, json);

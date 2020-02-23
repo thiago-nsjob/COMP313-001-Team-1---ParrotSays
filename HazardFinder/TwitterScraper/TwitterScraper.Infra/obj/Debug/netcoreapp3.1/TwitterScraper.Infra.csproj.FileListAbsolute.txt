@@ -1,8 +1,0 @@
-E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper.Infra\bin\Debug\netcoreapp3.1\TwitterScraper.Infra.deps.json
-E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper.Infra\bin\Debug\netcoreapp3.1\TwitterScraper.Infra.dll
-E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper.Infra\bin\Debug\netcoreapp3.1\TwitterScraper.Infra.pdb
-E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper.Infra\obj\Debug\netcoreapp3.1\TwitterScraper.Infra.csprojAssemblyReference.cache
-E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper.Infra\obj\Debug\netcoreapp3.1\TwitterScraper.Infra.AssemblyInfoInputs.cache
-E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper.Infra\obj\Debug\netcoreapp3.1\TwitterScraper.Infra.AssemblyInfo.cs
-E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper.Infra\obj\Debug\netcoreapp3.1\TwitterScraper.Infra.dll
-E:\Projetos\centennial\term4\Software Project 2\COMP313-001-Team-1---ParrotSays\HazardFinder\TwitterScraper\TwitterScraper.Infra\obj\Debug\netcoreapp3.1\TwitterScraper.Infra.pdb

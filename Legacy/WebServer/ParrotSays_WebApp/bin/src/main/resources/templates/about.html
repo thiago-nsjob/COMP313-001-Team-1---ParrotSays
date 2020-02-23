@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- 
+301016383 - Julio Vinicius A. de Carvalho
+November 17, 2019
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<meta charset="ISO-8859-1">
+<title>About</title>
+</head>
+<body>
+	<div th:insert="header :: header">...</div>
+	<br>
+	<br>
+	<div class="container">
+	  <div class="jumbotron">
+	  <img th:src="@{/images/ic_launcher_foreground.png}" alt="logo" class="card rounded"></img>
+	  <p>
+	    <h2>About</h2>      
+	    <p>Developed by Team 5:<br>
+	    <b>Julio Vinicius A. de Carvalho<br>
+	    	Nima Javadvand Tamar<br>
+			Chrystiann Dorneles Amorim<br>
+			Roger Zheng<br>
+			Omar Safi<br>
+			Wonhong Kim (David)</b></p><br>
+	    <p>For Software Development Project 1 (COMP231).</p>
+	  </div>
+	       
+	</div>
+</body>
+</html>

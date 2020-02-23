@@ -8,6 +8,7 @@ const PostSchema = new mongoose.Schema(
     hashTags: Array,
     comments: Array,
     isHazard: Boolean,
+    postUrl: String,
     mlAnalyse: {}
   },
   { timestamps: true }

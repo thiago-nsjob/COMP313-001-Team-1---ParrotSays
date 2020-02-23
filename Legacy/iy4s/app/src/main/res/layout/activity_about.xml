@@ -7,125 +7,83 @@
     android:orientation="vertical"
     tools:context=".Views.AboutActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+
+            app:srcCompat="@mipmap/ic_launcher_foreground"
+            tools:srcCompat="@mipmap/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:text="@string/parrot_says_version"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center_horizontal"
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
-                app:srcCompat="@mipmap/ic_launcher_foreground"
-                tools:srcCompat="@mipmap/ic_launcher_foreground" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/team_project"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/txtTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/server_configuration"
+            android:textAlignment="textStart"
+            android:textStyle="bold" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/etIPAddress"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Parrot Says App v1.0"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="http://"
+                android:inputType="textUri"
+                tools:text="http://" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Team Project"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textStyle="bold" />
+                android:onClick="saveIp"
+                android:text="@string/save"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        </TableRow>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Julio Vinicius A. de Carvalho"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nima Javadvand Tamar"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Chrystiann Dorneles Amorim"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Roger Zheng"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Omar Safi"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Wonhong Kim (David)"
-                android:textAlignment="center" />
-
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Server Configuration:"
-                android:textAlignment="textStart"
-                android:textStyle="bold" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:id="@+id/etIPAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="http://"
-                    android:inputType="textUri"
-                    tools:text="http://" />
-
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="saveIp"
-                    android:text="Save"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-            </TableRow>
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

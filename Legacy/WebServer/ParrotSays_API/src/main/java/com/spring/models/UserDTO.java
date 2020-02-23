@@ -12,7 +12,7 @@ public class UserDTO {
     private String username;
     private String email;
     private String token;
-    private List<Role> roles;
+    private List<Roles> roles;
     
     public static UserDTO create(User user, String token) {
         ModelMapper modelMapper = new ModelMapper();
@@ -50,11 +50,11 @@ public class UserDTO {
 		this.token = token;
 	}
 	
-	public List<Role> getRoles() {
+	public List<Roles> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(List<Roles> roles) {
 		this.roles = roles;
 	}
 }

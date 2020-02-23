@@ -44,8 +44,5 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.1'
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-    //compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
-
 
 }

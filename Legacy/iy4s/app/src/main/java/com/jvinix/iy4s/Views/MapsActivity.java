@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
@@ -28,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,8 +52,6 @@ import com.jvinix.iy4s.R;
 import com.jvinix.iy4s.Utils.Converter;
 import com.jvinix.iy4s.ViewModels.ReportViewModel;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -66,7 +64,7 @@ import java.util.List;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private String ServerUrl;// = "http://192.168.2.32:8167";
-    private String Token = "70dbec0f-36fb-476b-971b-2167fec858de";
+    private String Token; // = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU4MTI4NTQyMiwicm9sIjpbIlJPTEVfQURNSU4iXX0.q4LH5XIOhgd3HYaDScrwc5kK7T7vqnvTTleBG-PsmBvbv2q6TB1m6Z1vDSKbPLLZzEzsSFf87EPyiYXNiy-xHA";
     private GoogleMap mGoogleMap;
     private SupportMapFragment mapFrag;
     private LocationRequest mLocationRequest;
@@ -77,7 +75,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ReportViewModel reportViewModel;
     private Report newReport;
 
-
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
 
     private static final int REQUEST_TAKE_PHOTO = 1;
 
@@ -95,7 +94,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SharedPreferences myPreference = getSharedPreferences("MyPrefs",MODE_PRIVATE);
         ServerUrl = myPreference.getString("IPAddress", "");
 
-
+        builder = new AlertDialog.Builder(MapsActivity.this);
+        builder.setCancelable(false); // if you want user to wait for some process to finish,
+        builder.setView(R.layout.myprogress_dialog);
+        dialog = builder.create();
 
         reportViewModel = ViewModelProviders.of(this).get(ReportViewModel.class);
         newReport = new Report();
@@ -108,6 +110,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
+
+        Button btnSubmit = findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.show();
+                if(!editMult.getText().toString().equals("")) {
+                    newReport.setDescription(editMult.getText().toString());
+                    newReport.setDateTimeReport(new Date().getTime());
+
+                    try {
+                        new RestTask().execute();
+                    }
+                    catch (Exception exc)
+                    {
+                        Log.e("btnSubmit: ", exc.getMessage());
+                    }
+
+                }
+                else
+                {
+                    dialog.dismiss();
+                    AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create();
+                    alertDialog.setCancelable(false);
+                    alertDialog.setTitle(getResources().getString(R.string.alert));
+                    alertDialog.setMessage(getResources().getString(R.string.alert_description));
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", (DialogInterface.OnClickListener) null);
+                    alertDialog.show();
+                }
+            }
+        });
     }
 
     @Override
@@ -129,7 +162,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 return true;
             case R.id.myReports:
 
-                intent = new Intent(this, MyReportsActivity.class);
+                intent = new Intent(this, ReportsActivity.class);
                 startActivity(intent);
                 return true;
 
@@ -144,21 +177,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    // Submit a report to the API a new report into the database.
+    private class RestTask extends AsyncTask<Void, Void, Report>{
 
-    // Method called by the button "Submit"
-    public void submitReport(View view)
-    {
+        @Override
+        protected void onPostExecute(Report result) {
+            super.onPostExecute(result);
 
-        // It's not allowed to add report without a description.
-        if(!editMult.getText().toString().equals("")) {
-
-            if(saveReport()) {
+            dialog.dismiss();
+            if(result != null)
+            {
+                reportViewModel.insert(result);
                 AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create();
                 alertDialog.setCancelable(false);
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("What you said was submited successfully!");
+                alertDialog.setTitle(getResources().getString(R.string.message));
+                alertDialog.setMessage(getResources().getString(R.string.msg_success));
 
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 imageView.setImageResource(0);
@@ -166,81 +201,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             }
                         });
                 alertDialog.show();
-                imageView.setImageResource(0);
-                editMult.setText("");
-                newReport = new Report();
-                Toast.makeText(this, "What you said was submited successfully!", Toast.LENGTH_LONG).show();
             }
-            else
-            {
+            else {
                 AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create();
                 alertDialog.setCancelable(false);
-                alertDialog.setTitle("ERROR");
-                alertDialog.setMessage("A server error happened. Please check the log and try again.");
-
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
+                alertDialog.setTitle(getResources().getString(R.string.error));
+                alertDialog.setMessage(getResources().getString(R.string.error_server_address));
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", (DialogInterface.OnClickListener) null);
                 alertDialog.show();
             }
-
         }
-        else
-        {
-            Toast.makeText(this, "Please, type a description...", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    // Adds a new report into the database and return true.
-    // If some error happens it register the error in log and return false.
-    public boolean saveReport()
-    {
-        try
-        {
-            newReport.setDescription(editMult.getText().toString());
-            newReport.setDateTimeReport(new Date().getTime());
-            Report result = new RestTask().execute().get();
-
-            if(result != null) {
-                reportViewModel.insert(result);
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-        catch (Exception ex)
-        {
-            Log.e("ERROR: ", ex.getMessage());
-        }
-        return false;
-    }
-
-    private class RestTask extends AsyncTask<Void, Void, Report>{
 
         @Override
         protected Report doInBackground(Void... voids) {
             try {
-                RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                //RestTemplate restTemplate = new RestTemplate();
+                //restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
-                HttpHeaders headers = new HttpHeaders();
-                headers.set("Authorization", "Bearer " + Token);
+                //HttpHeaders headers = new HttpHeaders();
+                //headers.set("Authorization", "Bearer " + Token);
 
-                HttpEntity<Report> entity = new HttpEntity<Report>(newReport, headers);
+                //HttpEntity<Report> entity = new HttpEntity<Report>(newReport, headers);
 
                 //Thread.sleep(5000);
-                return restTemplate.postForObject(ServerUrl+"/api/reports/", entity, Report.class);
+                //return restTemplate.postForObject(ServerUrl+"/api/reports/", entity, Report.class);
 
-//                RestTemplate restTemplate = new RestTemplate();
-//                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-//                return restTemplate.postForObject(ServerUrl + "reports/", newReport, Report.class);
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                Report report = restTemplate.postForObject(ServerUrl + "/api/reports/addreport/", newReport, Report.class);
+                return report;
             }
-            catch(Exception ex)
-            {
+            catch (Exception ex) {
                 Log.e("ERROR: ", ex.getMessage());
                 return null;
             }
