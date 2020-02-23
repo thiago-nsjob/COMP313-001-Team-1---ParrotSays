@@ -1,22 +1,38 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class SignIn extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    redirect: false
   }
   handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     })
   }
   handleSubmit = (e) => {
     e.preventDefault();
+    this.setState({
+      redirect:true
+    })
+
     console.log(this.state);
   }
+
+  renderRedirect = () => {
+    console.log(this.state);
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
+
+
   render() {
     return (
       <div className="container">
+        {this.renderRedirect()}
         <form className="white" onSubmit={this.handleSubmit}>
           <h5 className="grey-text text-darken-3">Sign In</h5>
           <div className="input-field">
