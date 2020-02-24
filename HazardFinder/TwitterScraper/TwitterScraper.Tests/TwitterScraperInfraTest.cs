@@ -1,39 +1,15 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Xunit;
-using Amazon.Lambda;
-using Amazon.Lambda.Core;
-using Amazon.Lambda.TestUtilities;
-using Amazon.Lambda.S3Events;
-
-using Amazon;
-using Amazon.S3;
-using Amazon.S3.Model;
-using Amazon.S3.Util;
-
-using Scraper;
 using TwitterScraper.Infra.Api;
 using TwitterScraper.Infra.SQS;
 using TwitterScraper.Infra.Twitter;
-
-namespace Scraper.Tests
+namespace TwitterScraper.Tests
 {
-    public class TwitterScraperTest
+    public class TwitterScraperInfraTest
     {
-        /*
-         To be tested:
-             
-             - Test TwitterClient constructor
-             - Test SQSClient constructor
-             - Test TwitterClient functions
-             - Test SQSClient functions
-             - Test Handler functions
-             - Test Handler constructor
-             
-             */
 
         [Fact]
         public async Task TwitterClient_Constructor()
@@ -62,6 +38,15 @@ namespace Scraper.Tests
         }
 
         [Fact]
+        public async Task SQSClient_Constructor()
+        {
+            ISQSService service = new SQSClient("https://sqs.ca-central-1.amazonaws.com", "IncomeTwitterPosts", "113508044065");
+
+            Assert.NotNull(service);
+     
+        }
+
+        [Fact]
         public async Task SQSClient()
         {
             ICollection<IResult> lst = new List<IResult>() { (IResult)new Post() {
@@ -79,12 +64,6 @@ namespace Scraper.Tests
 
         }
 
-        [Fact]
-        public async Task Handle()
-        {
-            var scraper = new TwitterScraper.Bootstrap.Scraper();
-            await scraper.Handler(null);
-            
-        }
+       
     }
 }
