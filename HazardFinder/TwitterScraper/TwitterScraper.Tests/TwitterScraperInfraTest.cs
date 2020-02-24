@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,22 +18,10 @@ using Scraper;
 using TwitterScraper.Infra.Api;
 using TwitterScraper.Infra.SQS;
 using TwitterScraper.Infra.Twitter;
-
-namespace Scraper.Tests
+namespace TwitterScraper.Tests
 {
-    public class TwitterScraperTest
+    class TwitterScraperInfraTest
     {
-        /*
-         To be tested:
-             
-             - Test TwitterClient constructor
-             - Test SQSClient constructor
-             - Test TwitterClient functions
-             - Test SQSClient functions
-             - Test Handler functions
-             - Test Handler constructor
-             
-             */
 
         [Fact]
         public async Task TwitterClient_Constructor()
@@ -79,12 +67,5 @@ namespace Scraper.Tests
 
         }
 
-        [Fact]
-        public async Task Handle()
-        {
-            var scraper = new TwitterScraper.Bootstrap.Scraper();
-            await scraper.Handler(null);
-            
-        }
     }
 }
