@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace TwitterScraper.Tests
 {
-    class TwitterScraperBootstrapTest
+    public class TwitterScraperBootstrapTest
     {
         [Fact]
         public async Task Handle()
