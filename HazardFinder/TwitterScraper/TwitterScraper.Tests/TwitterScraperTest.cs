@@ -56,7 +56,7 @@ namespace Scraper.Tests
             "1222242177314631681-MAtzVci7wbHqyw1G4vz5YEfAGRfIby",
             "qDP1TUtFE0D0gGfc1gmXu9e7rILxZOhKjHWMhFSBbPw6H");
 
-            var result = await client.GetData("centennialcollege");
+            var result = await client.GetData("centennialcollege",3);
 
             Assert.NotEmpty(result);
         }

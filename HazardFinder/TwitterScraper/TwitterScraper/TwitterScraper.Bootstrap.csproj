@@ -12,6 +12,7 @@
     <PackageReference Include="AWSXRayRecorder.Core" Version="2.6.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Web.RedisSessionStateProvider" Version="4.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TwitterScrape.Service\TwitterScraper.Service.csproj" />

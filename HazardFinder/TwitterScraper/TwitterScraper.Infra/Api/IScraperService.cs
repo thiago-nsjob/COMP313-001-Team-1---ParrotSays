@@ -8,6 +8,6 @@ namespace TwitterScraper.Infra.Api
 {
     public interface IScraperService
     {
-         Task<ICollection<IResult>> GetData(string hashtags); 
+         Task<ICollection<IResult>> GetData(string hashtags, int range); 
     }
 }

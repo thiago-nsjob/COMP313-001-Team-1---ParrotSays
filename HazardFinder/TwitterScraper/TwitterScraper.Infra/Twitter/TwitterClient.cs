@@ -11,19 +11,22 @@ using TwitterScraper.Infra.Api;
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
+using StackExchange.Redis;
 
 namespace TwitterScraper.Infra.Twitter
 {
     public class TwitterClient : IScraperService
     {
         private IAuthenticatedUser _user;
+        private IDatabase _cache;
 
-        public TwitterClient(string consumerkey, string consumerSecret, string accessToken, string accessTokenSecret)
+        public TwitterClient(string consumerkey, string consumerSecret, string accessToken, string accessTokenSecret, IDatabase cache)
         {
             try
             {
                 Auth.SetCredentials(new TwitterCredentials(consumerkey, consumerSecret, accessToken, accessTokenSecret));
                 _user = User.GetAuthenticatedUser();
+                _cache = cache;
             }
             catch (Exception ex)
             {
@@ -33,7 +36,7 @@ namespace TwitterScraper.Infra.Twitter
             }
         }
 
-        public async Task<ICollection<IResult>> GetData(string hashtags)
+        public async Task<ICollection<IResult>> GetData(string hashtags, int range)
         {
             try
             {
@@ -58,7 +61,13 @@ namespace TwitterScraper.Infra.Twitter
                    })).ToArray()
                    );
 
-                return result.ToList<IResult>();
+                result.Where(post =>(DateTime.Now - post.CreatedAt).TotalDays <= range && !_cache.KeyExists(post.Id));
+
+
+
+                return result
+                    .Where(post => (DateTime.Now - post.CreatedAt).TotalDays <= range && !_cache.KeyExists(post.Id))
+                    .ToList<IResult>();
             }
             catch (Exception ex)
             {
