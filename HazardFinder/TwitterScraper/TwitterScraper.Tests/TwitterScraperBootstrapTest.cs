@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace TwitterScraper.Tests
 {
     public class TwitterScraperBootstrapTest
     {
-        //  Revisar ************
+        
         [Fact]
-        public async Task Scraper_Constructor()
+        public void Scraper_Constructor()
         {
             Scraper client =
                    new Scraper();
