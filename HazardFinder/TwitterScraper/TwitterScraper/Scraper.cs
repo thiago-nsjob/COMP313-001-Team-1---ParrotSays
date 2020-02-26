@@ -12,6 +12,8 @@ using TwitterScraper.Infra.SQS;
 using TwitterScraper.Service;
 using System.IO;
 
+using Amazon.XRay.Recorder.Core;
+
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
 namespace TwitterScraper.Bootstrap
@@ -28,7 +30,7 @@ namespace TwitterScraper.Bootstrap
             _configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables("AWS_TWITTER_")
+                .AddEnvironmentVariables()
                 .Build();
 
             _services = ConfigureServices(new ServiceCollection())
@@ -36,6 +38,7 @@ namespace TwitterScraper.Bootstrap
         }
         private IServiceCollection ConfigureServices(IServiceCollection serviceCollection)
         {
+            
             serviceCollection.AddSingleton<IScraperService, TwitterClient>(s => new TwitterClient(
                 _configuration["AWS_TWITTER_API_KEY"],
                 _configuration["AWS_TWITTER_API_SECRET_KEY"],

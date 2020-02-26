@@ -53,7 +53,7 @@ namespace TwitterScraper.Infra.SQS
                             .Select(item => new SendMessageBatchRequestEntry(Guid.NewGuid().ToString(), item.ToJson()))
                             .ToList()
                         ));
-
+                    
                     result = response.Failed.Count() == 0;
                 }
                 return result;

@@ -33,7 +33,7 @@ class ReportList extends Component{
                 <td>{value.longtitude}</td>
                 <td>{value.time}</td>
                 <td>{value.status}</td>
-                <td><a>Edit</a> | <a>Delete</a></td>
+                <td><a href={'/edit?id='+ value.id}>Edit</a> | <a href={'/delete?id=' + value.id}>Delete</a></td>
             </tr>       
     );
 

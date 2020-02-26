@@ -6,6 +6,9 @@ using Xunit;
 using TwitterScraper.Infra.Api;
 using TwitterScraper.Infra.SQS;
 using TwitterScraper.Infra.Twitter;
+using StackExchange.Redis;
+
+
 namespace TwitterScraper.Tests
 {
     public class TwitterScraperInfraTest
@@ -14,6 +17,7 @@ namespace TwitterScraper.Tests
         [Fact]
         public async Task TwitterClient_Constructor()
         {
+          
             TwitterClient client =
                    new TwitterClient("dakmNn0r3dhbMaUc4lvo46ErA",
                "RUPlnEIgGrgZ0NnK4diylDorm23zYBfERaIBNkNmvu9l7ZLzb8",
@@ -26,13 +30,15 @@ namespace TwitterScraper.Tests
         [Fact]
         public async Task TwitterClient()
         {
+            
+            
             TwitterClient client =
                 new TwitterClient("dakmNn0r3dhbMaUc4lvo46ErA",
             "RUPlnEIgGrgZ0NnK4diylDorm23zYBfERaIBNkNmvu9l7ZLzb8",
             "1222242177314631681-MAtzVci7wbHqyw1G4vz5YEfAGRfIby",
             "qDP1TUtFE0D0gGfc1gmXu9e7rILxZOhKjHWMhFSBbPw6H");
 
-            var result = await client.GetData("centennialcollege");
+            var result = await client.GetData("centennialcollege",3);
 
             Assert.NotEmpty(result);
         }
@@ -60,7 +66,8 @@ namespace TwitterScraper.Tests
 
             ISQSService service = new SQSClient("https://sqs.ca-central-1.amazonaws.com", "IncomeTwitterPosts", "113508044065");
 
-            Assert.True(await service.SendBatchMessage(lst));
+            var msgs = await service.SendBatchMessage(lst);
+            Assert.True(msgs);
 
         }
 

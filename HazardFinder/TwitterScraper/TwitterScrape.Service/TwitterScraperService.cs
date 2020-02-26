@@ -16,8 +16,7 @@ namespace TwitterScraper.Service
             _scraper = scraper;
             _sqsClient = sqsClient;
         }
-        public async Task ProcessPosts(string hastags) => await _sqsClient.SendBatchMessage(await _scraper.GetData(hastags));
-
+        public async Task ProcessPosts(string hastags) => await _sqsClient.SendBatchMessage(await _scraper.GetData(hastags,3));
 
     }
 }
