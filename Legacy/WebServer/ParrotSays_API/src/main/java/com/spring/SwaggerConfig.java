@@ -1,39 +1,49 @@
 package com.spring;
 
-import springfox.documentation.builders.PathSelectors;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
+import org.springframework.security.core.Authentication;
+
+import com.google.common.base.Predicates;
+
+import springfox.documentation.service.ApiKey;
+import springfox.documentation.service.SecurityScheme;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.web.ApiKeyVehicle;
+import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import static springfox.documentation.builders.PathSelectors.regex;
 
-// to access to swagger please go to: http://localhost:8167/swagger-ui.html
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    @Bean
-    public Docket productApi() {
-         return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                                  
-          .apis(RequestHandlerSelectors.basePackage("com.spring.controllers"))         
-          .paths(PathSelectors.any())                          
-          .build()
-          .apiInfo(metaData());    
-    }
 
-    private ApiInfo metaData() {
-        ApiInfo apiInfo = new ApiInfo(
-                "Parrot Says REST API",
-                "Parrot Says REST API",
-                "1.0",
-                "Terms of service",
-                new Contact("Parrot Says", "", ""),
-               "Apache License Version 2.0",
-                "https://www.apache.org/licenses/LICENSE-2.0");
-        return apiInfo;
+    @Bean
+    public Docket api() {
+        List<SecurityScheme> schemeList = new ArrayList<>();
+        schemeList.add(new ApiKey(HttpHeaders.AUTHORIZATION, "Authorization", "header"));
+        return new Docket(DocumentationType.SWAGGER_2)
+                .produces(Collections.singleton("application/json"))
+                .consumes(Collections.singleton("application/json"))
+                .ignoredParameterTypes(Authentication.class)
+                .securitySchemes(schemeList)
+                .useDefaultResponseMessages(false)
+                .select()
+                .apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
+                .paths(PathSelectors.any())
+                .build();
     }
+    
+    @Bean
+    public SecurityConfiguration securityInfo() {
+        return new SecurityConfiguration(null, null, null, null, "", ApiKeyVehicle.HEADER,"Authorization","Bearer");
+    }
+    
 }
