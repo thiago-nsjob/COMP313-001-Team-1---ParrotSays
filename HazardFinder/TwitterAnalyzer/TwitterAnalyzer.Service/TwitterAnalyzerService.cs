@@ -33,7 +33,7 @@ namespace TwitterAnalyzer.Service
             _classifierConfidenceLevel = classifierConfidenceLevel;
             _sentimentConfidenceLevel = sentimentConfidenceLevel;
         }
-
+        
         public async Task<bool> ProcessPost(SQSEvent evnt)
         {
             Post post = Post.FromJson(evnt.Records[0].Body);
