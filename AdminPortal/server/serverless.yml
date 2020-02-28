@@ -1,0 +1,38 @@
+
+#example
+#https://blog.logrocket.com/going-serverless-with-your-node-js-apps/
+service:
+  name: myService
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: ca-central-1
+  environment:
+    DB_CONN: 'mongodb+srv://dev_user:dev_user@cluster0-ecs7o.mongodb.net/ParrotSays?retryWrites=true&w=majority'
+  tracing: #enable x-ray
+    apiGateway: true
+    lambda: true
+
+functions:
+  postApi:
+    handler: src/api/handler.handle
+    events:
+            - http:
+                path: api/post
+                method: post
+            - http:
+                path: api/post
+                method: get
+            - http:
+                path: api/post/{productId}
+                method: get
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+#  POST - https://zawpknnwf4.execute-api.ca-central-1.amazonaws.com/dev/api/post
+#  GET - https://zawpknnwf4.execute-api.ca-central-1.amazonaws.com/dev/api/post
+ # GET - https://zawpknnwf4.execute-api.ca-central-1.amazonaws.com/dev/api/post/{productId}#

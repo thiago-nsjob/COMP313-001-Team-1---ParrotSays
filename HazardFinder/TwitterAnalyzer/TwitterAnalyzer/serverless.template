@@ -1,0 +1,38 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "Template that creates a S3 bucket and a Lambda function that will be invoked when new objects are upload to the bucket.",
+  
+  "Globals":{
+    "Function" : {
+        "Environment" : {
+        "Variables" : {
+            "AWS_COMPREHEND_ENDPOINT": "arn:aws:comprehend:ca-central-1:113508044065:document-classifier-endpoint/hazard-classifier-endpoint",
+            "AWS_COMPREHEND_HAZARD_CLASSES": "HAZARDOUS",
+            "AWS_COMPREHEND_CLASSIFIER_LEVEL": "0.20",
+            "AWS_COMPREHEND_SENTIMENT_LEVEL": "0.80",
+            "AWS_PARROTSAYS_ML_API": "https://bhxsk2865m.execute-api.ca-central-1.amazonaws.com/dev/api/post"
+            }
+        }
+    }
+  },
+
+  "Resources" : {
+    "TwitterAnalyzer" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "TwitterAnalyzer.Bootstrap::TwitterAnalyzer.Bootstrap.Analyzer::Handler",
+        "Runtime": "dotnetcore2.1",
+        "CodeUri": "",
+        "Description": "Poll messages from the SQS, analyze to identify hazard content and send results to the API",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::113508044065:role/AWSLambda-TwitterAnalyzer",
+        "Policies": [ "AWSLambdaFullAccess" ],
+        "Tracing" : "Active"
+      }
+      
+      
+    }
+  }
+}

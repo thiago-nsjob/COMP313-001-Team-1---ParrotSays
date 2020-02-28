@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalyzer.Bootstrap", "TwitterAnalyzer\TwitterAnalyzer.Bootstrap.csproj", "{FF6201DC-197D-48E5-9697-3955A6A52A47}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalyzer.Tests", "TwitterAnalyzer.Tests\TwitterAnalyzer.Tests.csproj", "{53DAA786-AD36-428F-8AF7-C2CDA8E674A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterAnalyzer.Infra", "TwitterAnalyzer.Infra\TwitterAnalyzer.Infra.csproj", "{D232C1ED-46AC-4237-A061-E227688EE0E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterAnalyzer.Service", "TwitterAnalyzer.Service\TwitterAnalyzer.Service.csproj", "{F5CB6FC5-E245-4D16-9140-2F45AFA61E85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF6201DC-197D-48E5-9697-3955A6A52A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF6201DC-197D-48E5-9697-3955A6A52A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF6201DC-197D-48E5-9697-3955A6A52A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF6201DC-197D-48E5-9697-3955A6A52A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53DAA786-AD36-428F-8AF7-C2CDA8E674A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53DAA786-AD36-428F-8AF7-C2CDA8E674A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53DAA786-AD36-428F-8AF7-C2CDA8E674A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53DAA786-AD36-428F-8AF7-C2CDA8E674A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D232C1ED-46AC-4237-A061-E227688EE0E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D232C1ED-46AC-4237-A061-E227688EE0E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D232C1ED-46AC-4237-A061-E227688EE0E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D232C1ED-46AC-4237-A061-E227688EE0E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5CB6FC5-E245-4D16-9140-2F45AFA61E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5CB6FC5-E245-4D16-9140-2F45AFA61E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5CB6FC5-E245-4D16-9140-2F45AFA61E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5CB6FC5-E245-4D16-9140-2F45AFA61E85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82ED3621-0040-4616-B276-820B3E6CBBFB}
+	EndGlobalSection
+EndGlobal
