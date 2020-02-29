@@ -1,20 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TwitterScraper.Infra.Api;
+using TwitterScraper.Infra.SQS;
+using TwitterScraper.Infra.Twitter;
+using TwitterScraper.Service;
+using Xunit;
 
 namespace TwitterScraper.Tests
 {
-    class TwitterScraperServiceTest
+    public class TwitterScraperServiceTest
     {
-        /*
-        To be tested:
+      
+        [Fact]
+        public void TwitterScraperService_Constructor()
+        {
+            IScraperService _scraper = 
+               new TwitterClient("dakmNn0r3dhbMaUc4lvo46ErA",
+           "RUPlnEIgGrgZ0NnK4diylDorm23zYBfERaIBNkNmvu9l7ZLzb8",
+           "1222242177314631681-MAtzVci7wbHqyw1G4vz5YEfAGRfIby",
+           "qDP1TUtFE0D0gGfc1gmXu9e7rILxZOhKjHWMhFSBbPw6H");
 
-            - Test TwitterClient constructor
-            - Test SQSClient constructor
-            - Test TwitterClient functions
-            - Test SQSClient functions
-            - Test Handler functions
-            - Test Handler constructor
-        */
+            ISQSService _sqsClient = new SQSClient("https://sqs.ca-central-1.amazonaws.com", "IncomeTwitterPosts", "113508044065");
+
+            ITwitterScraper client =
+                   new TwitterScraperService(_scraper, _sqsClient);
+
+            Assert.NotNull(client);
+        }
     }
 }

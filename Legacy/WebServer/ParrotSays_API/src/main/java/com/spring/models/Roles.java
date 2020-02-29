@@ -43,4 +43,10 @@ public class Roles implements GrantedAuthority {
     public String getAuthority() {
         return nome;
     }
+
+	@Override
+	public String toString() {
+		return "Roles [id=" + id + ", nome=" + nome + "]";
+	}
+	
 }
