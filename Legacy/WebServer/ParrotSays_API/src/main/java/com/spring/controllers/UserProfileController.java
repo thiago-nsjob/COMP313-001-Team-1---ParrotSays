@@ -1,8 +1,6 @@
 package com.spring.controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,15 +8,19 @@ import javax.validation.Valid;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import com.spring.models.Report;
-import com.spring.models.ReportRepository;
 import com.spring.models.Roles;
 import com.spring.models.RolesRepository;
 import com.spring.models.User;
@@ -26,9 +28,9 @@ import com.spring.models.UserDTO;
 import com.spring.models.UserRepository;
 import com.spring.security.jwt.ServletUtil;
 
-import ch.qos.logback.core.encoder.Encoder;
 import javassist.NotFoundException;
 
+import com.spring.security.UserDetailsServiceImpl;
 import com.spring.security.jwt.JwtUtil;
 
 
@@ -41,10 +43,40 @@ public class UserProfileController {
     
     @Autowired
     private RolesRepository rolerepo;
+    
+    @Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private UserDetailsServiceImpl userDetailsService;
+	
+	// Used to authenticate users = get token
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody User login) throws Exception 
+	{
+		try {
+			login = (User) authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())).getPrincipal();
+			System.out.println(" == Successful login: "+ login);
+		} 
+		catch (DisabledException e) {
+			throw new Exception("USER_DISABLED", e);
+		} 
+		catch (BadCredentialsException e) {
+			throw new Exception("INVALID_CREDENTIALS", e);
+		}
+		
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(login.getUsername());
+		final String token = JwtUtil.createToken(userDetails);
+		
+		return ResponseEntity.ok(UserDTO.create(login, token).toJson());
+	}
 
+	
+	// Get a given user by username.
     @Secured({ "ROLE_ADMIN" })
     @GetMapping(value = "/user/{username}",produces = "application/json")
-    public UserDTO getUserById(@PathVariable String username, HttpServletResponse response) throws IOException {
+    public UserDTO getUserById(@PathVariable String username, HttpServletResponse response) throws IOException 
+    {
     	User user = repo.findByUsername(username);//.orElseThrow(() -> new NotFoundException("UserId "+ id+ " Not found."));
     	
     	ModelMapper modelMapper = new ModelMapper();
@@ -55,7 +87,8 @@ public class UserProfileController {
     // Create a new user
     @Secured({ "ROLE_ADMIN" })
     @PostMapping(value = "/createuser", produces = "application/json")
-    public void createUser(@Valid @RequestBody User user, HttpServletResponse response) throws IOException {
+    public void createUser(@Valid @RequestBody User user, HttpServletResponse response) throws IOException 
+    {
     	
     	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
