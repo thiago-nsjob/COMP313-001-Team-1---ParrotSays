@@ -61,7 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
     }
 
-<<<<<<< HEAD
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/v2/api-docs", 
@@ -73,6 +72,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		"/webjars/springfox-swagger-ui/css/typography.css");
     }
 
-=======
->>>>>>> dev
 }
