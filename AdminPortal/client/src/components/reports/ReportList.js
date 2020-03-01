@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
-
-
 class ReportList extends Component{
     
-    render() {
+render() {
 
     const elements = [
         {
