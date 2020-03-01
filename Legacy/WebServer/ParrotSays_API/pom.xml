@@ -36,6 +36,7 @@ November 17, 2019
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+	    
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -87,7 +88,7 @@ November 17, 2019
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		
 		<dependency>
 	        <groupId>io.springfox</groupId>
 	        <artifactId>springfox-swagger2</artifactId>

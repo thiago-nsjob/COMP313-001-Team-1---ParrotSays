@@ -30,7 +30,7 @@ public class ReportController {
 	@GetMapping("/getall")
 	public List<Report> getAllReports()
 	{
-		return repo.findAll();
+		return repo.findAllReports();//findAll();
 	}
 	
 	@Secured({ "ROLE_SECGUARD", "ROLE_ADMIN" })
