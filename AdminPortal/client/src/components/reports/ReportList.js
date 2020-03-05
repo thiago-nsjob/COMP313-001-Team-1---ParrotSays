@@ -36,22 +36,33 @@ render() {
     );
 
     return (
-        <table className="striped">
-            <thead>
-            <tr>
-                <th>Report Id</th>
-                <th>Description</th>
-                <th>Latitude</th>
-                <th>Longtitude</th>
-                <th>Time</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-                {items}   
-            </tbody>
-        </table>
+        <div class="container">
+            <div class="card">
+            <div class="card-header"><h3>List of Reports</h3></div>
+            <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Report Id</th>
+                    <th>Description</th>
+                    <th>Latitude</th>
+                    <th>Longtitude</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {items}   
+                </tbody>
+            </table>
+            </div>
+           
+            </div>
+          
+        </div>
+
+      
     )
 
     }
