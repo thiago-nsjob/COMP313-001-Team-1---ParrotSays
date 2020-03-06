@@ -14,7 +14,9 @@ module.exports = {
   },
 
   async getAllPosts() {
-    let posts = await Post.find();
+    let posts = await Post.find(
+       {isHazard : true}
+    );
     if (posts) return posts;
     return "Error fetching products from db";
   },
