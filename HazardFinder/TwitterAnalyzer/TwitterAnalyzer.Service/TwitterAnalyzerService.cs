@@ -33,7 +33,7 @@ namespace TwitterAnalyzer.Service
             _classifierConfidenceLevel = classifierConfidenceLevel;
             _sentimentConfidenceLevel = sentimentConfidenceLevel;
         }
-
+        
         public async Task<bool> ProcessPost(SQSEvent evnt)
         {
             Post post = Post.FromJson(evnt.Records[0].Body);
@@ -58,14 +58,10 @@ namespace TwitterAnalyzer.Service
 
         private bool isHazard(List<DocumentClass> classes, DetectSentimentResponse sentiment)
         {
-            bool hazardProbability = classes.Where(c => _hazardClasses.Contains(c.Name))
-                                            .Any(c => c.Score >= _classifierConfidenceLevel);
+            bool hazardProbability = classes.Any(c => 
+                _hazardClasses.Contains(c.Name) && c.Score >= _classifierConfidenceLevel);
 
-            bool neutralOrNegativeSentiment =
-                !(sentiment.Sentiment.Equals(SentimentType.POSITIVE) &&
-                    sentiment.SentimentScore.Positive >= _sentimentConfidenceLevel);
-
-            return hazardProbability && neutralOrNegativeSentiment;
+            return hazardProbability;
         }
     }
 }

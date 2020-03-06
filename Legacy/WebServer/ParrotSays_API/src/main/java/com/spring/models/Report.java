@@ -35,6 +35,20 @@ public class Report {
     private int statusCode;
     private String userId;
     private String adminId;
+    
+    public Report() {}
+    
+	public Report(int reportId, String description, double latitude, double longitude, Long dateTimeReport,
+			int statusCode) {
+		super();
+		this.reportId = reportId;
+		this.description = description;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.dateTimeReport = dateTimeReport;
+		this.statusCode = statusCode;
+	}
+
 	public int getReportId() {
 		return reportId;
 	}

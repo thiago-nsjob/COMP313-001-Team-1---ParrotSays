@@ -1,6 +1,5 @@
 package com.spring.controllers;
 
-import java.util.ArrayList;
 
 /* 
 301016383 - Julio Vinicius A. de Carvalho
@@ -31,7 +30,7 @@ public class ReportController {
 	@GetMapping("/getall")
 	public List<Report> getAllReports()
 	{
-		return repo.findAll();
+		return repo.findAllReports();//findAll();
 	}
 	
 	@Secured({ "ROLE_SECGUARD", "ROLE_ADMIN" })
@@ -40,14 +39,6 @@ public class ReportController {
 	public List<Report> getReportsByStatus (@PathVariable(value = "id") Integer statusCode)
 	{
 		return repo.findByStatusCode(statusCode);
-//		for(Report rep : reportList)
-//		{
-//			if(rep.getStatusCode() == 1)
-//			{
-//				reportList.add(rep);
-//			}
-//		}
-//		return reportList;
 	}
 	
 	// Create a new report
@@ -85,8 +76,6 @@ public class ReportController {
     @Secured({ "ROLE_ADMIN" })
     @DeleteMapping("/delreport/{id}")
     public ResponseEntity<?> deleteReport(@PathVariable(value = "id") Integer reportId) throws NotFoundException {
-//        Report report = repo.findById(reportId)
-//        		.orElseThrow(() -> new NotFoundException("ReportId "+ reportId+ " Not found."));
 
 		repo.deleteById(reportId);//.delete(report);
 		

@@ -15,10 +15,9 @@ namespace TwitterScraper.Tests
     {
 
         [Fact]
-        public async Task TwitterClient_Constructor()
+        public void TwitterClient_Constructor()
         {
-          
-            TwitterClient client =
+            IScraperService client =
                    new TwitterClient("dakmNn0r3dhbMaUc4lvo46ErA",
                "RUPlnEIgGrgZ0NnK4diylDorm23zYBfERaIBNkNmvu9l7ZLzb8",
                "1222242177314631681-MAtzVci7wbHqyw1G4vz5YEfAGRfIby",
@@ -30,9 +29,7 @@ namespace TwitterScraper.Tests
         [Fact]
         public async Task TwitterClient()
         {
-            
-            
-            TwitterClient client =
+            IScraperService client =
                 new TwitterClient("dakmNn0r3dhbMaUc4lvo46ErA",
             "RUPlnEIgGrgZ0NnK4diylDorm23zYBfERaIBNkNmvu9l7ZLzb8",
             "1222242177314631681-MAtzVci7wbHqyw1G4vz5YEfAGRfIby",
@@ -44,12 +41,11 @@ namespace TwitterScraper.Tests
         }
 
         [Fact]
-        public async Task SQSClient_Constructor()
+        public void SQSClient_Constructor()
         {
             ISQSService service = new SQSClient("https://sqs.ca-central-1.amazonaws.com", "IncomeTwitterPosts", "113508044065");
 
             Assert.NotNull(service);
-     
         }
 
         [Fact]

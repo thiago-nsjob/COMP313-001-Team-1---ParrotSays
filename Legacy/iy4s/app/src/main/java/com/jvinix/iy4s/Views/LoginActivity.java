@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                return restTemplate.postForObject(ServerUrl+"/api/login", users[0], UserDTO.class);
+                return restTemplate.postForObject(ServerUrl+"/api/users/login", users[0], UserDTO.class);
             }
             catch(Exception ex)
             {
