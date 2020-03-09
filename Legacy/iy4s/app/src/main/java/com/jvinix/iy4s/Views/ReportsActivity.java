@@ -3,6 +3,7 @@ package com.jvinix.iy4s.Views;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,10 +33,11 @@ import java.util.List;
 
 public class ReportsActivity extends AppCompatActivity {
 
-    private String ServerUrl;
-    private String Token;
+    private String serverUrl;
+    private String token;
     private ReportViewModel rvm;
     private ListView listView;
+    private List<Report> reportsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +47,13 @@ public class ReportsActivity extends AppCompatActivity {
         setTitle("List of Reports");
 
         SharedPreferences myPreference = getSharedPreferences("MyPrefs",MODE_PRIVATE);
-        ServerUrl = myPreference.getString("IPAddress", "");
-        Token = myPreference.getString("Token", "");
+        serverUrl = myPreference.getString("IPAddress", "");
+        token = myPreference.getString("Token", "");
         int statuscode = getIntent().getIntExtra("statuscode", 0);
 
         rvm = ViewModelProviders.of(this).get(ReportViewModel.class);
 
+        reportsList = new ArrayList<Report>();
         listView = findViewById(R.id.lvReports);
 
         try {
@@ -64,7 +67,8 @@ public class ReportsActivity extends AppCompatActivity {
             }
             else {
                 // Shows all reports submitted by the user.
-                listView.setAdapter(createAdapter(rvm.getAllReports()));
+                reportsList = rvm.getAllReports();
+                listView.setAdapter(createAdapter(reportsList));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,7 +79,9 @@ public class ReportsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                // To be implemented.
+                Intent i = new Intent(getApplicationContext(), DetailsActivity.class);
+                i.putExtra("reportId", reportsList.get(position).getReportId());
+                startActivity(i);
 
             }});
     }
@@ -91,7 +97,7 @@ public class ReportsActivity extends AppCompatActivity {
                 TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                 TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
-                text1.setText(finalList.get(position).getReportId()+" - "+finalList.get(position).getStatusCode()+" - "+ new Date(finalList.get(position).getDateTimeReport()));
+                text1.setText("Id: "+finalList.get(position).getReportId()+" - StatusCode: "+finalList.get(position).getStatusCode()+"\nDate: "+ new Date(finalList.get(position).getDateTimeReport()));
                 text1.setTextSize(16);
                 text2.setText("Description: "+finalList.get(position).getDescription());
                 return view;
@@ -109,11 +115,11 @@ public class ReportsActivity extends AppCompatActivity {
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
                 HttpHeaders headers = new HttpHeaders();
-                headers.set("Authorization", "Bearer "+Token);
-                System.out.println(Token);
+                headers.set("Authorization", "Bearer "+token);
+                System.out.println(token);
                 HttpEntity<String> entity = new HttpEntity<String>("tokens",headers);
 
-                ResponseEntity<Report[]> re = restTemplate.exchange(ServerUrl+"/api/reports/getbystatus/1", HttpMethod.GET, entity, Report[].class);
+                ResponseEntity<Report[]> re = restTemplate.exchange(serverUrl+"/api/reports/getbystatus/1", HttpMethod.GET, entity, Report[].class);
                 return Arrays.asList(re.getBody());
 
             }
@@ -128,8 +134,10 @@ public class ReportsActivity extends AppCompatActivity {
         protected void onPostExecute(List<Report> reports) {
             super.onPostExecute(reports);
 
-            if (reports != null)
-                listView.setAdapter(createAdapter(reports));
+            if (reports != null) {
+                reportsList = reports;
+                listView.setAdapter(createAdapter(reportsList));
+            }
         }
     }
 }

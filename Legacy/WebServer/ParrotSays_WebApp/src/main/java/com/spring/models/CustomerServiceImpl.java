@@ -49,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService{
 	public String Login(Customer customer) {
 		try
 		{
-			return restTemplate.postForEntity(serverUrl+"/token/", customer, Customer.class).getBody().getToken();
+			return restTemplate.postForEntity(serverUrl+"/api/users/login", customer, Customer.class).getBody().getToken();
 		}
 		catch(Exception exc)
 		{

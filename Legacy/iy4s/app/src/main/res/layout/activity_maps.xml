@@ -49,7 +49,7 @@
                 android:textColor="@android:color/white" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageViewDetails"
                 android:layout_width="220dp"
                 android:layout_height="220dp"
                 android:layout_gravity="center_horizontal"
