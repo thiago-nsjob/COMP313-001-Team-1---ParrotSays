@@ -30,4 +30,5 @@
         <item>Thiago Silva</item>
         <item>Ydelma Rangel</item>
     </string-array>
+    <string name="title_activity_details">Map</string>
 </resources>

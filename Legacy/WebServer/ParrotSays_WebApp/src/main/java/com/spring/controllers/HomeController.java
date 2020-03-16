@@ -99,7 +99,7 @@ public class HomeController {
 			String token = customerService.Login(customer);
 			if(token != null)
 			{
-				request.getSession().setAttribute("user", customer.getUserName());
+				request.getSession().setAttribute("user", customer.getUsername());
 				request.getSession().setAttribute("token", token);
 				request.getSession().setAttribute("message", "Sign In successfully.");
 				return "index";

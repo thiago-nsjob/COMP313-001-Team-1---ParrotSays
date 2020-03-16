@@ -15,6 +15,7 @@ const validatePost = data => {
   if (!"comments" in data) throw new Error("parameter comments not informed");
   if (!"isHazard" in data) throw new Error("parameter isHazard not informed");
   if (!"mlAnalyse" in data) throw new Error("parameter mlAnalyse not informed");
+  if (!"postUrl" in data) throw new Error("parameter postUrl not informed");
 };
 
 module.exports = rootRoute => {

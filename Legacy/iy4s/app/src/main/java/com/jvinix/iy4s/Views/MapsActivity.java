@@ -106,7 +106,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageViewDetails);
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
@@ -542,7 +542,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Bitmap bitmap = BitmapFactory.decodeFile(newReport.getPicturePath(), bmOptions);
         Bitmap bitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath(), bmOptions);
 
-        newReport.setPicture(Converter.BitmapToByte(BitmapFactory.decodeFile(photoFile.getAbsolutePath())));
+        newReport.setPicture(Converter.BitmapToString(BitmapFactory.decodeFile(photoFile.getAbsolutePath())));
 
         imageView.setImageBitmap(bitmap);
     }

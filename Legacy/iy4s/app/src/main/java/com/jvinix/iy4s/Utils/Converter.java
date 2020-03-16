@@ -13,6 +13,12 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Base64;
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.jvinix.iy4s.Models.Report;
+
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.util.concurrent.TimeUnit;
@@ -108,6 +114,21 @@ public class Converter {
 
     }
 
-
+    public static void JsonToReport(JSONObject jsonObject) {
+        // display response
+        Log.d("jsonObject: ", jsonObject.toString());
+        Report report = new Report();
+        try{
+            report.setReportId(jsonObject.getInt("ReportId"));
+            report.setDescription(jsonObject.getString("Description"));
+            Log.d("jsonObject: ", report.toString());
+        }
+        catch (Exception ex)
+        {
+            Log.e("JsonToReport", ex.getMessage());
+        }
+            //    gson.fromJson(response.toString(), Report.class);
+//        Log.d("Report", report.toString());
+    }
 
 }
