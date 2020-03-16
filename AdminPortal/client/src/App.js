@@ -1,23 +1,25 @@
 import React from 'react';
 import {BrowserRouter, Switch,Route} from 'react-router-dom';
-import Navbar from './components/layout/Navbar';
-import Home from './components/home/Home';
+import Menu from './components/layout/Menu';
+import Home from './components/layout/Home';
 import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SignUp';
+import SignUp from './components/users/SignUp';
 import ReportList from './components/reports/ReportList';
 import ReportDetail from './components/reports/ReportDetail';
+import PostList from './components/posts/PostList';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">    
-        <Navbar />
+        <Menu />
         <Switch>
           <Route exact path ='/' component={Home}/>
           <Route path = '/signin' component={SignIn}/>
           <Route path = '/signup' component={SignUp}/>
-          <Route path = '/report' component={ReportList}/>
-          <Route path = '/edit' component={ReportDetail}/>
+          <Route path = '/reports' component={ReportList}/>
+          <Route path = '/posts' component={PostList}/>
+          <Route path = '/edit' component={ReportDetail} />
         </Switch>
       </div>
     </BrowserRouter>

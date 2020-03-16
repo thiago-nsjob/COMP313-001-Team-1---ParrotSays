@@ -1,46 +1,47 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import auth from './../auth/auth-helper';
+import {getAllReport} from './api-report.js';
 
-class ReportList extends Component{
+
+function ReportList(){
     
-render() {
+    const [data, setData] = useState([]);
+    const [error, setError] = useState(false);
+    const [redirect, setRedirect] = useState(false);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+                if(auth.isAuthenticated){
+                    //console.log('list report '+auth.isAuthenticated().token);
+                    try{
+                        getAllReport(auth.isAuthenticated().token).then((data)=>{
+                            if(data.error)
+                            {
+                                console.log(error);
+                            }
+                            else {
+                                //console.log(data);
+                                setData(data);
+                            }
+                        });
+                    } catch(e) {
+                        console.log(e);
+                    }
+                    
+                }
+          };  
+        fetchData();
+      }, []);
 
-    const elements = [
-        {
-            id:1,
-            description: 'Alvin',
-            latitude: 'Eclair',
-            longtitude: '0.87',
-            time: 'Dec 02,2019 - 17:10',
-            status: 2
-        },
-        {
-            id:2,
-            description: 'Kevin',
-            latitude: 'Aclair',
-            longtitude: '$0.87',
-            time: 'Feb 23,2020 - 15:12',
-            status: 3
-        }
-    ];
-
-    const items = elements.map((value) =>      
-            <tr key={value.id}>
-                <td>{value.id}</td>
-                <td>{value.description}</td>
-                <td>{value.latitude}</td>
-                <td>{value.longtitude}</td>
-                <td>{value.time}</td>
-                <td>{value.status}</td>
-                <td><a href={'/edit?id='+ value.id}>Edit</a> | <a href={'/delete?id=' + value.id}>Delete</a></td>
-            </tr>       
-    );
+    
 
     return (
-        <div class="container">
-            <div class="card">
-            <div class="card-header"><h3>List of Reports</h3></div>
-            <div class="card-body">
-            <table class="table table-striped">
+        <div className="container">
+            <div className="card">
+            <div className="card-header"><h3>List of Reports</h3></div>
+            <div className="card-body">
+            <table className="table table-striped">
                 <thead>
                 <tr>
                     <th>Report Id</th>
@@ -53,7 +54,17 @@ render() {
                 </tr>
                 </thead>
                 <tbody>
-                    {items}   
+                    {data.map((value) =>      
+                            <tr key={value.reportId}>
+                                <td>{value.reportId}</td>
+                                <td>{value.description}</td>
+                                <td>{value.latitude}</td>
+                                <td>{value.longitude}</td>
+                                <td>{value.dateTimeReport}</td>
+                                <td>{value.statusCode}</td>
+                                <td><a href={'/edit?id='+ value.reportId}><i className="fa fa-edit text-body"></i></a> | <a href={'/delete?id=' + value.reportId}><i className="fa fa-trash text-body"></i></a></td>
+                            </tr>       
+                    )}   
                 </tbody>
             </table>
             </div>
@@ -65,7 +76,7 @@ render() {
       
     )
 
-    }
+    
 }
 
 
