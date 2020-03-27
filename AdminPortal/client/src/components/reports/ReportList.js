@@ -1,41 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import auth from './../auth/auth-helper';
-import {getAllReport} from './api-report.js';
-
+// import axios from 'axios';
+// import auth from './../auth/auth-helper';
+// import {getAllReport} from './api-report.js';
 
 function ReportList(){
     
     const [data, setData] = useState([]);
-    const [error, setError] = useState(false);
-    const [redirect, setRedirect] = useState(false);
+    // const [error, setError] = useState(false);
+    // const [redirect, setRedirect] = useState(false);
     
     useEffect(() => {
-        const fetchData = async () => {
-                if(auth.isAuthenticated){
-                    //console.log('list report '+auth.isAuthenticated().token);
-                    try{
-                        getAllReport(auth.isAuthenticated().token).then((data)=>{
-                            if(data.error)
-                            {
-                                console.log(error);
-                            }
-                            else {
-                                //console.log(data);
-                                setData(data);
-                            }
-                        });
-                    } catch(e) {
-                        console.log(e);
-                    }
-                    
-                }
-          };  
-        fetchData();
+        // const fetchData = async () => {
+        //         if(auth.isAuthenticated){
+        //             //console.log('list report '+auth.isAuthenticated().token);
+        //             try{
+        //                 getAllReport(auth.isAuthenticated().token).then((data)=>{
+        //                     if(data.error)
+        //                     {
+        //                         console.log(error);
+        //                     }
+        //                     else {
+        //                         //console.log(data);
+        //                         setData(data);
+        //                     }
+        //                 });
+        //             } catch(e) {
+        //                 console.log(e);
+        //             }
+        //         }
+        //   };  
+        // fetchData();
       }, []);
-
     
-
     return (
         <div className="container">
             <div className="card">
