@@ -89,11 +89,14 @@ public class UserProfileController {
     // Create a new user
     @Secured({ "ROLE_ADMIN" })
     @PostMapping(value = "/createuser", produces = "application/json")
-    public void createUser(@Valid @RequestBody User user, HttpServletResponse response) throws IOException 
+    public void createUser(@Valid @RequestBody Login newUser, HttpServletResponse response) throws IOException 
     {
+    	User user = new User();
+    	user.setUsername(newUser.getUsername());
+    	user.setEmail(newUser.getEmail());
     	
     	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(encoder.encode(newUser.getPassword()));
         try
         {
         	Roles role = rolerepo.findById((long)3).orElseThrow(() -> new NotFoundException("RoleId 3 Not found."));
