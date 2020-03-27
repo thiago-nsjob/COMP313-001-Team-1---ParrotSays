@@ -57,25 +57,24 @@ function SignIn() {
   }, []); //only the first render
 
   return (
-
     <div className="container d-flex" style={{marginTop: "125px"}}>
       {redirect ? <Redirect to='/reports'></Redirect> :
       <div className="card">
         <div className="card-header"><h2>Sign In</h2></div>
           <div className="card-body">
             <table>
-
-              <tr>
-                <td><label for="userName">User Name</label></td>
-                <td>
-                  <input type="hidden" name="id" ></input>
-                  <input type="text" name="username" className="form-control"  onChange={e => setUsername(e.target.value)}></input>
-                </td>
-              </tr>
-              <tr>
-                <td><label for="password">Password</label></td>
-                <td><input type="password" name="password" className="form-control" onChange={e => setPassword(e.target.value)}></input></td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td><label htmlFor="userName">User Name</label></td>
+                  <td>
+                    <input id="userName" type="text" name="userName" className="form-control"  onChange={e => setUsername(e.target.value)}></input>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label htmlFor="password">Password</label></td>
+                  <td><input id="password" type="password" name="password" className="form-control" onChange={e => setPassword(e.target.value)}></input></td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div className="card-footer" align="right">
