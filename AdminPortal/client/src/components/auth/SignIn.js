@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import auth from './../auth/auth-helper'
-import {signin} from './api-auth.js'
+import { signin } from './api-auth.js'
 
 
-function SignIn(){
- 
-   //state variable for the screen, admin or user
-   const [screen, setScreen] = useState('auth');
-   //store input field data, user name and password
-   const [username, setUsername] = useState();
-   const [password, setPassword] = useState();
-   const [error, setError] = useState('');
-   const [redirect, setRedirect] = useState(false);
-   
-   const styles = {
+function SignIn() {
+
+  //state variable for the screen, admin or user
+  const [screen, setScreen] = useState('auth');
+  //store input field data, user name and password
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState('');
+  const [redirect, setRedirect] = useState(false);
+
+  const styles = {
     width: "500px",
     paddingTop: "50px"
   };
@@ -29,13 +29,13 @@ function SignIn(){
         username: username || undefined,
         password: password || undefined
       }
-      
+
       console.log(user.username + user.password);
 
       //call authentication helper
       signin(user).then((data) => {
         if (data.error) {
-             setError(data.error)
+          setError(data.error)
         } else {
           console.log('success')
           auth.authenticate(data, () => {
@@ -47,7 +47,7 @@ function SignIn(){
     } catch (e) { //print the error
       console.log(e);
     }
-  
+
   };
 
   //runs the first time the view is rendered
@@ -56,30 +56,35 @@ function SignIn(){
     //readCookie();
   }, []); //only the first render
 
-    return (
-      
-      <div className="container" style={styles}>
-        { redirect ? <Redirect to='/reports'></Redirect>:
-          <div>            
-            <h5 className="grey-text text-darken-3">Sign In</h5>
-            <br />
-            <div className="input-field">
-              <label htmlFor="username">Username <br /></label>
-              <input type="text" id='username' onChange={e => setUsername(e.target.value)} />
-            </div>
-            <div className="input-field">
-              <label htmlFor="password">Password <br/></label>
-              <input type="password" id='password' onChange={e => setPassword(e.target.value)} />
-            </div>
-            <div className="input-field">
-              <button className="btn pink lighten-1 z-depth-0" onClick={login}>Login</button>
-            </div>          
+  return (
+
+    <div className="container d-flex" style={{marginTop: "125px"}}>
+      {redirect ? <Redirect to='/reports'></Redirect> :
+      <div className="card">
+        <div className="card-header"><h2>Sign In</h2></div>
+          <div className="card-body">
+            <table>
+
+              <tr>
+                <td><label for="userName">User Name</label></td>
+                <td>
+                  <input type="hidden" name="id" ></input>
+                  <input type="text" name="username" className="form-control"  onChange={e => setUsername(e.target.value)}></input>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" name="password" className="form-control" onChange={e => setPassword(e.target.value)}></input></td>
+              </tr>
+            </table>
           </div>
-        }
-       </div>
-        
-       
-    
+          <div className="card-footer" align="right">
+            <a className="btn btn-danger" href="/">Reset</a>
+            <button className="btn btn-success" type="button" onClick={login} style={{marginLeft: "15px"}}>Sign In</button>
+          </div>
+      </div>
+      }
+    </div>    
   )
 }
 

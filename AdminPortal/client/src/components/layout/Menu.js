@@ -1,20 +1,33 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Menu = () => {
     return (
-        <nav className="nav-wrapper grey darken-3">
-            <div className="container">
-                <Link to='/' className="brand-logo">Admin Portal</Link>
-                <ul className="right">
-                    <li><NavLink to='/signup'>Signup</NavLink></li>
-                    <li><NavLink to='/signin'>Login</NavLink></li>
-                    <li><NavLink to='/reports'>Reports</NavLink></li>
-                    <li><NavLink to='/posts'>Posts</NavLink></li>
-                    <li><NavLink to='/'>Log Out</NavLink></li>     
-                </ul>                       
-            </div>
+        <nav className="navbar navbar-expand-sm fixed-top navbar-dark" style={{background:"#D81B60"}}>
+            <a className="navbar-brand" href="/">
+                <img alt="logo" className="card" src="/images/ic_launcher_mini.png"></img>
+            </a>
+
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <Link className="nav-link" to='/'>Home</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to='/signup'>Signup</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to='/signin'>Login</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to='/reports'>Reports</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to='/posts'>Posts</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to='/'>Log Out</Link>
+                </li>
+            </ul>
         </nav>
     )
 }
