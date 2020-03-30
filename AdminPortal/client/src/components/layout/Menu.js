@@ -1,13 +1,19 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,useHistory } from "react-router-dom";
 import authHelper from "../auth/auth-helper";
 
 const Menu = () => {
 
   var isAuthenticated = authHelper.isAuthenticated();
+  let history = useHistory();
+ // console.log("isAuthenticated");
+  //console.log(isAuthenticated);
 
-  console.log("isAuthenticated");
-  console.log(isAuthenticated);
+  const signOut = (e) => {
+        e.preventDefault();
+        history.push('/signin')
+        authHelper.signOut(()=>console.log("user is signed out!"));
+  };
   
   return (
     <nav
@@ -83,14 +89,14 @@ const Menu = () => {
                 Posts
               </NavLink>
             </li>
-            <li className="nav-item" style={{ display: isAuthenticated ? 'block' : 'none'}}>
-              <NavLink
-                className="nav-link"
-                activeClassName="active"
-                to="/logout"
-              >
-                Log Out
-              </NavLink>
+            <li className="nav-item" style={{ display: isAuthenticated ? 'block' : 'none'}}>          
+                <NavLink
+                    className="nav-link"
+                    activeClassName="active"
+                    to="/signin"
+                  >
+                <div onClick={(e)=> signOut(e)}>Logout</div>   
+                </NavLink>           
             </li>
             <li className="nav-item">
               <NavLink
