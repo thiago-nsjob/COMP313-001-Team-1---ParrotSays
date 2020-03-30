@@ -84,6 +84,15 @@ const Menu = () => {
                 Log Out
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                activeClassName="active"
+                to="/about"
+              >
+                About
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

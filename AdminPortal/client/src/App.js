@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Menu from './components/layout/Menu';
 import Home from './components/layout/Home';
+import About from './components/layout/About';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/users/SignUp';
 import ReportList from './components/reports/ReportList';
@@ -19,6 +20,7 @@ function App() {
           <Route path = '/signup' component={SignUp}/>
           <Route path = '/reports' component={ReportList}/>
           <Route path = '/posts' component={PostList}/>
+          <Route path = '/about' component={About}/>
           <Route path = '/edit' component={ReportDetail} />
         </Switch>
       </div>
