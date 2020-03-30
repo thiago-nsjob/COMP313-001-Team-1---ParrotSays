@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import auth from './../auth/auth-helper'
-import { signin } from './api-auth.js'
-
+import authHelper from './../auth/auth-helper'
 
 function SignIn() {
 
@@ -33,12 +31,13 @@ function SignIn() {
       console.log(user.username + user.password);
 
       //call authentication helper
-      signin(user).then((data) => {
+      authHelper.signIn(user)
+      .then((data) => {
         if (data.error) {
           setError(data.error)
         } else {
           console.log('success')
-          auth.authenticate(data, () => {
+          authHelper.authenticate(data, () => {
             setRedirect(true);
           })
         }

@@ -1,7 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import authHelper from "../auth/auth-helper";
 
 const Menu = () => {
+
+  var isAuthenticated = authHelper.isAuthenticated();
+
+  console.log("isAuthenticated");
+  console.log(isAuthenticated);
+  
   return (
     <nav
       className="navbar navbar-expand-lg fixed-top navbar-dark"
@@ -29,6 +36,7 @@ const Menu = () => {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
+
             <li className="nav-item">
               <NavLink
                 exact
@@ -39,7 +47,7 @@ const Menu = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" style={{ display: !isAuthenticated ? 'block' : 'none'}}>
               <NavLink
                 className="nav-link"
                 activeClassName="active"
@@ -48,7 +56,7 @@ const Menu = () => {
                 Signup
               </NavLink>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" style={{ display: !isAuthenticated ? 'block' : 'none'}}>
               <NavLink
                 className="nav-link"
                 activeClassName="active"
@@ -57,7 +65,7 @@ const Menu = () => {
                 Login
               </NavLink>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" style={{ display: isAuthenticated ? 'block' : 'none'}}>
               <NavLink
                 className="nav-link"
                 activeClassName="active"
@@ -66,7 +74,7 @@ const Menu = () => {
                 Reports
               </NavLink>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" style={{ display: isAuthenticated ? 'block' : 'none'}}>
               <NavLink
                 className="nav-link"
                 activeClassName="active"
@@ -75,7 +83,7 @@ const Menu = () => {
                 Posts
               </NavLink>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" style={{ display: isAuthenticated ? 'block' : 'none'}}>
               <NavLink
                 className="nav-link"
                 activeClassName="active"
