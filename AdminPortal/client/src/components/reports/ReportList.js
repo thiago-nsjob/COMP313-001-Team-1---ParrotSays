@@ -12,17 +12,13 @@ function ReportList(){
     useEffect(() => {
         const fetchData = async () => {
                 if(auth.isAuthenticated){
-                    //console.log('list report '+auth.isAuthenticated().token);
+                    console.log('list report '+auth.isAuthenticated().token);
+                    
                     try{
                         getAllReport(auth.isAuthenticated().token).then((data)=>{
-                            if(data.error)
-                            {
-                                console.log(error);
-                            }
-                            else {
-                                //console.log(data);
-                                setData(data);
-                            }
+                                if(data)
+                                    setData(data);
+                            
                         });
                     } catch(e) {
                         console.log(e);
