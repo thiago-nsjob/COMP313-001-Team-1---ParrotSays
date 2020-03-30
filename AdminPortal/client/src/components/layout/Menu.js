@@ -47,7 +47,7 @@ const Menu = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item" style={{ display: !isAuthenticated ? 'block' : 'none'}}>
+            <li className="nav-item" style={{ display: isAuthenticated ? 'block' : 'none'}}>
               <NavLink
                 className="nav-link"
                 activeClassName="active"
