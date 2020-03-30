@@ -2,13 +2,14 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Menu from './components/layout/Menu';
 import Home from './components/layout/Home';
-import SignIn from './components/auth/SignIn';
 import SignUp from './components/users/SignUp';
 import ReportList from './components/reports/ReportList';
 import ReportDetail from './components/reports/ReportDetail';
 import PostList from './components/posts/PostList';
+import SignIn from './components/users/SignIn';
 
 function App() {
+ 
   return (
     <BrowserRouter>
       <div className="App">    
