@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
  import axios from 'axios';
+=======
+import axios from 'axios';
+>>>>>>> ee321bcc3e5d040ed7ad2e29418da7eb9be2fc8f
 import auth from './../auth/auth-helper';
 import {getAllReport} from './api-report.js';
 
@@ -32,13 +36,13 @@ function ReportList(){
         fetchData();
       }, []);
     
-    return (
-        <div className="container">
+      return (
+        <div className="container" style={{marginTop: "125px"}}>
             <div className="card">
             <div className="card-header"><h3>List of Reports</h3></div>
             <div className="card-body">
             <table className="table table-striped">
-                <thead>
+            <thead class="text-white" style={{background:"#D81B60"}}>
                 <tr>
                     <th>Report Id</th>
                     <th>Description</th>
@@ -70,7 +74,7 @@ function ReportList(){
         </div>
 
       
-    )
+    );
 
     
 }

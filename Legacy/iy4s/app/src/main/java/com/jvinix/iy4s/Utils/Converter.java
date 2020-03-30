@@ -21,6 +21,10 @@ import com.jvinix.iy4s.Models.Report;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Converter {
@@ -36,6 +40,10 @@ public class Converter {
     public static String ByteToString(byte[] b) {
         String temp = Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
+    }
+
+    public static byte[] StringToByte(String s) {
+        return s.getBytes();
     }
 
     public static byte[] BitmapToByte(Bitmap bitmap) {
@@ -59,6 +67,7 @@ public class Converter {
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            //Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, size);//encodeByte.length);
             return bitmap;
         } catch (Exception e) {
             e.getMessage();
@@ -111,8 +120,20 @@ public class Converter {
         String s = time.substring(6,8);
 
         return (Integer.valueOf(h) * 3600000) + (Integer.valueOf(m) * 60000) + (Integer.valueOf(s) * 1000);
-
     }
+
+    public static String LongToStringTime(Long longdate)
+    {
+        try {
+            DateFormat formatdate = new SimpleDateFormat("MMM dd, yyyy - HH:mm");
+            Date date = new Date(longdate);
+            return formatdate.format(date);
+        } catch (Exception e) {
+            Log.e("LOG_CONVERTER", e.getMessage());
+            return null;
+        }
+    }
+
 
     public static void JsonToReport(JSONObject jsonObject) {
         // display response

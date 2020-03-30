@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
+import com.jvinix.iy4s.Utils.Converter;
 
 @Entity
 public class Report {
@@ -21,6 +22,7 @@ public class Report {
 
     //@ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     @SerializedName("picture")
+    //private byte[] Picture;
     private String Picture;
 
     @NonNull

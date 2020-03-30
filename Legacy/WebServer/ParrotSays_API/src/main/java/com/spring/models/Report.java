@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.lang.NonNull;
 
@@ -18,20 +19,21 @@ public class Report {
 	@Id
 	@GeneratedValue
 	private int reportId;
-	@NonNull
+	@NotEmpty
     private String description;
 	
 	//@Column(columnDefinition = "TEXT")
 	@Lob
     private byte[] picture;
-    @NonNull
+	@NonNull
     private double latitude;
-    @NonNull
+	@NonNull
     private double longitude;
-    @NonNull
+	@NonNull
     private Long dateTimeReport;
     private String solution;
     private Long dateTimeSolution;
+    @NonNull
     private int statusCode;
     private String userId;
     private String adminId;

@@ -41,15 +41,19 @@
 
         <activity
             android:name=".Views.DetailsActivity"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".Views.ReportsActivity"></activity>
         <activity
             android:name=".Views.LoginActivity"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".Views.MapsActivity" />
         <activity
             android:name=".Views.ReportsActivity"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".Views.MapsActivity" />
         <activity
             android:name=".Views.AboutActivity"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".Views.MapsActivity" />
 
         <provider
@@ -72,6 +76,7 @@
         <activity
             android:name=".Views.MapsActivity"
             android:label="@string/title_activity_maps"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

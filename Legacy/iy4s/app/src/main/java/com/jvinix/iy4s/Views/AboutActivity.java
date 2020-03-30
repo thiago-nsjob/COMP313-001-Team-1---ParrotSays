@@ -26,7 +26,7 @@ public class AboutActivity extends AppCompatActivity {
         etIPAddress = findViewById(R.id.etIPAddress);
         SharedPreferences myPreference = getSharedPreferences("MyPrefs",MODE_PRIVATE);
 
-        etIPAddress.setText(myPreference.getString("IPAddress", ""));
+        etIPAddress.setText(myPreference.getString("IPAddress", getString(R.string.default_server_address)));
 
         TextView txtTeam = findViewById(R.id.txtTeam);
         for(String str : getResources().getStringArray(R.array.teamMembers))
@@ -40,8 +40,16 @@ public class AboutActivity extends AppCompatActivity {
     {
         SharedPreferences myPreference = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = myPreference.edit();
-        prefEditor.putString("IPAddress", etIPAddress.getText().toString());
+        if(!etIPAddress.getText().toString().equals("")){
+            prefEditor.putString("IPAddress", etIPAddress.getText().toString());
+        }else{
+            prefEditor.putString("IPAddress", getString(R.string.default_server_address));
+            etIPAddress.setText(getString(R.string.default_server_address));
+        }
+
         prefEditor.commit();
         Toast.makeText(this, "IP Address saved.", Toast.LENGTH_LONG).show();
+
+        finish();
     }
 }

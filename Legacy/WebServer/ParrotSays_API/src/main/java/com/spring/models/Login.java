@@ -1,9 +1,15 @@
 package com.spring.models;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Login {
 	
+	@NotEmpty
 	private String username;
+	
 	private String email;
+	
+	@NotEmpty
     private String password;
     
 	public String getUsername() {
