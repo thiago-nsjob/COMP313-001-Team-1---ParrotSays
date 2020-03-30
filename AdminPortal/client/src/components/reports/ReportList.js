@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
- import axios from 'axios';
-=======
 import axios from 'axios';
->>>>>>> ee321bcc3e5d040ed7ad2e29418da7eb9be2fc8f
 import auth from './../auth/auth-helper';
 import {getAllReport} from './api-report.js';
 
@@ -16,17 +12,13 @@ function ReportList(){
     useEffect(() => {
         const fetchData = async () => {
                 if(auth.isAuthenticated){
-                    //console.log('list report '+auth.isAuthenticated().token);
+                    console.log('list report '+auth.isAuthenticated().token);
+                    
                     try{
                         getAllReport(auth.isAuthenticated().token).then((data)=>{
-                            if(data.error)
-                            {
-                                console.log(error);
-                            }
-                            else {
-                                //console.log(data);
-                                setData(data);
-                            }
+                                if(data)
+                                    setData(data);
+                            
                         });
                     } catch(e) {
                         console.log(e);
