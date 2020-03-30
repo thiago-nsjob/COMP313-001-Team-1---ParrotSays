@@ -1,10 +1,8 @@
-# MyWalk
-Group Project for Software Development Project 1 course
+# Parrot Says
 
-This is a class project done by:
-- Julio Carvalho
-- Nima Javadvand Tamar
-- Chrystiann Dorneles Amorim
-- Roger Zheng
-- Omar Safi
-- Wonhong Kim (David)
+- RESTful API (Spring Boot)
+- Web Application (Spring Boot + Thymeleaf)
+- Android Native App (Java)
+
+Developed by: Julio Carvalho
+
