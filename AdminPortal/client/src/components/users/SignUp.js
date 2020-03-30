@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 
+import authHelper from './../auth/auth-helper'
+
 class SignUp extends Component {
   state = {
     email: "",
     password: "",
-    firstName: "",
-    lastName: ""
+    confirmPassword: ""
   };
   handleChange = e => {
     this.setState({
@@ -15,6 +16,30 @@ class SignUp extends Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
+
+    if(this.state.confirmPassword !== this.state.password)
+    {
+      // throw error here
+      console.log('it is not same confirm password and password');
+    }
+    var createUserDto = {
+      email: this.state.email,
+      password: this.state.password,
+      username: this.state.email
+    };
+
+    authHelper.createUser(createUserDto)
+      .then((data) => {
+        console.log(data);
+        // if ( data  data.error) {
+        //   console.log("Error:");
+        //   console.log(data.error);
+        // } else {
+        //   console.log('success');
+        //   console.log('success');
+        // }
+      });
+
   };
   render() {
     return (
