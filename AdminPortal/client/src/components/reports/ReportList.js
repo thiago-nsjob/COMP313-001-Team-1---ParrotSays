@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
- import axios from 'axios';
-=======
 import axios from 'axios';
->>>>>>> ee321bcc3e5d040ed7ad2e29418da7eb9be2fc8f
 import auth from './../auth/auth-helper';
 import {getAllReport} from './api-report.js';
 
