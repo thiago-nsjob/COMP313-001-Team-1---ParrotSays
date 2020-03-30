@@ -3,7 +3,10 @@ import axios from 'axios';
 const getAllReport = (token) => {
     //console.log({username,password});
     return  axios.get('/reports/getall',{ headers: {"Authorization" : `Bearer ${token}`} })
-                .then((response) => {return response.data})
+                .then((response) => {
+                    //console.log(response);
+                    return response.data
+                })
                 .catch((err) => console.log(err))   
 }
 
