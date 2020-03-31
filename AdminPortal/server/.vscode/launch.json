@@ -19,7 +19,7 @@
                 "--stage=local",
                 "-P",
                 "3000",
-                "--aws-profile=dev_user"
+                "--aws-profile=default"
             ],
             "runtimeExecutable": "node",
             "runtimeArgs": [

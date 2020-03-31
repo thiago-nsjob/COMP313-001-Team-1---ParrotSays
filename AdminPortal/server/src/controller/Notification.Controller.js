@@ -1,9 +1,7 @@
 const express = require("express");
 const router = new express.Router();
-
-const openDbConnection = require("../../config/mongoose");
 const SNSService = require("../service/SNSService");
-const Post = require("../model/Post");
+
 
 const controllerRoute = "/notification";
 
