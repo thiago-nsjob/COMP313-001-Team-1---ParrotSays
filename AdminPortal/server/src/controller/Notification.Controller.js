@@ -2,7 +2,7 @@ const express = require("express");
 const router = new express.Router();
 
 const openDbConnection = require("../../config/mongoose");
-const PostService = require("../service/PostService");
+const SNSService = require("../service/SNSService");
 const Post = require("../model/Post");
 
 const controllerRoute = "/notification";
@@ -14,11 +14,11 @@ const validatePost = data => {
 module.exports = rootRoute => {
     let baseRoute = rootRoute + controllerRoute;
 
-    router.post(`${baseRoute}/notification`, async(req, res) => {
+    router.post(`${baseRoute}`, async(req, res) => {
         try {
             const { message } = req.body;
 
-            //TODO: call aws SNS and push message data
+            await SNSService.SendMessage(message);
 
             return res.status(200).send({
                 data: "Message sent"

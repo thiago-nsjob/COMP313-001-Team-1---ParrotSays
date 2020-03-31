@@ -20,6 +20,9 @@ functions:
     handler: src/api/handler.handle
     events:
             - http:
+                path: api/notification
+                method: post
+            - http:
                 path: api/post
                 method: post
             - http:
