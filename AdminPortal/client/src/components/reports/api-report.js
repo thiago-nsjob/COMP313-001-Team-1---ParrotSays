@@ -21,12 +21,29 @@ const getReportById = (token,id) => {
 
 }
 
-//edit 
+//update status code and solution on report 
+const updateReport = (token,id,report) =>{
+    console.log(report);
+    
+    return axios.put('/reports/updatereport/'+ id,report,{ headers: {"Authorization" : `Bearer ${token}`} }).then((response) => {
+        console.log(response)
+        return response.data;
+    }).catch((err) => console.log(err)) ;
+}
 
-//delete
+
+//delete 
+const deleteReport = (token,id) =>{
+    //console.log(report);
+    try{
+        axios.delete('/reports/delreport/'+ id,{ headers: {"Authorization" : `Bearer ${token}`} });
+            //console.log(response);
+    } catch(err)
+    {console.log(err)} ;
+}
 
 
   
 export {
-    getAllReport,getReportById
+    getAllReport,getReportById,updateReport,deleteReport
 }
