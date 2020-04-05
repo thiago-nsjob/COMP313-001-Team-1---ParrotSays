@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Switch, Route,useParams} from 'react-router-dom';
 import Menu from './components/layout/Menu';
 import Home from './components/layout/Home';
 import About from './components/layout/About';
@@ -10,7 +10,7 @@ import PostList from './components/posts/PostList';
 import SignIn from './components/users/SignIn';
 
 function App() {
- 
+  
   return (
     <BrowserRouter>
       <div className="App">    
@@ -22,7 +22,7 @@ function App() {
           <Route path = '/reports' component={ReportList}/>
           <Route path = '/posts' component={PostList}/>
           <Route path = '/about' component={About}/>
-          <Route path = '/edit' component={ReportDetail} />
+          <Route path = '/report/edit/:id' component={ReportDetail} />
         </Switch>
       </div>
     </BrowserRouter>

@@ -44,7 +44,7 @@ function ReportList(){
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
-                </thead>
+            </thead>
                 <tbody>
                     {data.map((value) =>      
                             <tr key={value.reportId}>
@@ -54,7 +54,7 @@ function ReportList(){
                                 <td>{value.longitude}</td>
                                 <td>{value.dateTimeReport}</td>
                                 <td>{value.statusCode}</td>
-                                <td><a href={'/edit?id='+ value.reportId}><i className="fa fa-edit text-body"></i></a> | <a href={'/delete?id=' + value.reportId}><i className="fa fa-trash text-body"></i></a></td>
+                                <td><a href={'/report/edit/'+ value.reportId}><i className="fa fa-edit text-body"></i></a> | <a href={'/delete?id=' + value.reportId}><i className="fa fa-trash text-body"></i></a></td>
                             </tr>       
                     )}   
                 </tbody>
