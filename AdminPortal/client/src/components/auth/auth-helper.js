@@ -27,13 +27,8 @@ const authHelper = {
     }
     document.cookie = "t=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
     cb();
-  },
-  createUser(createUserDto) {
-      return axios
-        .post('/users/createuser',createUserDto)
-                  .then((response) => {return response.data})
-                  .catch((err) => console.log(err));   
-  },
+  }
+ 
 
 }
 

@@ -1,53 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { PostAPI } from "./api-post";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+export const PostList = () => {
+  const [data, setData] = useState([]);
+  const [refresh, setRefresh] = useState(true);
 
-function PostList(){
+  const fetch = async () => {
+    if(refresh){
+        let res = await PostAPI.getAllPosts();
+        console.log(res);
+        setData(res);
+        setRefresh(false);
+    }
     
-    const [data, setData] = useState([]);
-  
-      return (
-        <div className="container" style={{marginTop: "125px"}}>
-            <div className="card">
-            <div className="card-header"><h3>List of Posts</h3></div>
-            <div className="card-body">
-            <table className="table table-striped">
-            <thead class="text-white" style={{background:"#D81B60"}}>
-                <tr>
-                    <th>Report Id</th>
-                    <th>Description</th>
-                    <th>Latitude</th>
-                    <th>Longtitude</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {data.map((value) =>      
-                            <tr key={value.reportId}>
-                                <td>{value.reportId}</td>
-                                <td>{value.description}</td>
-                                <td>{value.latitude}</td>
-                                <td>{value.longitude}</td>
-                                <td>{value.dateTimeReport}</td>
-                                <td>{value.statusCode}</td>
-                                <td><a href={'/edit?id='+ value.reportId}><i className="fa fa-edit text-body"></i></a> | <a href={'/delete?id=' + value.reportId}><i className="fa fa-trash text-body"></i></a></td>
-                            </tr>       
-                    )}   
-                </tbody>
-            </table>
-            </div>
-           
-            </div>
-          
-        </div>
+  };
 
-      
-    );
+  useEffect(() => {
+    fetch();
+  }, [data]);
 
-    
-}
-
-
-
+  return (
+    <div className="container-fluid mt-5" style={{width:"70em", marginTop:"10em"}}>
+      {data.map((post, idx) => {
+          return (
+            <Card
+              key={idx}
+              className="m-3"
+               
+            >
+              <Card.Header style={{backgroundColor:"rgb(216, 27, 96)" }}> Id: ${post._id}</Card.Header>
+              <Card.Body >
+                <Card.Title> Card Title </Card.Title>
+                <Card.Text>
+                  {post.text}
+                </Card.Text>
+                  <Button variant="danger">Create Report</Button>  
+              </Card.Body>
+            </Card>
+          );
+        })}
+    </div>
+  );
+};
 
 export default PostList;
