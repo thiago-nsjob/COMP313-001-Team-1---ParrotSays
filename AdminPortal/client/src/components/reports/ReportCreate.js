@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from "react";
 import auth from "./../auth/auth-helper";
-import { getReportById, updateReport } from "./api-report.js";
+import { createReport } from "./api-report.js";
 import { useParams, useHistory } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
 
-function ReportDetail() {
+function ReportCreate() {
   const [report, setReport] = useState({});
   const [solution, setSolution] = useState("");
   const [statusCode, setStatusCode] = useState("");
   const [error, setError] = useState(false);
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-  let { id } = useParams();
   let history = useHistory();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (auth.isAuthenticated) {
-      console.log({ solution: solution, statusCode: statusCode });
-      //alert('hi');
-
-      await updateReport(auth.isAuthenticated().token, id, {
+      await createReport(auth.isAuthenticated().token, {
         solution: solution,
         statusCode: statusCode,
       }).then((data) => {
@@ -28,33 +24,12 @@ function ReportDetail() {
       });
     }
   };
-  //console.log('id: '+id);
-  useEffect(() => {
-    console.log({ solution: solution, statusCode: statusCode });
-    const fetchData = async () => {
-      if (auth.isAuthenticated) {
-        //console.log('list report '+auth.isAuthenticated().token);
-
-        try {
-          getReportById(auth.isAuthenticated().token, id).then((data) => {
-            if (data) {
-              setReport(data);
-              //console.log(data);
-            }
-          });
-        } catch (e) {
-          console.log(e);
-        }
-      }
-    };
-    fetchData();
-  }, []);
-
+ 
   return (
     <div className="container d-flex" style={{ marginTop: "125px" }}>
       <div className="card shadow p-3">
         <div className="card-header">
-          <h2>Report Details</h2>
+          <h2>Crate Report</h2>
         </div>
 
         <div className="card-body">
@@ -176,4 +151,4 @@ function ReportDetail() {
   );
 }
 
-export default ReportDetail;
+export default ReportCreate;

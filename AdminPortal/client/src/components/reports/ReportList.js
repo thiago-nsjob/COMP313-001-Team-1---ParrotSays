@@ -8,8 +8,7 @@ function ReportList(){
     
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
-    
-    
+        
     const handleDelete = async(e,id) => {
         e.preventDefault();
         try{
@@ -58,10 +57,17 @@ function ReportList(){
       return (
         <div className="container" style={{marginTop: "125px"}}>
             <div className="card">
-            <div className="card-header"><h3>List of Reports</h3></div>
+            <div className="card-header"><h3 className="pull-left">List of Reports</h3> <div className="pull-right">
+                <button className="btn btn-primary" style={{    
+                    background: "rgb(216, 27, 96)",
+                    borderColor: "#df4242",
+                    fontWeight: "bold"
+                }}>Create Report</button>
+                </div>
+                </div>
             <div className="card-body">
             <table className="table table-striped">
-            <thead class="text-white" style={{background:"#D81B60"}}>
+            <thead className="text-white" style={{background:"#D81B60"}}>
                 <tr>
                     <th>Report Id</th>
                     <th>Description</th>
