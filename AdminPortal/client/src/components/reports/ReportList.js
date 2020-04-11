@@ -30,11 +30,7 @@ function ReportList(){
                         getAllReport(auth.isAuthenticated().token).then((data)=>{
                                 if(data){
                                     setData(data);
-                                    
                                 }
-                                
-                                    
-                            
                         });
                     } catch(e) {
                         console.log(e);
@@ -43,6 +39,21 @@ function ReportList(){
           };  
         fetchData();
       }, []);
+
+      const renderSwitch = (param) => {
+        switch(param) {
+            case 0:
+                return 'Opened';
+            case 1:
+                return 'Investigation Requested';
+            case 2:
+                return 'Investigation Returned';
+            case 3:
+                return 'Solution Requested';
+            case 4:
+                return 'Solved';
+        }
+      };
     
       return (
         <div className="container" style={{marginTop: "125px"}}>
@@ -68,8 +79,8 @@ function ReportList(){
                                 <td>{value.description}</td>
                                 <td>{value.latitude}</td>
                                 <td>{value.longitude}</td>
-                                <td>{value.dateTimeReport}</td>
-                                <td>{value.statusCode}</td>
+                                <td>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(value.DateTimeReport)}</td>
+                                <td>{renderSwitch(value.statusCode)}</td>
                                 <td><a href={'/report/edit/'+ value.reportId}><i className="fa fa-edit text-body"></i></a> | <a  href='#' onClick={(e) => handleDelete(e,value.reportId)}   ><i className="fa fa-trash text-body"></i></a></td>
                             </tr>       
                     )}   

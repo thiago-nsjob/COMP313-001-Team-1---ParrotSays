@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import auth from './../auth/auth-helper';
 import {getReportById,updateReport} from './api-report.js';
 import {useParams,useHistory} from "react-router-dom";
-
+import GoogleMapReact from 'google-map-react';
 
 
 function ReportDetail(){
@@ -11,6 +11,7 @@ function ReportDetail(){
     const [solution,setSolution] = useState('');
     const [statusCode,setStatusCode] = useState('');
     const [error, setError] = useState(false);
+    const AnyReactComponent = ({ text }) => <div>{text}</div>;
     
     let { id } = useParams();
     let history = useHistory();
@@ -62,7 +63,7 @@ function ReportDetail(){
                 
                 <div className="card-body">
                 
-                    <table className="table table-striped">  
+                    <table>  
                     <tr>  
 	                    <td><b><label for="ReportId">Report Id </label></b></td>  
                         <td>{report.reportId}</td>
@@ -73,7 +74,7 @@ function ReportDetail(){
 	                </tr>  
                     <tr>  
 	                    <td><b><label for="DateTimeReport">Time Report </label></b></td>  
-                        <td>{report.DateTimeReport}</td>  
+                        <td>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(report.DateTimeReport)}</td>  
 	                </tr>
                     <tr>
 	                	<td colspan="2">
@@ -82,7 +83,13 @@ function ReportDetail(){
 	                </tr>
                     <tr>
 		                <td colspan="2">
-		                	<div id="googleMap" style={{width:"500px",height:"380px"}}></div>	                	
+		                	<div id="googleMap" style={{width:"500px",height:"380px"}}>
+                            <GoogleMapReact
+                            bootstrapURLKeys={{ key: "AIzaSyAUMfy5t49e288JgHAguruAMDcpzC_iRbc&amp" }}
+                            defaultCenter={{lat: -10.91111, lng: -37.07167}}
+                            center={{lat: report.latitude, lng: report.longitude}}
+                            defaultZoom={19}/>
+                            </div>	                	
 		                </td>
 	                </tr>
                     <tr>
@@ -92,7 +99,7 @@ function ReportDetail(){
 	                </tr>
 	                <tr>
 	                	<td colspan="2">
-	                		<img src={report.picture} style={{width:"500px"}} alt="No Picture"/>
+	                		<img src={`data:image/jpeg;base64,${report.picture}`} style={{width:"500px"}} alt="No picture available"/>
 	                	</td>
 	                </tr>
                         
