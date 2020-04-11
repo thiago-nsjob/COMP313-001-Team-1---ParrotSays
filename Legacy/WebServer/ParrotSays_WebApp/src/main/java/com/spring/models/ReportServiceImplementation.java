@@ -40,7 +40,7 @@ public class ReportServiceImplementation implements IReportService {
 		
 		HttpEntity<String> entity = new HttpEntity<String>("parameters",headers);
 		
-		ResponseEntity<Report[]> re = restTemplate.exchange(serverUrl+"/api/reports/", HttpMethod.GET, entity, Report[].class);
+		ResponseEntity<Report[]> re = restTemplate.exchange(serverUrl+"/api/reports/getall", HttpMethod.GET, entity, Report[].class);
 		return Arrays.asList(re.getBody());
 	}
 
@@ -51,7 +51,7 @@ public class ReportServiceImplementation implements IReportService {
 		
 		HttpEntity<String> entity = new HttpEntity<String>("parameters",headers);
 		
-		ResponseEntity<Report> re = restTemplate.exchange(serverUrl+"/api/reports/"+reportId, HttpMethod.GET, entity, Report.class);
+		ResponseEntity<Report> re = restTemplate.exchange(serverUrl+"/api/reports/getreport/"+reportId, HttpMethod.GET, entity, Report.class);
 		
 		return re.getBody();
 	}
@@ -87,7 +87,7 @@ public class ReportServiceImplementation implements IReportService {
 			
 			HttpEntity<Report> entity = new HttpEntity<Report>(report,headers);
 			
-			restTemplate.put(serverUrl+"/api/reports/"+report.getReportId(), entity);
+			restTemplate.put(serverUrl+"/api/reports/updatereport/"+report.getReportId(), entity);
 			return true;
 		}
 		catch(Exception exc)
@@ -106,7 +106,7 @@ public class ReportServiceImplementation implements IReportService {
 			
 			HttpEntity<String> entity = new HttpEntity<String>("parameters",headers);
 			
-			restTemplate.exchange(serverUrl+"/api/reports/"+reportId, HttpMethod.DELETE, entity, Report.class);
+			restTemplate.exchange(serverUrl+"/api/reports/delreport/"+reportId, HttpMethod.DELETE, entity, Report.class);
 			
 			//restTemplate.delete(serverUrl+"/api/reports/"+reportId);
 			return true;

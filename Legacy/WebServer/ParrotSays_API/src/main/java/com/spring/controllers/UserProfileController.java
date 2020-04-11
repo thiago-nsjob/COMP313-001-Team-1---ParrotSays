@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import com.spring.models.Login;
 import com.spring.models.Roles;
 import com.spring.models.RolesRepository;
 import com.spring.models.User;
@@ -52,11 +53,12 @@ public class UserProfileController {
 	
 	// Used to authenticate users = get token
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody User login) throws Exception 
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody Login login) throws Exception 
 	{
+		User user = new User();
 		try {
-			login = (User) authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())).getPrincipal();
-			System.out.println(" == Successful login: "+ login);
+			user = (User) authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())).getPrincipal();
+			System.out.println(" == Successful login: "+ user);
 		} 
 		catch (DisabledException e) {
 			throw new Exception("USER_DISABLED", e);
@@ -65,10 +67,10 @@ public class UserProfileController {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
 		
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(login.getUsername());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
 		final String token = JwtUtil.createToken(userDetails);
 		
-		return ResponseEntity.ok(UserDTO.create(login, token).toJson());
+		return ResponseEntity.ok(UserDTO.create(user, token).toJson());
 	}
 
 	
@@ -87,11 +89,14 @@ public class UserProfileController {
     // Create a new user
     @Secured({ "ROLE_ADMIN" })
     @PostMapping(value = "/createuser", produces = "application/json")
-    public void createUser(@Valid @RequestBody User user, HttpServletResponse response) throws IOException 
+    public void createUser(@Valid @RequestBody Login newUser, HttpServletResponse response) throws IOException 
     {
+    	User user = new User();
+    	user.setUsername(newUser.getUsername());
+    	user.setEmail(newUser.getEmail());
     	
     	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(encoder.encode(newUser.getPassword()));
         try
         {
         	Roles role = rolerepo.findById((long)3).orElseThrow(() -> new NotFoundException("RoleId 3 Not found."));

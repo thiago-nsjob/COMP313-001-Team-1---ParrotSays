@@ -1,21 +1,27 @@
 package com.spring.controllers;
 
 
+import java.io.IOException;
+
 /* 
 301016383 - Julio Vinicius A. de Carvalho
 November 17, 2019
 */
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javassist.NotFoundException;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.spring.models.*;
+import com.spring.security.jwt.ServletUtil;
 
 
 @RestController
@@ -43,14 +49,22 @@ public class ReportController {
 	
 	// Create a new report
     @PostMapping("/addreport")
-    public Report addReport(@Valid @RequestBody Report report) {
-        return repo.save(report);
+    public void addReport(@Valid @RequestBody Report report, HttpServletResponse response) throws Exception {
+        try
+        {
+        	String json = ServletUtil.getJson("reportId", String.valueOf(repo.save(report).getReportId()));
+        	ServletUtil.write(response, HttpStatus.OK, json);
+        }
+        catch(Exception exc)
+        {
+        	ServletUtil.write(response, HttpStatus.BAD_REQUEST, ServletUtil.getJson("error", exc.getCause().toString()));
+        }
     }
     
-    @Secured({ "ROLE_SECGUARD", "ROLE_ADMIN" })
     // Get a Single report
     @GetMapping("/getreport/{id}")
-    public Report getReportById(@PathVariable(value = "id") Integer reportId) throws NotFoundException  {
+    public Report getReportById(@PathVariable(value = "id") Integer reportId, HttpServletResponse response) throws NotFoundException  
+    {
         return repo.findById(reportId)
         		.orElseThrow(() -> new NotFoundException("ReportId "+ reportId+ " Not found."));
     }
@@ -59,7 +73,7 @@ public class ReportController {
     @Secured({ "ROLE_SECGUARD", "ROLE_ADMIN" })
     @PutMapping("/updatereport/{id}")
     public Report updateReport(@PathVariable(value = "id") Integer reportId,
-                           @Valid @RequestBody Report reportEdited) throws NotFoundException {
+                           @RequestBody Report reportEdited) throws NotFoundException {
 
     	Report reportTemp = repo.findById(reportId)
     			.orElseThrow(() -> new NotFoundException("ReportId "+ reportId+ " Not found."));

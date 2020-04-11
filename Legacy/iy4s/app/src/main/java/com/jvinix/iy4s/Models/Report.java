@@ -6,46 +6,50 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
+import com.jvinix.iy4s.Utils.Converter;
 
 @Entity
 public class Report {
 
     @PrimaryKey
-    @JsonProperty("ReportId")
+    @SerializedName("reportId")
     private int ReportId;
 
     @NonNull
-    @JsonProperty("Description")
+    @SerializedName("description")
     private String Description;
 
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    @JsonProperty("Picture")
-    private byte[] Picture;
+    //@ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    @SerializedName("picture")
+    //private byte[] Picture;
+    private String Picture;
 
     @NonNull
-    @JsonProperty("Latitude")
+    @SerializedName("latitude")
     private double Latitude;
 
     @NonNull
-    @JsonProperty("Longitude")
+    @SerializedName("longitude")
     private double Longitude;
+
     @NonNull
-    @JsonProperty("DateTimeReport")
+    @SerializedName("dateTimeReport")
     private Long DateTimeReport;
 
-    @JsonProperty("Solution")
+    @SerializedName("solution")
     private String Solution;
 
-    @JsonProperty("DateTimeSolution")
+    @SerializedName("dateTimeSolution")
     private Long DateTimeSolution;
 
-    @JsonProperty("StatusCode")
+    @SerializedName("statusCode")
     private int StatusCode;
 
-    @JsonProperty("UserId")
+    @SerializedName("userId")
     private String UserId;
 
-    @JsonProperty("AdminId")
+    @SerializedName("adminId")
     private String AdminId;
 
     public int getReportId() {
@@ -65,11 +69,11 @@ public class Report {
         Description = description;
     }
 
-    public byte[] getPicture() {
+    public String getPicture() {
         return Picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(String picture) {
         Picture = picture;
     }
 
@@ -136,5 +140,21 @@ public class Report {
 
     public void setAdminId(String adminId) {
         AdminId = adminId;
+    }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "ReportId=" + ReportId +
+                ", Description='" + Description + '\'' +
+                ", Latitude=" + Latitude +
+                ", Longitude=" + Longitude +
+                ", DateTimeReport=" + DateTimeReport +
+                ", Solution='" + Solution + '\'' +
+                ", DateTimeSolution=" + DateTimeSolution +
+                ", StatusCode=" + StatusCode +
+                ", UserId='" + UserId + '\'' +
+                ", AdminId='" + AdminId + '\'' +
+                '}';
     }
 }

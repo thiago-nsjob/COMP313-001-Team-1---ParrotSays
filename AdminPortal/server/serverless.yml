@@ -2,7 +2,7 @@
 #example
 #https://blog.logrocket.com/going-serverless-with-your-node-js-apps/
 service:
-  name: myService
+  name: ParrotPostAPI
 
 provider:
   name: aws
@@ -20,14 +20,21 @@ functions:
     handler: src/api/handler.handle
     events:
             - http:
+                path: api/notification
+                method: post
+                cors: true
+            - http:
                 path: api/post
                 method: post
+                cors: true
             - http:
                 path: api/post
                 method: get
+                cors: true
             - http:
                 path: api/post/{productId}
                 method: get
+                cors: true
 
 plugins:
   - serverless-offline

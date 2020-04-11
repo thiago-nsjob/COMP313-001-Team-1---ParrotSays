@@ -4,16 +4,16 @@ package com.spring.models;
 public class Customer {
 
     private Long id;
-    private String userName;
+    private String username;
     private String password;
     private String token;
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -38,7 +38,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", userName=" + userName + ", password=" + password + ", token=" + token + "]";
+		return "Customer [id=" + id + ", username=" + username + ", password=" + password + ", token=" + token + "]";
 	}
     
     

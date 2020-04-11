@@ -34,6 +34,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -47,24 +56,28 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.jvinix.iy4s.Models.Report;
+import com.jvinix.iy4s.Models.UserDTO;
 import com.jvinix.iy4s.R;
 import com.jvinix.iy4s.Utils.Converter;
 import com.jvinix.iy4s.ViewModels.ReportViewModel;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private String ServerUrl;// = "http://192.168.2.32:8167";
-    private String Token; // = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU4MTI4NTQyMiwicm9sIjpbIlJPTEVfQURNSU4iXX0.q4LH5XIOhgd3HYaDScrwc5kK7T7vqnvTTleBG-PsmBvbv2q6TB1m6Z1vDSKbPLLZzEzsSFf87EPyiYXNiy-xHA";
+    private String ServerUrl;
     private GoogleMap mGoogleMap;
     private SupportMapFragment mapFrag;
     private LocationRequest mLocationRequest;
@@ -92,7 +105,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setTitle("Parrot Says"); // for set actionbar title
 
         SharedPreferences myPreference = getSharedPreferences("MyPrefs",MODE_PRIVATE);
-        ServerUrl = myPreference.getString("IPAddress", "");
+        ServerUrl = myPreference.getString("IPAddress", getString(R.string.default_server_address));
 
         builder = new AlertDialog.Builder(MapsActivity.this);
         builder.setCancelable(false); // if you want user to wait for some process to finish,
@@ -106,7 +119,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageViewDetails);
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
@@ -119,15 +132,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if(!editMult.getText().toString().equals("")) {
                     newReport.setDescription(editMult.getText().toString());
                     newReport.setDateTimeReport(new Date().getTime());
-
+                    newReport.setStatusCode(0);
                     try {
-                        new RestTask().execute();
+                        //new RestTask().execute();
+                        sendReport();
                     }
                     catch (Exception exc)
                     {
                         Log.e("btnSubmit: ", exc.getMessage());
                     }
-
                 }
                 else
                 {
@@ -178,63 +191,98 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     // Submit a report to the API a new report into the database.
-    private class RestTask extends AsyncTask<Void, Void, Report>{
+    public void sendReport()
+    {
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            //JSONObject jsonBody = new JSONObject();
+//            jsonBody.put("description", newReport.getDescription());
+//            jsonBody.put("password", password);
+            Gson gsonSet = new Gson();
+            final String mRequestBody = gsonSet.toJson(newReport, Report.class);//jsonBody.toString();
 
-        @Override
-        protected void onPostExecute(Report result) {
-            super.onPostExecute(result);
+            JsonObjectRequest stringRequest = new JsonObjectRequest
+                    (Request.Method.POST, ServerUrl+"/api/reports/addreport/", null,
+                            new Response.Listener<JSONObject>()
+                            {
+                                @Override
+                                public void onResponse(JSONObject response)
+                                {
+                                    Log.i("LOG_RESPONSE", response.toString());
+                                    dialog.dismiss();
 
-            dialog.dismiss();
-            if(result != null)
-            {
-                reportViewModel.insert(result);
-                AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create();
-                alertDialog.setCancelable(false);
-                alertDialog.setTitle(getResources().getString(R.string.message));
-                alertDialog.setMessage(getResources().getString(R.string.msg_success));
+                                    try {
+                                        int reportId = response.getInt("reportId");
 
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                imageView.setImageResource(0);
-                                editMult.setText("");
+                                        Report saveReport = newReport;
+                                        saveReport.setReportId(reportId);
+                                        reportViewModel.insert(saveReport);
+
+                                        imageView.setImageResource(0);
+                                        editMult.setText("");
+
+                                        Toast.makeText(getApplicationContext(), "Success - ReportId: "+reportId,
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                    catch (JSONException e)
+                                    {
+                                        Toast.makeText(getApplicationContext(), "Error to read ReportId: ", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener()
+                            {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Log.e("LOG_RESPONSE", error.toString());
+                                    dialog.dismiss();
+                                    AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create();
+                                    alertDialog.setCancelable(false);
+                                    alertDialog.setTitle(getResources().getString(R.string.error));
+                                    alertDialog.setMessage(getResources().getString(R.string.server_error));
+                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                }
+                                            });
+                                    alertDialog.show();
+                                }
                             }
-                        });
-                alertDialog.show();
-            }
-            else {
-                AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create();
-                alertDialog.setCancelable(false);
-                alertDialog.setTitle(getResources().getString(R.string.error));
-                alertDialog.setMessage(getResources().getString(R.string.error_server_address));
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", (DialogInterface.OnClickListener) null);
-                alertDialog.show();
-            }
+                    )
+            {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() {
+                    try {
+                        return mRequestBody == null ? null : mRequestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
+                        return null;
+                    }
+                }
+
+                @Override
+                protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+                    return super.parseNetworkResponse(response);
+                }
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    5000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+            );
+            requestQueue.add(stringRequest);
+            Log.i("LOG_RESPONSE", stringRequest.toString());
         }
-
-        @Override
-        protected Report doInBackground(Void... voids) {
-            try {
-                //RestTemplate restTemplate = new RestTemplate();
-                //restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-                //HttpHeaders headers = new HttpHeaders();
-                //headers.set("Authorization", "Bearer " + Token);
-
-                //HttpEntity<Report> entity = new HttpEntity<Report>(newReport, headers);
-
-                //Thread.sleep(5000);
-                //return restTemplate.postForObject(ServerUrl+"/api/reports/", entity, Report.class);
-
-                RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                Report report = restTemplate.postForObject(ServerUrl + "/api/reports/addreport/", newReport, Report.class);
-                return report;
-            }
-            catch (Exception ex) {
-                Log.e("ERROR: ", ex.getMessage());
-                return null;
-            }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -282,7 +330,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
             else
             {
-                weight = 50;
+                weight = 40;
             }
         }
 
@@ -519,6 +567,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         this.sendBroadcast(mediaScanIntent);
     }
 
+
     private void setPic() {
         // Get the dimensions of the View
         int targetW = imageView.getWidth();
@@ -542,7 +591,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Bitmap bitmap = BitmapFactory.decodeFile(newReport.getPicturePath(), bmOptions);
         Bitmap bitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath(), bmOptions);
 
-        newReport.setPicture(Converter.BitmapToByte(BitmapFactory.decodeFile(photoFile.getAbsolutePath())));
+        newReport.setPicture(Converter.BitmapToString(BitmapFactory.decodeFile(photoFile.getAbsolutePath())));
 
         imageView.setImageBitmap(bitmap);
     }

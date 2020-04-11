@@ -18,7 +18,7 @@ import com.spring.models.ReportServiceImplementation;
 @SpringBootApplication
 public class ParrotSaysWebAppApplication {
 
-	public static final String SERVER_URL = "http://localhost:8167";
+	public static final String SERVER_URL = "http://parrotsays.tk:8167";
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ParrotSaysWebAppApplication.class, args);

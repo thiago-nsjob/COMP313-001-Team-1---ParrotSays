@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Parrot Says</string>
+    <string name="default_server_address">http://parrotsays.tk:8167</string>
     <string name="title_activity_maps">Parrot Says</string>
     <string name="please_wait_nthis_may_take_a_moment">Please wait! \nThis may take a moment.</string>
     <string name="alert">Alert</string>
@@ -12,6 +13,7 @@
     <string name="server_error">ERROR: A server error occurred.</string>
     <string name="welcome">Welcome</string>
     <string name="reports_to_investigate">Reports to Investigate</string>
+    <string name="reports">Reports</string>
     <string name="parrot_says_version">Parrot Says App v2.0</string>
     <string name="team_project">Team Project in Alphabetic Order</string>
     <string name="server_configuration">Server Configuration:</string>
@@ -30,4 +32,13 @@
         <item>Thiago Silva</item>
         <item>Ydelma Rangel</item>
     </string-array>
+    <string name="title_activity_details">Map</string>
+    <string name="report_id">Report Id</string>
+    <string name="date_time_report">Date/Time Report</string>
+    <string name="description">User Description</string>
+    <string name="opened">Opened</string>
+    <string name="investigation_requested">Investigation Requested</string>
+    <string name="investigation_returned">Investigation Returned</string>
+    <string name="sol_requested">Solution Requested</string>
+    <string name="solved">Solved</string>
 </resources>
