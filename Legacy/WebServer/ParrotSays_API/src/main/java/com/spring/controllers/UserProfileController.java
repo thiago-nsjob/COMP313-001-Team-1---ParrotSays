@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,8 +31,6 @@ import com.spring.models.User;
 import com.spring.models.UserDTO;
 import com.spring.models.UserRepository;
 import com.spring.security.jwt.ServletUtil;
-
-import javassist.NotFoundException;
 
 import com.spring.security.UserDetailsServiceImpl;
 import com.spring.security.jwt.JwtUtil;
@@ -99,7 +100,7 @@ public class UserProfileController {
         user.setPassword(encoder.encode(newUser.getPassword()));
         try
         {
-        	Roles role = rolerepo.findById((long)3).orElseThrow(() -> new NotFoundException("RoleId 3 Not found."));
+        	Roles role = rolerepo.findByNome("ROLE_USER");
         	user.setSingleRole(role);
 	        repo.save(user);
 	        
@@ -150,11 +151,11 @@ public class UserProfileController {
     // Assigns a role to a user
     @Secured({ "ROLE_ADMIN" })
     @PutMapping("/addrole/{login}/{roleid}")
-    public void addrole(@PathVariable String login, @PathVariable long roleid, HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public void addrole(@PathVariable String login, @PathVariable String roleid, HttpServletRequest request, HttpServletResponse response) throws IOException{
     	try{
     		 	            
     		User actualUser = repo.findByUsername(login);
-    		Roles role = rolerepo.findById(roleid).orElseThrow(() -> new NotFoundException("RoleId "+ roleid+ " Not found."));
+    		Roles role = rolerepo.findById(roleid).orElseThrow(() -> new Exception("RoleId "+ roleid+ " Not found."));
     		if(actualUser.setSingleRole(role)) 
     		{
 	    		repo.save(actualUser);

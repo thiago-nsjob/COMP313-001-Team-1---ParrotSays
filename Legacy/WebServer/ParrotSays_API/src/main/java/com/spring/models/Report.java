@@ -3,27 +3,22 @@ package com.spring.models;
 import java.util.Arrays;
 
 //import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
 
-@Entity
-@Table(name = "Reports")
+@Document
 public class Report {
 
 	@Id
-	@GeneratedValue
-	private int reportId;
+	private String reportId;
 	@NotEmpty
     private String description;
 	
 	//@Column(columnDefinition = "TEXT")
-	@Lob
     private byte[] picture;
 	@NonNull
     private double latitude;
@@ -40,7 +35,7 @@ public class Report {
     
     public Report() {}
     
-	public Report(int reportId, String description, double latitude, double longitude, Long dateTimeReport,
+	public Report(String reportId, String description, double latitude, double longitude, Long dateTimeReport,
 			int statusCode) {
 		super();
 		this.reportId = reportId;
@@ -51,10 +46,10 @@ public class Report {
 		this.statusCode = statusCode;
 	}
 
-	public int getReportId() {
+	public String getReportId() {
 		return reportId;
 	}
-	public void setReportId(int reportId) {
+	public void setReportId(String reportId) {
 		this.reportId = reportId;
 	}
 	public String getDescription() {

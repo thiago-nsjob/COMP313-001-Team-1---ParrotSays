@@ -14,7 +14,8 @@ public class Report {
 
     @PrimaryKey
     @SerializedName("reportId")
-    private int ReportId;
+    @NonNull
+    private String ReportId;
 
     @NonNull
     @SerializedName("description")
@@ -52,11 +53,11 @@ public class Report {
     @SerializedName("adminId")
     private String AdminId;
 
-    public int getReportId() {
+    public String getReportId() {
         return ReportId;
     }
 
-    public void setReportId(int reportId) {
+    public void setReportId(String reportId) {
         ReportId = reportId;
     }
 

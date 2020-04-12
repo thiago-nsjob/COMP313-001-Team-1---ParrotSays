@@ -12,7 +12,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import javassist.NotFoundException;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +51,7 @@ public class ReportController {
     public void addReport(@Valid @RequestBody Report report, HttpServletResponse response) throws Exception {
         try
         {
-        	String json = ServletUtil.getJson("reportId", String.valueOf(repo.save(report).getReportId()));
+        	String json = ServletUtil.getJson("reportId", repo.save(report).getReportId());
         	ServletUtil.write(response, HttpStatus.OK, json);
         }
         catch(Exception exc)
@@ -63,20 +62,20 @@ public class ReportController {
     
     // Get a Single report
     @GetMapping("/getreport/{id}")
-    public Report getReportById(@PathVariable(value = "id") Integer reportId, HttpServletResponse response) throws NotFoundException  
+    public Report getReportById(@PathVariable(value = "id") String reportId, HttpServletResponse response) throws Exception  
     {
         return repo.findById(reportId)
-        		.orElseThrow(() -> new NotFoundException("ReportId "+ reportId+ " Not found."));
+        		.orElseThrow(() -> new Exception("ReportId "+ reportId+ " Not found."));
     }
 
     // Update a Report
     @Secured({ "ROLE_SECGUARD", "ROLE_ADMIN" })
     @PutMapping("/updatereport/{id}")
-    public Report updateReport(@PathVariable(value = "id") Integer reportId,
-                           @RequestBody Report reportEdited) throws NotFoundException {
+    public Report updateReport(@PathVariable(value = "id") String reportId,
+                           @RequestBody Report reportEdited) throws Exception {
 
     	Report reportTemp = repo.findById(reportId)
-    			.orElseThrow(() -> new NotFoundException("ReportId "+ reportId+ " Not found."));
+    			.orElseThrow(() -> new Exception("ReportId "+ reportId+ " Not found."));
 		
     	reportTemp.setAdminId(reportEdited.getAdminId());
     	reportTemp.setDateTimeSolution(reportEdited.getDateTimeSolution());
@@ -89,7 +88,7 @@ public class ReportController {
     // Delete a Report
     @Secured({ "ROLE_ADMIN" })
     @DeleteMapping("/delreport/{id}")
-    public ResponseEntity<?> deleteReport(@PathVariable(value = "id") Integer reportId) throws NotFoundException {
+    public ResponseEntity<?> deleteReport(@PathVariable(value = "id") String reportId) throws Exception {
 
 		repo.deleteById(reportId);//.delete(report);
 		

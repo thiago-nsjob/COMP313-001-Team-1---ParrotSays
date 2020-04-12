@@ -98,6 +98,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private EditText editMult;
 
     @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        SharedPreferences myPreference = getSharedPreferences("MyPrefs",MODE_PRIVATE);
+        ServerUrl = myPreference.getString("IPAddress", getString(R.string.default_server_address));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
@@ -212,12 +219,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     dialog.dismiss();
 
                                     try {
-                                        int reportId = response.getInt("reportId");
+                                        String reportId = response.getString("reportId");
 
                                         Report saveReport = newReport;
                                         saveReport.setReportId(reportId);
                                         reportViewModel.insert(saveReport);
 
+                                        newReport = new Report();
+                                        newReport.setLatitude(saveReport.getLatitude());
+                                        newReport.setLongitude(saveReport.getLongitude());
                                         imageView.setImageResource(0);
                                         editMult.setText("");
 

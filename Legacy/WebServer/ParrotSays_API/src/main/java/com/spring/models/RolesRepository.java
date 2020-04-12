@@ -1,7 +1,11 @@
 package com.spring.models;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-public interface RolesRepository extends JpaRepository<Roles, Long>{
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
+public interface RolesRepository extends MongoRepository<Roles, String>{
+
+	public Roles findByNome(String nome);
 }

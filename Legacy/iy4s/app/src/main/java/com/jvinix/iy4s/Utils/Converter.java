@@ -140,7 +140,7 @@ public class Converter {
         Log.d("jsonObject: ", jsonObject.toString());
         Report report = new Report();
         try{
-            report.setReportId(jsonObject.getInt("ReportId"));
+            report.setReportId(jsonObject.getString("ReportId"));
             report.setDescription(jsonObject.getString("Description"));
             Log.d("jsonObject: ", report.toString());
         }

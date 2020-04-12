@@ -96,7 +96,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMapReadyCall
 
         SharedPreferences myPreference = getSharedPreferences("MyPrefs",MODE_PRIVATE);
         serverUrl = myPreference.getString("IPAddress", getString(R.string.default_server_address));
-        int reportId = getIntent().getIntExtra("reportId", 0);
+        String reportId = getIntent().getStringExtra("reportId");
 
         builder = new AlertDialog.Builder(DetailsActivity.this);
         builder.setCancelable(false); // if you want user to wait for some process to finish,
@@ -157,7 +157,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMapReadyCall
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 20));
     }
 
-    public void getReport(final int reportId) {
+    public void getReport(final String reportId) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());  // this = context
         // prepare the Request
