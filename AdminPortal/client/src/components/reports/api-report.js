@@ -5,7 +5,6 @@ const getAllReport = (token) => {
   return axios
     .get("/reports/getall", { headers: { Authorization: `Bearer ${token}` } })
     .then((response) => {
-      //console.log(response);
       return response.data;
     })
     .catch((err) => console.log(err));
@@ -54,10 +53,9 @@ const deleteReport = (token, id) => {
 
 //update status code and solution on report
 const createReport = (token, report) => {
-  console.log(report);
 
   return axios
-    .put("/reports/addreport", report, {
+    .post("/reports/addreport", report, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {

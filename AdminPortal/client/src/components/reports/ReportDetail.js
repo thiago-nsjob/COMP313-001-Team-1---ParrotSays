@@ -167,7 +167,7 @@ function ReportDetail() {
             </table>
             <div align="right">
               <input class="btn btn-danger" type="reset" value="Cancel" />
-              <input class="btn btn-success" type="submit" value="Save"></input>
+              <input class="btn btn-success ml-3" type="submit" value="Save"></input>
             </div>
           </form>
         </div>

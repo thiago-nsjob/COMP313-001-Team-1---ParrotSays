@@ -5,8 +5,6 @@ import authHelper from "../auth/auth-helper";
 const Menu = () => {
   var isAuthenticated = authHelper.isAuthenticated();
   let history = useHistory();
-  // console.log("isAuthenticated");
-  //console.log(isAuthenticated);
 
   const signOut = (e) => {
     e.preventDefault();
@@ -49,7 +47,7 @@ const Menu = () => {
                   className="nav-link"
                   to="/"
                 >
-                 <h3> Home</h3>
+                  <h3> Home</h3>
                 </NavLink>
               </li>
               <li
@@ -61,7 +59,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/signup"
                 >
-                 <h3>Signup</h3>
+                  <h3>Signup</h3>
                 </NavLink>
               </li>
               <li
@@ -97,7 +95,16 @@ const Menu = () => {
                   activeClassName="active"
                   to="/posts"
                 >
-                 <h3> Posts</h3>
+                  <h3>Posts</h3>
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active"
+                  to="/about"
+                >
+                  <h3> About</h3>
                 </NavLink>
               </li>
               <li
@@ -109,16 +116,9 @@ const Menu = () => {
                   activeClassName="active"
                   to="/signin"
                 >
-                  <div onClick={(e) => signOut(e)}><h3>Logout</h3></div>
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  activeClassName="active"
-                  to="/about"
-                >
-                <h3>   About</h3>
+                  <div onClick={(e) => signOut(e)}>
+                    <h3>Logout</h3>
+                  </div>
                 </NavLink>
               </li>
             </ul>
