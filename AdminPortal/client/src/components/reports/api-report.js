@@ -3,7 +3,7 @@ import axios from "axios";
 const getAllReport = (token) => {
   //console.log({username,password});
   return axios
-    .get("/reports/getall", { headers: { Authorization: `Bearer ${token}` } })
+    .get("http://parrotsays.tk:8167/api/reports/getall", { headers: { Authorization: `Bearer ${token}` } })
     .then((response) => {
       //console.log(response);
       return response.data;
@@ -14,7 +14,7 @@ const getAllReport = (token) => {
 //get by id
 const getReportById = (token, id) => {
   return axios
-    .get("/reports/getreport/" + id, {
+    .get("http://parrotsays.tk:8167/api/reports/getreport/" + id, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
@@ -29,7 +29,7 @@ const updateReport = (token, id, report) => {
   console.log(report);
 
   return axios
-    .put("/reports/updatereport/" + id, report, {
+    .put("http://parrotsays.tk:8167/api/reports/updatereport/" + id, report, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
@@ -43,7 +43,7 @@ const updateReport = (token, id, report) => {
 const deleteReport = (token, id) => {
   //console.log(report);
   try {
-    axios.delete("/reports/delreport/" + id, {
+    axios.delete("http://parrotsays.tk:8167/api/reports/delreport/" + id, {
       headers: { Authorization: `Bearer ${token}` },
     });
     //console.log(response);
@@ -57,7 +57,7 @@ const createReport = (token, report) => {
   console.log(report);
 
   return axios
-    .put("/reports/addreport", report, {
+    .put("http://parrotsays.tk:8167/api/reports/addreport", report, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
