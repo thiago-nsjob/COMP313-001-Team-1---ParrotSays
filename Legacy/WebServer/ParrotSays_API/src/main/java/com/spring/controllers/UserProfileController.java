@@ -36,6 +36,7 @@ import com.spring.security.jwt.JwtUtil;
 
 
 @RestController
+@CrossOrigin("http://parrotsays.tk")
 @RequestMapping("/api/users")
 public class UserProfileController {
 
