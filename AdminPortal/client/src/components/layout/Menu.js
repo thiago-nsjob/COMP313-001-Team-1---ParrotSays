@@ -20,7 +20,7 @@ const Menu = () => {
         className="navbar navbar-expand-lg navbar-dark"
         style={{ background: "#D81B60" }}
       >
-        <div className="container">
+        <div className="d-inline-flex">
           <a className="navbar-brand" href="/">
             <img
               alt="logo"
@@ -49,7 +49,7 @@ const Menu = () => {
                   className="nav-link"
                   to="/"
                 >
-                  Home
+                 <h3> Home</h3>
                 </NavLink>
               </li>
               <li
@@ -61,7 +61,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/signup"
                 >
-                  Signup
+                 <h3>Signup</h3>
                 </NavLink>
               </li>
               <li
@@ -73,7 +73,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/signin"
                 >
-                  Login
+                  <h3>Login</h3>
                 </NavLink>
               </li>
               <li
@@ -85,7 +85,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/reports"
                 >
-                  Reports
+                  <h3>Reports</h3>
                 </NavLink>
               </li>
               <li
@@ -97,7 +97,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/posts"
                 >
-                  Posts
+                 <h3> Posts</h3>
                 </NavLink>
               </li>
               <li
@@ -109,7 +109,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/signin"
                 >
-                  <div onClick={(e) => signOut(e)}>Logout</div>
+                  <div onClick={(e) => signOut(e)}><h3>Logout</h3></div>
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -118,7 +118,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/about"
                 >
-                  About
+                <h3>   About</h3>
                 </NavLink>
               </li>
             </ul>
