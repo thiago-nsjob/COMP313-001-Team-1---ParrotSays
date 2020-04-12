@@ -8,6 +8,7 @@ import {
   faThumbsUp,
   faThumbsDown,
   faTheaterMasks,
+  faLink,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const PostList = () => {
@@ -66,14 +67,27 @@ export const PostList = () => {
 
   return (
     <div
-      className="mt-5 d-flex flex-wrap"
+      className="mt-5 d-flex container-fluid flex-wrap"
       style={{ width: "100em", marginTop: "10em" }}
     >
       {data.map((post, idx) => {
         return (
-          <Card key={idx} className="m-3" style={{ width: "30em", height:"25em" }}>
+          <Card
+            key={idx}
+            className="m-3"
+            style={{ width: "30em", height: "25em" }}
+          >
             <Card.Header style={{ backgroundColor: "#511845", color: "white" }}>
               Id: {post._id}
+              <div className="d-inline-flex ml-5">
+                <a href={post.postUrl}>
+                  <FontAwesomeIcon
+                    className="ml-2"
+                    icon={faLink}
+                    color="#05C3DD"
+                  />
+                </a>
+              </div>
             </Card.Header>
             <Card.Body>
               <Card.Title> Tweet Analyse </Card.Title>
