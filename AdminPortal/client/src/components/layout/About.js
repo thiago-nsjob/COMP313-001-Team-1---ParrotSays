@@ -76,7 +76,7 @@ const About = () => {
     add(
       "Ydelma Rangel",
       "yrangelr@my.centennialcollege.ca",
-      "https://github.com/thiago-nsjob",
+      "https://github.com/ydelmarangel",
       "300997098",
       "Software Engineering Technology",
       "Student"
