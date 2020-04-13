@@ -51,7 +51,7 @@ const About = () => {
     ),
     add(
       "Sophia Bhullar",
-      "ldeoliv4@my.centennialcollege.ca",
+      "sbhull18@my.centennialcollege.ca",
       "https://github.com/SophiaBhullar",
       "301048344",
       "Software Engineering Technology",
