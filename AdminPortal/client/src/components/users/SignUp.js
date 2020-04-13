@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 
 import authHelper from './../auth/auth-helper';
 import { useHistory } from "react-router-dom";
