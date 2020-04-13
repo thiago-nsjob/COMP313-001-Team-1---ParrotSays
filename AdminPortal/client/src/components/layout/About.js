@@ -66,9 +66,9 @@ const About = () => {
       "Student"
     ),
     add(
-      "Tring Quang Trung",
+      "Trinh Quang Trung",
       "ttrinh22@my.centennialcollege.ca",
-      "https://github.com/thiago-nsjob",
+      "https://github.com/kelvintrinh174",
       "301025717",
       "Software Engineering Technology",
       "Student"
