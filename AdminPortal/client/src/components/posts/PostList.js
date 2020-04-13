@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PostAPI } from "./api-post";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import Badge from "react-bootstrap/Badge";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -111,7 +111,18 @@ export const PostList = () => {
                   );
                 })}
               </Card.Text>
-              <Button variant="danger">Create Report</Button>
+
+              <Link
+                to={{
+                  pathname: "/report/create",
+                  state: {
+                    report: post.text,
+                  },
+                }}
+                className="btn btn-danger"
+              >
+                Create Report
+              </Link>
             </Card.Body>
           </Card>
         );

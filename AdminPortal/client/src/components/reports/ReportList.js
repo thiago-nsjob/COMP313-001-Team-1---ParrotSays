@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import auth from "./../auth/auth-helper";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getAllReport, deleteReport } from "./api-report.js";
 
 function ReportList() {
   const [data, setData] = useState([]);
-  const [error, setError] = useState(false);
-
   const handleDelete = async (e, id) => {
     e.preventDefault();
     try {
@@ -105,12 +102,9 @@ function ReportList() {
                   <td>
                     <a href={"/report/edit/" + value.reportId}>
                       <i className="fa fa-edit text-body"></i>
-                    </a>{" "}
-                    |{" "}
-                    <a
-                      href="#"
-                      onClick={(e) => handleDelete(e, value.reportId)}
-                    >
+                    </a>
+                    {" "}|{" "}
+                    <a href="#" onClick={(e) => handleDelete(e, value.reportId)}>
                       <i className="fa fa-trash text-body"></i>
                     </a>
                   </td>
