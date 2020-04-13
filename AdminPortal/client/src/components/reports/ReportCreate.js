@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import auth from "./../auth/auth-helper";
 import { createReport } from "./api-report.js";
 import { useHistory } from "react-router-dom";
@@ -12,7 +12,7 @@ function ReportCreate(props) {
     defaultReportText = props.location.state.report;
   }
 
-  let history = useHistory();
+    let history = useHistory();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (auth.isAuthenticated) {
@@ -24,6 +24,10 @@ function ReportCreate(props) {
       });
     }
   };
+
+  useEffect(() => {
+    setDescription(defaultReportText);
+  }, []);
 
   return (
     <div className="container d-flex" style={{ marginTop: "125px" }}>

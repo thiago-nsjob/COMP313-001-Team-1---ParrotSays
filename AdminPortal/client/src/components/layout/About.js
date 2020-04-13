@@ -37,7 +37,7 @@ const About = () => {
       "Julio Azevedo de Carvalho",
       "jazeved5@my.centennialcollege.ca",
       "https://github.com/JViniX",
-      "30",
+      "301016383",
       "Software Engineering Technology",
       "Student"
     ),
@@ -45,7 +45,7 @@ const About = () => {
       "Leonardo de Oliveira",
       "ldeoliv4@my.centennialcollege.ca",
       "https://github.com/leonardoaugustu",
-      "30",
+      "300978172",
       "Software Engineering Technology",
       "Student"
     ),
@@ -66,9 +66,9 @@ const About = () => {
       "Student"
     ),
     add(
-      "Tring Quang Trung",
+      "Trinh Quang Trung",
       "ttrinh22@my.centennialcollege.ca",
-      "https://github.com/thiago-nsjob",
+      "https://github.com/kelvintrinh174",
       "301025717",
       "Software Engineering Technology",
       "Student"
