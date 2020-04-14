@@ -9,6 +9,7 @@ import {
   faThumbsDown,
   faTheaterMasks,
   faLink,
+  faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
 
 export const PostList = () => {
@@ -32,7 +33,7 @@ export const PostList = () => {
     if (mlAnalyse)
       return (
         <div className="d-inline-flex ml-5">
-          <FontAwesomeIcon className="ml-2" icon={faThumbsUp} color="green" />{" "}
+          <FontAwesomeIcon className="ml-2" icon={faThumbsUp} color="green" />
           {Math.round(mlAnalyse.classification[1].score * 100)} %
           <FontAwesomeIcon className="ml-2" icon={faThumbsDown} color="red" />
           {Math.round(mlAnalyse.classification[0].score * 100)} %

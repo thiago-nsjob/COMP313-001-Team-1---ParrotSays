@@ -1,4 +1,6 @@
 import axios from "axios";
+
+const POST_API_ROOT = process.env.REACT_APP_POSTS_API;
 //API Manager for Reports
 const getAllReport = (token) => {
   //console.log({username,password});
@@ -53,11 +55,21 @@ const deleteReport = (token, id) => {
 
 //update status code and solution on report
 const createReport = (token, report) => {
-
   return axios
     .post("/reports/addreport", report, {
       headers: { Authorization: `Bearer ${token}` },
     })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .catch((err) => console.log(err));
+};
+
+//update status code and solution on report
+const sendNotification = (message) => {
+  return axios
+    .post(POST_API_ROOT + "/notification", { message: message }, {})
     .then((response) => {
       console.log(response);
       return response.data;
@@ -71,4 +83,5 @@ export {
   updateReport,
   deleteReport,
   createReport,
+  sendNotification,
 };
