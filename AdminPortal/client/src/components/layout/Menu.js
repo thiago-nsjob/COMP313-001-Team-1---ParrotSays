@@ -22,7 +22,7 @@ const Menu = () => {
           <a className="navbar-brand" href="/">
             <img
               alt="logo"
-              className="card"
+              className="card rounded-circle"
               src="/images/ic_launcher_mini.png"
             ></img>
           </a>
@@ -47,7 +47,7 @@ const Menu = () => {
                   className="nav-link"
                   to="/"
                 >
-                  <h3> Home</h3>
+                  <h3>Home</h3>
                 </NavLink>
               </li>
               <li
