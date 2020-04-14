@@ -5,8 +5,6 @@ import authHelper from "../auth/auth-helper";
 const Menu = () => {
   var isAuthenticated = authHelper.isAuthenticated();
   let history = useHistory();
-  // console.log("isAuthenticated");
-  //console.log(isAuthenticated);
 
   const signOut = (e) => {
     e.preventDefault();
@@ -20,11 +18,11 @@ const Menu = () => {
         className="navbar navbar-expand-lg navbar-dark"
         style={{ background: "#D81B60" }}
       >
-        <div className="container">
+        <div className="d-inline-flex">
           <a className="navbar-brand" href="/">
             <img
               alt="logo"
-              className="card"
+              className="card rounded-circle"
               src="/images/ic_launcher_mini.png"
             ></img>
           </a>
@@ -49,7 +47,7 @@ const Menu = () => {
                   className="nav-link"
                   to="/"
                 >
-                  Home
+                  <h3>Home</h3>
                 </NavLink>
               </li>
               <li
@@ -61,7 +59,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/signup"
                 >
-                  Signup
+                  <h3>Signup</h3>
                 </NavLink>
               </li>
               <li
@@ -73,7 +71,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/signin"
                 >
-                  Login
+                  <h3>Login</h3>
                 </NavLink>
               </li>
               <li
@@ -85,7 +83,7 @@ const Menu = () => {
                   activeClassName="active"
                   to="/reports"
                 >
-                  Reports
+                  <h3>Reports</h3>
                 </NavLink>
               </li>
               <li
@@ -97,7 +95,16 @@ const Menu = () => {
                   activeClassName="active"
                   to="/posts"
                 >
-                  Posts
+                  <h3>Posts</h3>
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active"
+                  to="/about"
+                >
+                  <h3> About</h3>
                 </NavLink>
               </li>
               <li
@@ -109,16 +116,9 @@ const Menu = () => {
                   activeClassName="active"
                   to="/signin"
                 >
-                  <div onClick={(e) => signOut(e)}>Logout</div>
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  activeClassName="active"
-                  to="/about"
-                >
-                  About
+                  <div onClick={(e) => signOut(e)}>
+                    <h3>Logout</h3>
+                  </div>
                 </NavLink>
               </li>
             </ul>

@@ -5,18 +5,13 @@ import Button from "react-bootstrap/Button";
 import authHelper from "./../auth/auth-helper";
 
 function SignIn() {
-  //state variable for the screen, admin or user
-  const [screen, setScreen] = useState("auth");
+
   //store input field data, user name and password
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [hasError, setHasError] = useState(false);
   const [redirect, setRedirect] = useState(false);
 
-  const styles = {
-    width: "500px",
-    paddingTop: "50px",
-  };
   //send username and password to the server
   // for initial authentication
   const login = async () => {

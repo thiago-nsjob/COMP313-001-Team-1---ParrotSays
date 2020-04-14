@@ -1,8 +1,5 @@
 package com.spring.controllers;
 
-
-import java.io.IOException;
-
 /* 
 301016383 - Julio Vinicius A. de Carvalho
 November 17, 2019
@@ -25,6 +22,7 @@ import com.spring.security.jwt.ServletUtil;
 
 
 @RestController
+@CrossOrigin("http://parrotsays.tk")
 @RequestMapping("/api/reports")
 public class ReportController {
 	
