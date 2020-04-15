@@ -8,9 +8,7 @@ function ReportDetail() {
   const [report, setReport] = useState({});
   const [solution, setSolution] = useState("");
   const [statusCode, setStatusCode] = useState("");
-  const [error, setError] = useState(false);
-  const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
+ 
   let { id } = useParams();
   let history = useHistory();
   const handleSubmit = async (e) => {
@@ -125,8 +123,8 @@ function ReportDetail() {
                 <td colSpan="2">
                   <img
                     src={`data:image/jpeg;base64,${report.picture}`}
+                    alt="No Available"
                     style={{ width: "500px" }}
-                    alt="No picture available"
                   />
                 </td>
               </tr>
