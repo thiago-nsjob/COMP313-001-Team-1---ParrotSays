@@ -36,10 +36,10 @@ module.exports = rootRoute => {
     router.get(`${baseRoute}`, async(req, res) => {
         try {
             await openDbConnection();
-            const allProducts = await PostService.getAllPosts();
-            if (allProducts) {
+            const allPosts = await PostService.getAllPosts();
+            if (allPosts) {
                 return res.status(200).send({
-                    data: allProducts
+                    data: allPosts
                 });
             }
         } catch (error) {
@@ -59,6 +59,21 @@ module.exports = rootRoute => {
             console.log(error, `Error on route ${baseRoute} method get/${postId} `);
             throw error;
         }
+    
+    });
+
+    router.delete(`${baseRoute}/:postId`, async(req, res) => {
+        try {
+            await openDbConnection();
+            const { postId } = req.params;
+            return res.status(200).send({
+                data: await PostService.deleteById(postId);
+            });
+        } catch (error) {
+            console.log(error, `Error on route ${baseRoute} method get/${postId} `);
+            throw error;
+        }
+    
     });
     return router;
 };

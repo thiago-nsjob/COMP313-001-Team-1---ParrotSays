@@ -1,17 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Badge from "react-bootstrap/Badge";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPortrait,
   faMailBulk,
-  faUserCircle,
   faCode,
   faIdCard,
 } from "@fortawesome/free-solid-svg-icons";
 
 const About = () => {
+
   const add = (name, email, githubUser, studentId, programName, rolName, avatar) => {
     if (avatar === "F" || avatar === "M") {
       avatar = avatar === "F" ? "img_avatar_female.png" : "img_avatar_male.png";
@@ -27,7 +25,7 @@ const About = () => {
       "301048660",
       "Software Engineering Technology",
       "Student",
-      "M"
+      "eduardo.jpeg"
     ),
     add(
       "Andrea de la Isla Portilla",
@@ -36,7 +34,7 @@ const About = () => {
       "301039987",
       "Software Engineering Technology",
       "Student",
-      "F"
+      "andrea.jpeg"
     ),
     add(
       "Julio Azevedo de Carvalho",
@@ -45,7 +43,7 @@ const About = () => {
       "301016383",
       "Software Engineering Technology",
       "Student",
-      "M"
+      "julio.jpeg"
     ),
     add(
       "Leonardo de Oliveira",
@@ -54,7 +52,7 @@ const About = () => {
       "300978172",
       "Software Engineering Technology",
       "Student",
-      "M"
+      "leonardo.jpeg"
     ),
     add(
       "Sophia Bhullar",
@@ -63,7 +61,7 @@ const About = () => {
       "301048344",
       "Software Engineering Technology",
       "Student",
-      "F"
+      "sophia.jpeg"
     ),
     add(
       "Thiago Silva",
@@ -72,7 +70,7 @@ const About = () => {
       "301024379",
       "Software Engineering Technology",
       "Student",
-      "M"
+      "thiago.jpeg"
     ),
     add(
       "Trinh Quang Trung",
@@ -81,7 +79,7 @@ const About = () => {
       "301025717",
       "Software Engineering Technology",
       "Student",
-      "M"
+      "kelvin.jpeg"
     ),
     add(
       "Ydelma Rangel",
@@ -90,10 +88,21 @@ const About = () => {
       "300997098",
       "Software Engineering Technology",
       "Student",
-      "F"
+      "ydelma.png"
     ),
   ];
 
+  const shuffleArray = (array) => {
+    let i = array.length - 1;
+    for (; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+  
   return (
     <div
       className="container "
@@ -126,7 +135,7 @@ const About = () => {
         </h3>
 
         <div className="mt-4 d-flex flex-wrap">
-          {teamMembersList.map((member, i) => {
+          {shuffleArray(teamMembersList).map((member, i) => {
             return (
               <Card
                 key={i}
