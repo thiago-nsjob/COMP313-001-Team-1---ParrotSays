@@ -8,8 +8,7 @@ import {
   faThumbsUp,
   faThumbsDown,
   faTheaterMasks,
-  faLink,
-  faPaperPlane
+  faLink
 } from "@fortawesome/free-solid-svg-icons";
 
 export const PostList = () => {

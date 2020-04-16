@@ -63,6 +63,8 @@ function ReportList() {
         return "Solution Requested";
       case 4:
         return "Solved";
+      default: 
+      return "Solved";
     }
   };
 
