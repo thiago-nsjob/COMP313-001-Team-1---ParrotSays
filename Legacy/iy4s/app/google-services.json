@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "550928865819",
+    "firebase_url": "https://parrot-says-app.firebaseio.com",
+    "project_id": "parrot-says-app",
+    "storage_bucket": "parrot-says-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550928865819:android:c3a8cd186ce9ec6e7176be",
+        "android_client_info": {
+          "package_name": "com.jvinix.iy4s"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550928865819-as6mtjjia9mc6ji2ad107q9g2o3jpbcv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jvinix.iy4s",
+            "certificate_hash": "4960c37d73d1299509ac3ffb663b584e29b4fc77"
+          }
+        },
+        {
+          "client_id": "550928865819-v3vf5b7fe7tj6404hrc21pkc8goia1hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr3tfj7vBtvrTStr29G7JmBvYIZLx9Uu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550928865819-v3vf5b7fe7tj6404hrc21pkc8goia1hm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

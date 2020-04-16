@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
-import com.jvinix.iy4s.Utils.Converter;
+//import com.jvinix.iy4s.Utils.Converter;
 
 @Entity
 public class Report {

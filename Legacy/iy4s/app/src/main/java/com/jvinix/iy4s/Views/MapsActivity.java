@@ -1,5 +1,6 @@
 package com.jvinix.iy4s.Views;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -16,7 +17,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -56,17 +56,15 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.jvinix.iy4s.Models.Report;
-import com.jvinix.iy4s.Models.UserDTO;
 import com.jvinix.iy4s.R;
 import com.jvinix.iy4s.Utils.Converter;
 import com.jvinix.iy4s.ViewModels.ReportViewModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
@@ -103,6 +101,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps);
 
         setTitle("Parrot Says"); // for set actionbar title
+
+        String firebaseTiken = FirebaseInstanceId.getInstance().getToken();
+//        Toast.makeText(this, firebaseTiken, Toast.LENGTH_LONG).show();
+        Log.i("LOGTAG", "Device Token:"+firebaseTiken);
 
         SharedPreferences myPreference = getSharedPreferences("MyPrefs",MODE_PRIVATE);
         ServerUrl = myPreference.getString("IPAddress", getString(R.string.default_server_address));
@@ -542,6 +544,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     public void process(View view)
     {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
