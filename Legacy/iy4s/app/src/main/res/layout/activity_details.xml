@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.3"
-            android:text="Date Time Report"
+            android:text="@string/date_time_report"
             android:textStyle="bold" />
 
         <TextView
@@ -124,13 +124,13 @@
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
-                android:text="Picture"
+                android:text="@string/picture"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imageViewDetails"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/todo"
                 android:paddingTop="10dp"
@@ -145,7 +145,7 @@
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
-                android:text="Map Location"
+                android:text="@string/map_location"
                 android:textStyle="bold" />
 
             <TableRow

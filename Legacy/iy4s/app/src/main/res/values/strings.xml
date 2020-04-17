@@ -41,4 +41,6 @@
     <string name="investigation_returned">Investigation Returned</string>
     <string name="sol_requested">Solution Requested</string>
     <string name="solved">Solved</string>
+    <string name="picture">Picture</string>
+    <string name="map_location">Map Location</string>
 </resources>

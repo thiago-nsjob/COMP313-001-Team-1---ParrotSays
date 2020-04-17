@@ -379,7 +379,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMapReadyCall
             photoFile = createImageFile();
             if (photoFile.exists()) photoFile.delete ();
             FileOutputStream out = new FileOutputStream(photoFile);
-            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 50, out);
             out.flush();
             out.close();
             return true;
